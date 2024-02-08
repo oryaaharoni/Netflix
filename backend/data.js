@@ -26,7 +26,6 @@ export const listSeriesNames = [
 ];
 
 export const data = {
-  lists: [],
   users: [
     {
       username: 'Admin',
@@ -34,7 +33,7 @@ export const data = {
       password: bcrypt.hashSync('12345'),
       //isAdmin: true,
       profilePicture: 'https://i.pravatar.cc/300',
-      //myList: [],
+      contentList: []
     },
   ],
   content: [
@@ -581,3 +580,5 @@ export const data = {
     },
   ],
 };
+
+export default data;

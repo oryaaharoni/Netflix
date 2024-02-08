@@ -8,19 +8,18 @@ const contentScema = new mongoose.Schema({
     description: {
         type: String,
         required: true,
-        unique: true
     },
-    image: {
+    img: {
         type: String,
         required: true
     },
-    imageTitle: {
+    imgTitle: {
         type: String,
     },
-    imageThumb: {
+    imgThumb: {
         type: String,
     },
-    imageVertical: {
+    imgVertical: {
         type: String,
     },
     trailer: {

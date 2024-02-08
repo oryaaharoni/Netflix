@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
+import seedRouter from './routers/seedRouter.js';
 
 const app = express();
 
@@ -14,7 +15,7 @@ app.use(express.urlencoded({ extended:false })); //check in google
 const PORT = process.env.PORT || 8080; //make sure have port  //TODO: make env
 
 //routes
-// app.use("/api/v1/seed",seedRouter);
+app.use("/api/v1/seed", seedRouter);
 // app.use("/api/v1/product",productRouter);
 // app.use("/api/v1/users",userRouter);
 // app.use("/api/v1/orders",orderRouter);

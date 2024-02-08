@@ -1,7 +1,7 @@
 import mongoose, { Schema } from "mongoose";
 
 const userScema = new mongoose.Schema({
-    name: {
+    username: {
         type: String,
         required: true
     },
@@ -14,12 +14,10 @@ const userScema = new mongoose.Schema({
         type: String,
         required: true
     },
-    profilPicture: {
+    profilePicture: {
         type: String,
     },
-    contentList: {
-        type: String,
-    },
+    contentList: [{ type: Schema.Types.ObjectId, ref: 'Content' }]
 }, 
 {timestamps: true, versionKey: false});// מוסיף תאריכים מתי היוזר נוצר במונגו
 
