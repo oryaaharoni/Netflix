@@ -16,15 +16,11 @@ const PORT = process.env.PORT || 8080; //make sure have port  //TODO: make env
 
 //routes
 app.use("/api/v1/seed", seedRouter);
-// app.use("/api/v1/product",productRouter);
-// app.use("/api/v1/users",userRouter);
-// app.use("/api/v1/orders",orderRouter);
 
 app.use((error,req, res, next) => {
     res.status(500).send({message: error.message});
 })
 
-//הוספנו לפני הסימן שאלה את השם של הדאטה בייס המרכזי שלנו 
 
 mongoose.connect(process.env.MONGO_CONNECTION_STRING)
 .then(()=>
