@@ -4,7 +4,7 @@ import {signin, signup} from '../controllers/userController.js';
 
 const userRouter = express.Router();
 
-userRouter.post(("/signin") ,expressAsyncHandler(signin));
-userRouter.post(("/signup") ,expressAsyncHandler(signup));
+userRouter.post("/signin" ,expressAsyncHandler(signin));
+userRouter.post("/signup" ,expressAsyncHandler(signup));
 
-export {userRouter}
+export default userRouter;

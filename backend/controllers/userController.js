@@ -1,5 +1,6 @@
-import User from "../models/User";
+import User from "../models/User.js";
 import bcrypt from "bcryptjs";
+import { generateToken } from "../utils.js";
 
 //connect to site
 export const signin = async (req, res) => {
@@ -7,6 +8,7 @@ export const signin = async (req, res) => {
     const user = await User.findOne({email: email});
 
     if (user) {
+        
         if (bcrypt.compareSync(passwordFromWebsite,user.password)){
             res.send({
                 _id: user._id,
