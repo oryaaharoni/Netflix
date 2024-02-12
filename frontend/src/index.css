@@ -1,0 +1,8 @@
+@media screen and (max-width: 1024px) {
+    .align-arrow-right {
+      /* left: 120px;
+      top: calc(50% - 8px);
+      transform: none; */
+      visibility:collapse;
+    }
+  }
