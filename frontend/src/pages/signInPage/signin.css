@@ -75,6 +75,7 @@ button {
     margin-top: 10px;
     font-size: 90%;
     font-weight: bold;
+    padding: 8%;
 }
 
 a.linkForgot {
@@ -94,10 +95,10 @@ input[type='checkbox'] {
     margin-right: 5px; 
     padding: 70px;
 }
-/* 
+
 h1 {
-    margin-right: 60%;
-} */
+    margin-right: 70%;
+}
 
 h3{
     border: 1px;

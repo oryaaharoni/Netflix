@@ -6,7 +6,7 @@ import { generateToken } from "../utils.js";
 export const signin = async (req, res) => {
     const {email, password: passwordFromWebsite} = req.body;
     const user = await User.findOne({email: email});
-
+    
     if (user) {
         
         if (bcrypt.compareSync(passwordFromWebsite,user.password)){
