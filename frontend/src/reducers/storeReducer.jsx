@@ -6,6 +6,8 @@ const storeReducer = (state, action) => {
         case 'USER_SIGNOUT':{
             return {...state, userInfo: null}
         }
+        default:
+            return {...state};
     }
 }
 

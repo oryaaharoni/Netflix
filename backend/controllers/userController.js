@@ -4,11 +4,12 @@ import { generateToken } from "../utils.js";
 
 //connect to site
 export const signin = async (req, res) => {
+    console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
     const {email, password: passwordFromWebsite} = req.body;
     const user = await User.findOne({email: email});
 
     if (user) {
-        
+        console.log("bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb")
         if (bcrypt.compareSync(passwordFromWebsite,user.password)){
             res.send({
                 _id: user._id,

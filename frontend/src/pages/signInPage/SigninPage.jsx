@@ -1,12 +1,17 @@
-import { useState, useNavigate, axios } from "react";
+import { useState, useContext } from "react";
+import axios from "axios";
 import Title from "../../components/Shared/Title.jsx";
 import "./signin.css";
+import { Store } from "../../Store.jsx";
+import { useNavigate } from "react-router-dom";
 
 const SignInPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  // const navigate = useNavigate();
+  const { state, dispatch: ctxDispatch } = useContext(Store);
+  const { userInfo }= state;
+  const navigate = useNavigate();
 
   const [changeContent, setChangeContent] = useState(true);
 
@@ -19,15 +24,18 @@ const SignInPage = () => {
     // TODO: get the login form
     e.preventDefault();
     try{
-      const { data }= await axios.post("/api/v1/users/signin",{
-        email: email, 
-        password: password
+      const { data } = await axios.post("/api/v1/users/signin",{
+        password: password,
+        email: email 
       })
 
-      console.log(data);
+      ctxDispatch({type:'USER_SIGNIN', payload:data});
+      localStorage.setItem('userInfo',JSON.stringify(data));
+      navigate('/homePage');
+      
     }
     catch(error){
-      console.log(error)
+      console.log(error);
     }
   }
 
@@ -47,6 +55,7 @@ const SignInPage = () => {
         <button className="sendCodeBtn">Send Sign-In Code</button> }
        
         <h3>OR</h3>
+        {/* TODO: add func to login by email or phone */}
         <button className="passwordBtn" onClick={buttonSigninOrCode}>
           {changeContent ? "Use a Sign-In Code" : "Use Password"}
         </button>
