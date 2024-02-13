@@ -20,12 +20,20 @@ header{
     margin-left: 10%;
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 1000px) {
     form.signInForm {
-        width: 50%;
+        width: 40%;
         font-size: small;
     }
 }
+
+@media screen and (max-width: 700px) {
+    form.signInForm {
+        width: 70%;
+        font-size: small;
+    }
+}
+
 
 .signInForm {
     display: flex;
@@ -33,7 +41,7 @@ header{
     align-items: center;
     flex-direction: column;
 
-    width: 40%;
+    width: 25%;
     /* height: 70%; */
     margin-left: auto;
     margin-right: auto;
