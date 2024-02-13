@@ -106,7 +106,8 @@ h3{
     border-radius: 4px;
     width: 90%;
     font-size: medium;
-    border-width: 1px
+    border-width: 1px;
+    color: white;
 }
 .signUpLink{
     color:white;

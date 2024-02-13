@@ -17,7 +17,7 @@ const SignUpPage = () => {
         <input className="signUpInput" name="email" placeholder="Email Address" />
         <button className="getAddressBtn">Get Started </button>
         </form>
-
+        {/* TODO: add pwd input */}
     </div>
   )
 }
