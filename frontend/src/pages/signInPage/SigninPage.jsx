@@ -68,7 +68,7 @@ const SignInPage = () => {
         {invalidPassword && <div className="invalidDiv"> <strong>Incorrect password for <br />{originalEmail}</strong> <br />
           You can <a href="/signIn">use a sign-in code</a>, <a>reset your password</a> or try again.</div>}
 
-        {invalidUser && <div className="invalidDiv"><strong>Something went wrong </strong><br/>We couldn't send a sign-in code to {originalEmail}. Please <br/> <a onClick={buttonSigninOrCode}>use your password</a> or try again.</div>}
+        {invalidUser && <div className="invalidDiv"><strong>Something went wrong </strong><br />We couldn't send a sign-in code to {originalEmail}. Please <br /> <a onClick={buttonSigninOrCode}>use your password</a> or try again.</div>}
 
         <input className="signInInput" name="emailOrPhone" placeholder="Email or phone number" onChange={(e) => setEmail(e.target.value)} />
         {changeContent && (<input className="signInInput" name="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />)}
@@ -88,10 +88,11 @@ const SignInPage = () => {
           {changeContent ? "Forgot Password?" : "Forgot Email or Phone Number?"}
         </a>
 
-        <div>
+        <div className="checkboxContainer">
           <input type="checkbox" name="rememberMe" />
-          Remember me
+          <label className="checkboxLabel">Remember me</label>
         </div>
+
         <br />
         <p>
           New to Netflix?{" "}
