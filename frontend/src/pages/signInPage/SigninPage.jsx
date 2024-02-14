@@ -44,15 +44,15 @@ const SignInPage = () => {
       console.log(error);
 
       if (error.response && error.response.status === 404) {
-        // User not found
-        setInvalidUser(false);
-        setInvalidPassword(true);
-      } else {
-        console.log('status codeeeeeflkjljlkjlkj')
-        console.log(error.response.status)
         // Incorrect password or other error
+        console.log(error.response.status)
         setInvalidUser(true);
         setInvalidPassword(false);
+      } else {
+        // User not found
+        console.log(error.response.status)
+        setInvalidUser(false);
+        setInvalidPassword(true);
       }
     }
   }

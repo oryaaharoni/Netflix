@@ -4,7 +4,6 @@ body {
     background-size: cover;
 }
 
-
 .headDiv {
     position: fixed;
     top: 0;
@@ -22,7 +21,7 @@ header {
 
 @media screen and (max-width: 1000px) {
     form.signInForm {
-        width: 40%;
+        width: 50%;
         font-size: small;
     }
 }

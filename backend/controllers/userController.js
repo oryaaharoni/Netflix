@@ -18,10 +18,10 @@ export const signin = async (req, res) => {
             return;
         }
         else{
-            res.status(404).send({message: 'Invalid Password'});
+            res.status(401).send({message: 'Invalid Password'});
         }
     }
-    res.status(401).send({message: 'User not found'});
+    res.status(404).send({message: 'User not found'});
 }
 
 
