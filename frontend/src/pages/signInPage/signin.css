@@ -1,17 +1,17 @@
 body {
     margin: 0;
-    background-image: url('https://assets.nflxext.com/ffe/siteui/vlv3/5e16108c-fd30-46de-9bb8-0b4e1bbbc509/5f1f69fb-60cd-4630-a952-24db1a8b342a/IL-en-20240205-popsignuptwoweeks-perspective_alpha_website_small.jpg');
-    background-size: cover;
 }
 
 .headDiv {
+    background-image: url('https://assets.nflxext.com/ffe/siteui/vlv3/5e16108c-fd30-46de-9bb8-0b4e1bbbc509/5f1f69fb-60cd-4630-a952-24db1a8b342a/IL-en-20240205-popsignuptwoweeks-perspective_alpha_website_small.jpg');
+    background-size: cover;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.6);
-    overflow-y: auto; 
+    overflow-y: auto;
 }
 
 header {
@@ -33,7 +33,7 @@ header {
     }
 }
 
-h1{
+h1 {
     margin-right: 65%;
     white-space: nowrap;
 }
@@ -124,7 +124,9 @@ h3 {
     text-decoration: none;
 }
 
-a:hover {text-decoration:underline;}
+a:hover {
+    text-decoration: underline;
+}
 
 .invalidDiv {
     background-color: rgb(216, 157, 49);

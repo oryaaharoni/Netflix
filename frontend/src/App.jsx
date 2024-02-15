@@ -2,7 +2,7 @@ import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import SignInPage from "./pages/signInPage/SignInPage.jsx";
 import SignUpPage from "./pages/signUpPage/SignUpPage.jsx";
-import HomePage from "./pages/HomePage.jsx";
+import HomePage from "./pages/homePage/HomePage.jsx";
 
 function App() {
   return (
