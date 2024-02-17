@@ -1,6 +1,15 @@
-import Header from '../../components/Shared/Header'
+import Header from '../../components/Shared/Header';
+import { useState } from "react";
 import "./loginHelpPassword.css";
+
 const LoginHelpPage = () => {
+  const [email, setEmail] = useState("");
+
+  const sendEmailHandler= async(e)=>{
+    e.preventDefault();   //not render the page
+    // add here- verfiy code to email
+  }
+
   return (
     <div className='div1'>
       <a className='signInLink' href='/login'>Sign-In</a>
@@ -23,8 +32,8 @@ const LoginHelpPage = () => {
         <p>We will send you an email with instructions on how to reset your password.</p>
 
         {/* Placeholder depends on the selected radio button */}
-        <input className='emailInput' name='email' placeholder='Enter your email or phone number' /><br/>
-        <button type='submit'>Send</button><br/>
+        <input className='emailInput' name='email' placeholder='Enter your email or phone number' onChange={(e)=>setEmail(e.target.value)} /><br/>
+        <button type='submit' onClick={sendEmailHandler}>Send</button><br/>
         <a href=''>I dont remember my email or phone number</a>
       </div>
     </div>
