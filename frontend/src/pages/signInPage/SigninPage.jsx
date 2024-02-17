@@ -85,8 +85,8 @@ const SignInPage = () => {
         </a>
 
         <div className="checkboxContainer">
-          <input type="checkbox" name="rememberMe" />
-          <label className="checkboxLabel">Remember me</label>
+          <input id='checkRemember' type="checkbox" name="rememberMe" />
+          <label for='checkRemember'>Remember me</label>
         </div>
 
         <br />
