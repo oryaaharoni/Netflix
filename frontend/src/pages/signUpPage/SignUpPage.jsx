@@ -30,6 +30,10 @@ const SignUpPage = () => {
   const submitHandler = async (e) => {
     e.preventDefault();
 
+    // if (e.target.name === 'password'){
+
+    // }
+
     try {
       const { data } = await axios.post("/api/v1/users/signup", {
         username: formData.username,
@@ -85,6 +89,13 @@ const SignUpPage = () => {
             required
           />
         }
+
+        {/* {formData.email.length < 3 ? (
+          <p className="error">
+            Email should be at least 15 characters long
+          </p>
+        ) : null} */}
+
         {
           showPasswordInput === false ?
             <button type="button" onClick={togglePasswordInput} className="getAddressBtn">
