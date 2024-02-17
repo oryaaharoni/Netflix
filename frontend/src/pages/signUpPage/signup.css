@@ -19,7 +19,7 @@ body {
     text-align: center;
 }
 
-h1 {
+h1.title {
     margin: 0 20%;
     /* align-self: center; */
 }
@@ -53,4 +53,8 @@ input[type='password'] {
     font-size: medium;
     border-width: 1px;
     background-color: black;
+}
+
+.error{
+    color: white;
 }
