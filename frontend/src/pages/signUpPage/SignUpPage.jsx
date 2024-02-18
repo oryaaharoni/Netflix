@@ -36,8 +36,11 @@ const SignUpPage = () => {
     if (validateEmail(formData.email)) {
       setShowPasswordInput(!showPasswordInput);
     }
-    else{
+    else {
       setValidationErrors({ ...validationErrors, email: "Please enter a valid email address." });
+    }
+    if(validateUsername){
+      setValidationErrors({ ...validationErrors, password: "User name must be at least 3 characters long." });
     }
   };
 
@@ -49,17 +52,25 @@ const SignUpPage = () => {
     return password.length <= 8 && password.length > 3;
   };
 
+  const validateUsername = (username) => {
+    return username.length >= 3;
+  };
+
   const submitHandler = async (e) => {
     e.preventDefault();
 
     const emailIsValid = validateEmail(formData.email);
     const passwordIsValid = validatePassword(formData.password);
+    const usernameIsValid = validateUsername(formData.password);
 
     if (!emailIsValid) {
       setValidationErrors({ ...validationErrors, email: "Please enter a valid email address." });
     }
     else if (!passwordIsValid) {
       setValidationErrors({ ...validationErrors, password: "Password must be at least 4 characters long." });
+    }
+    else if(!usernameIsValid){
+      setValidationErrors({ ...validationErrors, password: "User name must be at least 3 characters long." });
     }
     else {
       try {
@@ -92,9 +103,9 @@ const SignUpPage = () => {
           onChange={handleChange}
           required
         />
-        {validationErrors.username && <p className="error">{validationErrors.username}</p>}
+        {/* {validationErrors.username && <p className="error">{validationErrors.username}</p>} */}
         {showPasswordInput ? (
-          <div>
+          <>
             <input
               className="signUpInput"
               name="password"
@@ -104,10 +115,10 @@ const SignUpPage = () => {
               onChange={handleChange}
               required
             />
-            {validationErrors.password && <p className="error">{validationErrors.password}</p>}
-          </div>
+            {/* {validationErrors.password && <p className="error">{validationErrors.password}</p>} */}
+          </>
         ) :
-          <div>
+          <>
             <input
               className="signUpInput"
               name="email"
@@ -117,8 +128,8 @@ const SignUpPage = () => {
               onChange={handleChange}
               required
             />
-            {validationErrors.email && <p className="error">{validationErrors.email}</p>}
-          </div>
+            {/* {validationErrors.email && <p className="error">{validationErrors.email}</p>} */}
+          </>
         }
 
         {
@@ -130,6 +141,11 @@ const SignUpPage = () => {
               Get Started
             </button>
         }
+        <div>
+          {validationErrors.username && <p className="error">{validationErrors.username}</p>}
+          {validationErrors.email && <p className="error">{validationErrors.email}</p>}
+          {validationErrors.password && <p className="error">{validationErrors.password}</p>}
+        </div>
       </form>
     </div>
   );

@@ -57,4 +57,9 @@ input[type='password'] {
 
 .error{
     color: white;
+    margin-right: 62%;
+}
+
+button{
+    width: 10px;
 }
