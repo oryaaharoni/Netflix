@@ -33,7 +33,7 @@ const LoginHelpPage = () => {
 
         {/* Placeholder depends on the selected radio button */}
         <input className='emailInput' name='email' placeholder='Enter your email or phone number' onChange={(e)=>setEmail(e.target.value)} /><br/>
-        <button type='submit' onClick={sendEmailHandler}>Send</button><br/>
+        <button className='loginHelpPageBtn' type='submit' onClick={sendEmailHandler}>Send</button><br/>
         <a href=''>I dont remember my email or phone number</a>
       </div>
     </div>

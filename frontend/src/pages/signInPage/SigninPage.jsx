@@ -4,6 +4,7 @@ import Title from "../../components/Shared/Title.jsx";
 import "./signin.css";
 import { Store } from "../../Store.jsx";
 import { useNavigate } from "react-router-dom";
+import Header from "../../components/Shared/Header.jsx";
 
 const SignInPage = () => {
   const [email, setEmail] = useState("");
@@ -11,7 +12,9 @@ const SignInPage = () => {
 
   const [originalEmail, setOriginalEmail] = useState(""); // New state to store the original email
 
+  // check if the user exist
   const [invalidUser, setInvalidUser] = useState(false);
+  // check if the password exist
   const [invalidPassword, setInvalidPassword] = useState(false);
 
   const { state, dispatch: ctxDispatch } = useContext(Store);
@@ -20,9 +23,23 @@ const SignInPage = () => {
 
   const [changeContent, setChangeContent] = useState(true);
 
+  
+  const [validationErrors, setValidationErrors] = useState({
+    username: "",
+    password: ""
+  });
+
   const buttonSigninOrCode = (e) => {
     e.preventDefault();
     setChangeContent(!changeContent);
+  };
+
+  const validateEmail = (email) => {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  };
+
+  const validatePassword = (password) => {
+    return password.length <= 8 && password.length > 3;
   };
 
   const submitByPwdHandler = async (e) => {
@@ -30,34 +47,36 @@ const SignInPage = () => {
     e.preventDefault();
     setOriginalEmail(email);
 
-    try {
-      const { data } = await axios.post("/api/v1/users/signin", {
-        password: password,
-        email: email
-      })
-      ctxDispatch({ type: 'USER_SIGNIN', payload: data });
+    // if (validateEmail(email) && validatePassword(password))
+     {
 
-      navigate('/homePage');
+      try {
+        const { data } = await axios.post("/api/v1/users/signin", {
+          password: password,
+          email: email
+        })
+        ctxDispatch({ type: 'USER_SIGNIN', payload: data });
 
-    }
-    catch (error) {
-      if (error.response && error.response.status === 404) {
-        // Incorrect password or other error
-        setInvalidUser(true);
-        setInvalidPassword(false);
-      } else {
-        // User not found
-        setInvalidUser(false);
-        setInvalidPassword(true);
+        navigate('/homePage');
+
+      }
+      catch (error) {
+        if (error.response && error.response.status === 404) {
+          // Incorrect password or other error
+          setInvalidUser(true);
+          setInvalidPassword(false);
+        } else {
+          // User not found
+          setInvalidUser(false);
+          setInvalidPassword(true);
+        }
       }
     }
   }
 
   return (
     <div className="headDiv">
-      <header>
-        <img src="../../../public/Netflix-logo.png" width={200} alt="netflix logo" />
-      </header>
+      <Header />
       <Title title="signin"></Title>
       <form className="signInForm">
         <h1>Sign In</h1>
@@ -84,8 +103,9 @@ const SignInPage = () => {
           {changeContent ? "Forgot Password?" : "Forgot Email or Phone Number?"}
         </a>
 
+        {/* TODO: add functionality to this remember box */}
         <div className="checkboxContainer">
-          <input id='checkRemember' type="checkbox" name="rememberMe" />
+          <input id='checkRemember' type="checkbox" name="rememberMe"/>
           <label htmlFor='checkRemember'>Remember me</label>
         </div>
 
