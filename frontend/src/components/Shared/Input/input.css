@@ -1,0 +1,15 @@
+.inputField {
+    background-color: black;
+    color: white;
+    margin-bottom: 10px;
+    padding: 20px;
+    border-color: grey;
+    border-radius: 4px;
+    font-size: medium;
+    border-width: 1px;
+}
+
+.error{
+    color: red;
+    /* margin-right: 62%; */
+}

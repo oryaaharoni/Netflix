@@ -46,7 +46,7 @@ h1.title {
     align-self: center;
 }
 
-input[type='text'] {
+/* input[type='text'] {
     color: white;
 }
 
@@ -56,7 +56,7 @@ input[type='email'] {
 
 input[type='password'] {
     color: white;
-}
+} */
 
 
 .submitBtn {
@@ -81,20 +81,4 @@ input[type='password'] {
     .submitBtn {
         font-size: medium;
     }
-}
-
-.signUpInput {
-    background-color: inherit;
-    margin-bottom: 10px;
-    padding: 20px;
-    border-color: grey;
-    border-radius: 4px;
-    font-size: medium;
-    border-width: 1px;
-    background-color: black;
-}
-
-.error {
-    color: white;
-    margin-right: 62%;
 }

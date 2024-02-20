@@ -4,6 +4,7 @@ import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import { Store } from "../../Store.jsx";
 import "./signup.css";
+import Input from "../../components/Shared/Input/Input.jsx";
 
 const SignUpPage = () => {
 
@@ -33,19 +34,39 @@ const SignUpPage = () => {
     setValidationErrors({ ...validationErrors, [e.target.name]: "" });
   };
 
-  const validateEmail = (email) => {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-  };
 
-  const validatePassword = (password) => {
-    return password.length <= 8 && password.length > 3;
-  };
-  const validateUsername = (username) => {
-    return username.length >= 3;
-  };
+  const validateFields = (content) => {
+    if (showUsernameInput) {
+      return content.length >= 3;
+    }
+    else if (showEmailInput) {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(content);
+    }
+    else if (showPasswordInput) {
+      return content.length <= 8 && content.length > 3;
+    }
+  }
+
+  const changeSetStates = (username, email, password) => {
+    setShowUsernameInput(username);
+    setShowEmailInput(email);
+    setShowPasswordInput(password);
+  }
+  const checkFields = () => {
+    if (usernameIsValid) {
+      setShowUsernameInput(false);
+      setShowEmailInput(true);
+      setShowPasswordInput(false);
+      return true;
+    }
+    else {
+      setValidationErrors({ ...validationErrors, username: "User name must be at least 3 characters long." });
+      return false;
+    }
+  }
 
   const checkUsername = () => {
-    const usernameIsValid = validateUsername(formData.username);
+    const usernameIsValid = validateFields(formData.username);
     if (usernameIsValid) {
       setShowUsernameInput(false);
       setShowEmailInput(true);
@@ -59,7 +80,7 @@ const SignUpPage = () => {
   }
 
   const checkEmail = () => {
-    const emailIsValid = validateEmail(formData.email);
+    const emailIsValid = validateFields(formData.email);
     if (emailIsValid) {
       setShowUsernameInput(false);
       setShowEmailInput(false);
@@ -73,7 +94,7 @@ const SignUpPage = () => {
   }
 
   const checkPassword = () => {
-    const passwordIsValid = validatePassword(formData.password);
+    const passwordIsValid = validateFields(formData.password);
     if (passwordIsValid) {
       setShowUsernameInput(false);
       setShowEmailInput(false);
@@ -127,48 +148,42 @@ const SignUpPage = () => {
           <div>
 
             {showUsernameInput &&
-              <input
-                className="signUpInput"
+              <Input
                 name="username"
                 placeholder="User Name"
                 type="text"
                 value={formData.username}
                 onChange={handleChange}
-                required
+                required={true}
+                error={validationErrors.username}
               />
             }
             {showEmailInput &&
-              <input
-                className="signUpInput"
+              <Input
                 name="email"
                 placeholder="Email Address"
                 type="email"
                 value={formData.email}
                 onChange={handleChange}
-                required
+                required={true}
+                error={validationErrors.email}
               />
             }
             {showPasswordInput &&
-              <input
-                className="signUpInput"
+              <Input
                 name="password"
                 placeholder="Password"
                 type="password"
                 value={formData.password}
                 onChange={handleChange}
-                required
+                required={true}
+                error={validationErrors.password}
               />
             }
-
-            <button type="submit" className="submitBtn">
-              Get Started &gt;
-            </button>
           </div>
-          <div>
-            {validationErrors.username && <p className="error">{validationErrors.username}</p>}
-            {validationErrors.email && <p className="error">{validationErrors.email}</p>}
-            {validationErrors.password && <p className="error">{validationErrors.password}</p>}
-          </div>
+          <button type="submit" className="submitBtn">
+            Get Started &gt;
+          </button>
         </form>
       </div>
 
