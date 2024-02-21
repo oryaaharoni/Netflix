@@ -4,6 +4,7 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import seedRouter from './routers/seedRouter.js';
 import userRouter from './routers/userRouter.js';
+import contentRouter from './routers/contentRouter.js';
 
 const app = express();
 
@@ -11,15 +12,14 @@ dotenv.config();
 
 app.use(cors());
 app.use(express.json());
-app.use(express.urlencoded({ extended:false })); //check in google
+app.use(express.urlencoded({ extended:false }));
 
-const PORT = process.env.PORT || 8080; //make sure have port  //TODO: make env
+const PORT = process.env.PORT || 8080;
 
 //routes
 app.use("/api/v1/seed", seedRouter);
-// app.use("/api/v1/product",productRouter);
 app.use("/api/v1/users",userRouter);
-// app.use("/api/v1/orders",orderRouter);
+app.use("/api/v1/content", contentRouter);
 
 app.use((error,req, res, next) => {
     res.status(500).send({message: error.message});

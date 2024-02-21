@@ -5,10 +5,9 @@ import "./signin.css";
 import { Store } from "../../Store.jsx";
 import { useNavigate } from "react-router-dom";
 import Header from "../../components/Shared/Header.jsx";
+import Input from '../../components/Shared/Input/Input.jsx'
 
 const SignInPage = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
 
   const [originalEmail, setOriginalEmail] = useState(""); // New state to store the original email
 
@@ -18,14 +17,42 @@ const SignInPage = () => {
   const [invalidPassword, setInvalidPassword] = useState(false);
 
   const { state, dispatch: ctxDispatch } = useContext(Store);
-  const { userInfo } = state;
+
   const navigate = useNavigate();
 
   const [changeContent, setChangeContent] = useState(true);
 
-  
+  const handleChange = (e) => {
+    const fieldName = e.target.name;
+    const fieldValue = e.target.value;
+    const validateFunction = fieldName === 'emailOrPhone' ? emailOrPhoneValidate : passwordValidate;
+
+    setFormData({ ...formData, [fieldName]: fieldValue });
+    
+    if (validateFunction) {
+      const isValid = validateFunction(fieldValue);
+      setValidationErrors({ ...validationErrors, [fieldName]: isValid ? "" : getErrorMessage(fieldName) });
+    }
+  };
+
+  const getErrorMessage = (fieldName) => {
+    switch (fieldName) {
+      case 'emailOrPhone':
+        return "Please enter a valid email.";
+      case 'password':
+        return "Your password must contain between 4 and 60 characters.";
+      default:
+        return "";
+    }
+  };
+
+  const [formData, setFormData] = useState({
+    emailOrPhone: "",
+    password: "",
+  });
+
   const [validationErrors, setValidationErrors] = useState({
-    username: "",
+    emailOrPhone: "",
     password: ""
   });
 
@@ -34,26 +61,24 @@ const SignInPage = () => {
     setChangeContent(!changeContent);
   };
 
-  const validateEmail = (email) => {
+  const emailOrPhoneValidate = (email) => {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   };
 
-  const validatePassword = (password) => {
-    return password.length <= 8 && password.length > 3;
+  const passwordValidate = (password) => {
+    return password.length > 3 && password.length < 61;
   };
 
   const submitByPwdHandler = async (e) => {
     // TODO: get the login form
     e.preventDefault();
-    setOriginalEmail(email);
+    setOriginalEmail(formData.emailOrPhone);
 
-    // if (validateEmail(email) && validatePassword(password))
-     {
-
+    if (validationErrors.emailOrPhone === "" && validationErrors.password === "") {
       try {
         const { data } = await axios.post("/api/v1/users/signin", {
-          password: password,
-          email: email
+          email: formData.emailOrPhone,
+          password: formData.password
         })
         ctxDispatch({ type: 'USER_SIGNIN', payload: data });
 
@@ -85,8 +110,24 @@ const SignInPage = () => {
 
         {invalidUser && <div className="invalidDiv"><strong>Something went wrong </strong><br />We couldnt send a sign-in code to {originalEmail}. Please <br /> <a onClick={buttonSigninOrCode}>use your password</a> or try again.</div>}
 
-        <input className="signInInput" name="emailOrPhone" placeholder="Email or phone number" onChange={(e) => setEmail(e.target.value)} />
-        {changeContent && (<input className="signInInput" name="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />)}
+        <Input
+          className="signInInput"
+          error={validationErrors.emailOrPhone}
+          onChange={handleChange}
+          name="emailOrPhone"
+          placeholder="Email or phone number"
+          isRequired={true}
+        />
+        {changeContent && (
+          <Input
+            className="signInInput"
+            error={validationErrors.password}
+            name="password"
+            placeholder="Password"
+            onChange={handleChange}
+            type={'password'}
+          />
+        )}
 
         {changeContent ?
           <button className="sendCodeBtn" onClick={submitByPwdHandler}>Sign-In</button> :
@@ -105,12 +146,12 @@ const SignInPage = () => {
 
         {/* TODO: add functionality to this remember box */}
         <div className="checkboxContainer">
-          <input id='checkRemember' type="checkbox" name="rememberMe"/>
+          <input id='checkRemember' type="checkbox" name="rememberMe" />
           <label htmlFor='checkRemember'>Remember me</label>
         </div>
 
         <br />
-        <p>
+        <p className="new">
           New to Netflix?{" "}
           <a className="signUpLink" href="/signup">
             Sign up now

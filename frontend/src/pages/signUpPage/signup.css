@@ -6,18 +6,11 @@ body {
 .rootDiv {
     min-width: 500px;
     background-image: url('https://assets.nflxext.com/ffe/siteui/vlv3/5e16108c-fd30-46de-9bb8-0b4e1bbbc509/5f1f69fb-60cd-4630-a952-24db1a8b342a/IL-en-20240205-popsignuptwoweeks-perspective_alpha_website_small.jpg');
-    /* background-color: rgba(0, 0, 0, 0.6); */
     box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.5);
-    /* background-size: cover; */
-    /* position: fixed; */
+    background-size: cover;
+    position: fixed;
 
-
-    /* -o-background-size: 35% auto;
-    -webkit-background-size: 35% auto;
-    -moz-backgr ound-size: 35% auto;
-    background-size: 35% auto; */
-
-
+    background-repeat: no-repeat;
 
 
     top: 0;
@@ -30,6 +23,22 @@ body {
     flex-direction: column;
 }
 
+
+.rootDiv::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom,
+            rgba(0, 0, 0, 0.6),
+            rgba(0, 0, 0, 0),
+            rgba(0, 0, 0, 0.6));
+
+    z-index: -1;
+}
+
 .content {
     text-align: center;
     flex-direction: column;
@@ -40,7 +49,7 @@ body {
 }
 
 h1.title {
-    margin: 0 20%;
+    margin: 0;
     font-weight: 900;
     font-size: 3rem;
     align-self: center;
@@ -63,7 +72,7 @@ input[type='password'] {
     background-color: rgb(229, 9, 20);
     color: white;
     margin-left: 10px;
-    height: 60px;
+    height: 50px;
     width: 15%;
     min-width: 30px;
     border-radius: 6px;
@@ -73,7 +82,7 @@ input[type='password'] {
     font-size: 1.5rem;
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 1000px) {
     .title {
         font-size: 1rem;
     }
@@ -82,3 +91,15 @@ input[type='password'] {
         font-size: medium;
     }
 }
+
+.formSignup{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.inputEle{
+    /* justify-self: center; */
+    margin-top: 100px;
+}
+
