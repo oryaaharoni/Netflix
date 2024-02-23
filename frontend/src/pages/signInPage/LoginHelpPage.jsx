@@ -1,6 +1,6 @@
 import Header from '../../components/Shared/Header';
 import { useState } from "react";
-import "./loginHelpPassword.css";
+import "./loginHelpPage.css";
 
 const LoginHelpPage = () => {
   const [email, setEmail] = useState("");

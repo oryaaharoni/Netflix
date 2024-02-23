@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { Store } from "../../Store.jsx";
 import "./signup.css";
 import Input from "../../components/Shared/Input/Input.jsx";
+import { USER_SIGNIN } from "../../reducers/actions.jsx";
 
 const SignUpPage = () => {
   const { state, dispatch: ctxDispatch } = useContext(Store);
@@ -92,8 +93,8 @@ const SignUpPage = () => {
           email: formData.email,
           password: formData.password,
         });
-        ctxDispatch({ type: 'USER_SIGNIN', payload: data });
-        navigate('/homePage');
+        ctxDispatch({ type: USER_SIGNIN, payload: data });
+        navigate('/');
       } catch (error) {
         console.log(error);
       }

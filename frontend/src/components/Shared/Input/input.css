@@ -12,10 +12,9 @@
 
 .error {
   color: rgb(235, 57, 66);
-  font-size: 0.8125rem;
   text-align: left;
 }
 
-.errorBorder{
+.errorBorder {
   border-color: rgb(235, 57, 66);
 }

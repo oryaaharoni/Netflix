@@ -6,6 +6,7 @@ import { Store } from "../../Store.jsx";
 import { useNavigate } from "react-router-dom";
 import Header from "../../components/Shared/Header.jsx";
 import Input from '../../components/Shared/Input/Input.jsx'
+import { USER_SIGNIN } from "../../reducers/actions.jsx";
 
 const SignInPage = () => {
 
@@ -28,7 +29,7 @@ const SignInPage = () => {
     const validateFunction = fieldName === 'emailOrPhone' ? emailOrPhoneValidate : passwordValidate;
 
     setFormData({ ...formData, [fieldName]: fieldValue });
-    
+
     if (validateFunction) {
       const isValid = validateFunction(fieldValue);
       setValidationErrors({ ...validationErrors, [fieldName]: isValid ? "" : getErrorMessage(fieldName) });
@@ -74,15 +75,20 @@ const SignInPage = () => {
     e.preventDefault();
     setOriginalEmail(formData.emailOrPhone);
 
-    if (validationErrors.emailOrPhone === "" && validationErrors.password === "") {
+    // Trigger validation for both emailOrPhone and password
+    handleChange({ target: { name: 'password', value: formData.password } });
+    handleChange({ target: { name: 'emailOrPhone', value: formData.emailOrPhone } });
+
+
+    if (validationErrors.emailOrPhone === "" && validationErrors.password === "" && formData.emailOrPhone !== "" && formData.password !== "") {
       try {
         const { data } = await axios.post("/api/v1/users/signin", {
           email: formData.emailOrPhone,
           password: formData.password
         })
-        ctxDispatch({ type: 'USER_SIGNIN', payload: data });
+        ctxDispatch({ type: USER_SIGNIN, payload: data });
 
-        navigate('/homePage');
+        navigate('/');
 
       }
       catch (error) {
@@ -105,6 +111,7 @@ const SignInPage = () => {
       <Title title="signin"></Title>
       <form className="signInForm">
         <h1>Sign In</h1>
+        <br />
         {invalidPassword && <div className="invalidDiv"> <strong>Incorrect password for <br />{originalEmail}</strong> <br />
           You can <a href="/signIn">use a sign-in code</a>, <a>reset your password</a> or try again.</div>}
 
@@ -130,12 +137,12 @@ const SignInPage = () => {
         )}
 
         {changeContent ?
-          <button className="sendCodeBtn" onClick={submitByPwdHandler}>Sign-In</button> :
-          <button className="sendCodeBtn">Send Sign-In Code</button>}
+          <button className="sendCodeBtn signIn-btn" onClick={submitByPwdHandler}>Sign-In</button> :
+          <button className="sendCodeBtn signIn-btn">Send Sign-In Code</button>}
 
         <h3>OR</h3>
         {/* TODO: add func to login by email or phone */}
-        <button className="passwordBtn" onClick={buttonSigninOrCode}>
+        <button className="passwordBtn signIn-btn" onClick={buttonSigninOrCode}>
           {changeContent ? "Use a Sign-In Code" : "Use Password"}
         </button>
 
@@ -158,7 +165,11 @@ const SignInPage = () => {
           </a>
           .
         </p>
-
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
         {/* <p>This page is protected by Google reCAPTCHA to ensure you're not a bot. <a>Learn more.</a></p> */}
       </form>
     </div>

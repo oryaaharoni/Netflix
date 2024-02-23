@@ -19,7 +19,7 @@
     min-width: 500px;
 }
 
-div button{
+.loginHelpPageBtn{
     background-color:#0080ff;
     box-shadow: 0 1px 0 rgba(0,0,0,.55);
     color: white;
@@ -32,7 +32,7 @@ div button:hover{
     background-color:#3690ea ;
 }
 
-p{
+p.centerDiv{
     font-weight: 400;
     color: black;
 }

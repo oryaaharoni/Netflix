@@ -5,7 +5,7 @@ import { isAuth } from '../utils.js';
 
 const contentRouter = express.Router();
 
-contentRouter.get("/getAll", isAuth, expressAsyncHandler(getAll));
+contentRouter.get("/", isAuth, expressAsyncHandler(getAll));
 contentRouter.get("/getMovies", isAuth, expressAsyncHandler(getMovies));
 contentRouter.get("/getSeries", isAuth, expressAsyncHandler(getSeries));
 contentRouter.get("/getById/:id", isAuth, expressAsyncHandler(getContentById));

@@ -1,6 +1,10 @@
 body {
     margin: 0;
 }
+h1, h2, h3, h4, h5, h6 {
+    color: #fff; /* Set your desired color here */
+}
+
 
 .headDiv {
     min-width: 500px;
@@ -26,7 +30,7 @@ header {
     }
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1200px) {
     form.signInForm {
         width: 50%;
         font-size: small;
@@ -81,9 +85,9 @@ h1 {
     background-color: rgba(128, 128, 128, 0.4);
 }
 
-button {
+.signIn-btn {
     margin-top: 10px;
-    font-size: 1rem;
+    /* font-size: 1rem; */
     font-weight: 500;
     padding: 3%;
     font-family: 'Segoe UI';
