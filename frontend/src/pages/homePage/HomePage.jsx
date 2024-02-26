@@ -6,6 +6,7 @@ import { useContext, useEffect } from 'react';
 import axios from 'axios';
 import { GET_REQUEST, GET_SUCCESS } from '../../reducers/actions';
 import Carousel from '../../components/Shared/Carousel/Carousel';
+import Slider1 from '../../components/Shared/Slider/Slider';
 
 const HomePage = () => {
 
@@ -43,6 +44,7 @@ const HomePage = () => {
     <div>
       <NavBar />
       <Carousel data={data} />
+      <Slider1 data={data} title={"last seen"}/>
     </div>
   )
 }
