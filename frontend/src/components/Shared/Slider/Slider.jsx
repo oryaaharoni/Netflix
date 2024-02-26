@@ -1,5 +1,5 @@
 import Slider from "react-slick";
-import { useState , useEffect} from "react";
+import { useState } from "react";
 import PropTypes from "prop-types";
 import './slider.css'
 
@@ -11,9 +11,24 @@ const Slider1 = ({ data, title }) => {
     lazyLoad: "ondemand",
     slidesToShow: 5,
     slidesToScroll: 3,
-    dots: true,
+    dots: false,
+    nextArrow: (
+        <div>
+          <div className="next-slick-arrow">
+              <img  stroke="white" height="24"  width="24"/><path d="m242-200 200-280-200-280h98l200 280-200 280h-98Zm238 0 200-280-200-280h98l200 280-200 280h-98Z"/>
+          </div>
+        </div>
+      ),
+  
+    prevArrow: (
+        <div>
+          <div className="next-slick-arrow rotate-180">
+            <img  stroke="white" height="24"  width="24"/><path d="m242-200 200-280-200-280h98l200 280-200 280h-98Zm238 0 200-280-200-280h98l200 280-200 280h-98Z"/>
+          </div>
+        </div>
+      ),
     infinite: true,
-    speed: 500,
+    speed: 200,
     autoplay: true,
     autoplaySpeed: 3000,
     arrows: true,
@@ -34,14 +49,23 @@ const Slider1 = ({ data, title }) => {
           <div key={index}>
             <img src={slide.img} alt={`Slide ${index}`} />
             
-            <div className="carousel-caption">
+            {/* <div className="carousel-caption"> */}
               {/* <h3>{slide.title}</h3> */}
               {/* <p>{slide.description}</p> */}
-            </div>
+            {/* </div> */}
           </div>
         ))}
       </Slider>
-      <div className="current-slide">Current Slide: {currentIndex + 1}</div>
+      {/* <a className="left carousel-control" href="#myCarousel" data-slide="prev">
+                <span className="glyphicon glyphicon-chevron-left"></span>
+                <span className="sr-only">Previous</span>
+            </a>
+            <a className="right carousel-control" href="#myCarousel" data-slide="next">
+                <span className="glyphicon glyphicon-chevron-right"></span>
+                <span className="sr-only">Next</span>
+            </a> */}
+      {/* <div className="current-slide">Current Slide: {currentIndex + 1}</div> */}
+      
     </div>
   );
 };
