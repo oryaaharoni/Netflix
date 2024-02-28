@@ -4,6 +4,13 @@ export const generateToken = ({ _id, username, email }) => {
     return jwt.sign({ _id: _id, username: username, email: email }, process.env.JWT_PW, { expiresIn: '7d' })
 }
 
+export const generatePWDToken = ( _id, email ,oldPassword) => {
+    console.log("pwd :", oldPassword);
+    const secret= process.env.JWT_PW + oldPassword;
+    console.log("utils secret: ",secret)
+    return jwt.sign({ _id: _id, email: email }, secret, { expiresIn: '5m' })
+}
+
 export const isAuth = (req, res, next) => {
     const auth = req.headers.authorization;
 
@@ -24,3 +31,4 @@ export const isAuth = (req, res, next) => {
         res.status(401).send({ message: "Not authorized, no token" });
     }
 }
+
