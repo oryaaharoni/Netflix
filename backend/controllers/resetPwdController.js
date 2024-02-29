@@ -19,31 +19,33 @@ export const getResetLink = async (req, res) => {
         var transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
-              user: 'adarsh438tcsckandivali@gmail.com',
-              pass: 'rmdklolcsmswvyfw'
+                user: process.env.EMAIL,
+                pass: process.env.PWD_EMAIL
             }
-          });
-          
-          var mailOptions = {
-            from: 'adarsh438tcsckandivali@gmail.com',
+        });
+        // console.log('my email: ', process.env.EMAIL)
+        // console.log('my password: ', process.env.PWD_EMAIL)
+
+        var mailOptions = {
+            from: process.env.EMAIL,
             to: user.email,
             subject: 'Password Reset',
             text: link
-          };
-          
-          transporter.sendMail(mailOptions, function(error, info){
+        };
+
+        transporter.sendMail(mailOptions, function (error, info) {
             if (error) {
-              console.log(error);
-            } 
-            else {
-              console.log('Email sent: ' + info.response);
+                console.log(error);
             }
-          });
+            else {
+                console.log('Email sent: ' + info.response);
+            }
+        });
 
         console.log("link: ", link)
         res.status(200).send(link);
-            //add here alert
-            //sent to to email
+        //add here alert
+        //sent to to email
     }
     else {
         res.status(404).send("email not found");
@@ -75,7 +77,7 @@ export const getNewPassword = async (req, res) => {
     const { password, id, token } = req.body;
     console.log('in new password')
     console.log('password ', password)
-    console.log('id: ',id)
+    console.log('id: ', id)
     console.log('token: ', token)
     try {
         const user = await User.findOne({ _id: id });
@@ -83,7 +85,7 @@ export const getNewPassword = async (req, res) => {
         if (!user) {
             return res.status(404).send({ message: 'User not found' });
         }
-        
+
         const secret = process.env.JWT_PW + user.password;
         try {
             console.log('in second try')
