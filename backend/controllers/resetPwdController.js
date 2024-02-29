@@ -14,14 +14,23 @@ export const getResetLink = async (req, res) => {
         console.log(user.password)
         const token = generatePWDToken(user._id, user.email, user.password);
         const link = `localhost:8080/api/v1/reset/${user._id}/${token}`;
-
+        console.log('dosfjasdlfkjasdl;kfj;lkdsfja;sldkjf;alskdjflksdf')
+        console.log('link::::::::::::::::: ', link)
         // add current email and check if we recive the mail link
         var transporter = nodemailer.createTransport({
             service: 'gmail',
+            // port: 8080,
+            // secure: true,
+            // logger: true,
+            // secureConnection: false,
             auth: {
                 user: process.env.EMAIL,
                 pass: process.env.PWD_EMAIL
-            }
+            },
+            // tls:
+            // {
+            //     rejectUnauthorized: true
+            // }
         });
         // console.log('my email: ', process.env.EMAIL)
         // console.log('my password: ', process.env.PWD_EMAIL)
@@ -33,14 +42,20 @@ export const getResetLink = async (req, res) => {
             text: link
         };
 
-        transporter.sendMail(mailOptions, function (error, info) {
-            if (error) {
-                console.log(error);
-            }
-            else {
-                console.log('Email sent: ' + info.response);
-            }
-        });
+        try{
+            await transporter.sendMail(mailOptions);
+        }
+        catch(err){
+            console.log(err)
+        }
+        // transporter.sendMail(mailOptions, function (error, info) {
+        //     if (error) {
+        //         console.log(error);
+        //     }
+        //     else {
+        //         console.log('Email sent: ' + info.response);
+        //     }
+        // });
 
         console.log("link: ", link)
         res.status(200).send(link);
