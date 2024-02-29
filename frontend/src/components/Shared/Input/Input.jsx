@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
 import './input.css'
+import {PropTypes, useState} from '../../../imports'
 
 const Input = ({ onChange, type, value, name, placeholder, isRequired, error }) => {
 
@@ -38,5 +38,13 @@ const Input = ({ onChange, type, value, name, placeholder, isRequired, error }) 
         </>
     )
 }
+
+Input.propTypes ={onChange: PropTypes.func,
+    type: PropTypes.string,
+    value: PropTypes.string,
+    name: PropTypes.string,
+    placeholder: PropTypes.string,
+    isRequired: PropTypes.bool,
+    error: PropTypes.string}
 
 export default Input

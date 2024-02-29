@@ -1,5 +1,5 @@
 import './carousel.css'
-import PropTypes from 'prop-types';
+import { PropTypes } from '../../../imports'
 
 const Carousel = ({ data }) => {
 
@@ -8,15 +8,10 @@ const Carousel = ({ data }) => {
     }
 
     return (
-        // <div className="container">
+        
+        // maybe remove id and class name
         <div id="myCarousel" className="carousel slide" data-ride="carousel">
-            {/* <!-- Indicators --> */}
-            {/* <ol className="carousel-indicators">
-                    <li data-target="#myCarousel" data-slide-to="0" className="active"></li>
-                    <li data-target="#myCarousel" data-slide-to="1"></li>
-                    <li data-target="#myCarousel" data-slide-to="2"></li>
-                </ol> */}
-
+        
             {/* <!-- Wrapper for slides --> */}
             <div className="carousel-inner">
                 { data.map((item, index) => (
@@ -25,7 +20,8 @@ const Carousel = ({ data }) => {
                             <h3 className='content-title'>{item.title}</h3>
                             <p>{item.description}</p>
                             <div className='content-btnDiv'>
-                                <button className='content-btn'><i className="fa fa-exclamation-circle" aria-hidden="true"></i> Info</button>
+                                {/* change button to a */}
+                                <a className='content-a' href='info'><i className="fa fa-exclamation-circle" aria-hidden="true"></i> Info</a>
                                 <button className='content-btn'><i className="fa fa-play" aria-hidden="true"></i> Trailer</button>
                             </div>
                         </div>

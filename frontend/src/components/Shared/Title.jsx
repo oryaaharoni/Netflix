@@ -1,5 +1,5 @@
 import { Helmet } from 'react-helmet-async'
-import PropTypes from 'prop-types'
+import { PropTypes } from '../../imports.js'
 
 const Title = ({title}) => {
   return (
