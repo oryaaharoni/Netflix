@@ -11,8 +11,8 @@ const ResetPwdPage = () => {
   const userId = searchParams.get("id");
   const token = searchParams.get("token");
 
-  const passwordHandler = async (e) => {
-      e.preventDefault();
+  const passwordHandler = async () => {
+      // e.preventDefault();
       console.log('userId:', userId);
       console.log('password:', passwordRef.current.value);
 
@@ -22,7 +22,7 @@ const ResetPwdPage = () => {
           token: token
       });
 
-      console.log(data);
+      // console.log(data);
 
       // if (data !== null){
       //   console.log("aaaa")
@@ -41,7 +41,7 @@ const ResetPwdPage = () => {
         <label className="formLabel">Confirm Password: </label>
         <input className="formInput" name="confirmpassword" placeholder="Confirm new password" type="password"></input>
       </div> */}
-      <button className="btnReset" onClick={passwordHandler}>Submit</button>
+      <button className="btnReset" type="button" onClick={passwordHandler}>Submit</button>
     </form>
   </div>
   )
