@@ -5,6 +5,7 @@ import SignUpPage from "./pages/signUpPage/SignUpPage.jsx";
 import HomePage from "./pages/homePage/HomePage.jsx";
 import LoginHelpPage from "./pages/signInPage/LoginHelpPage.jsx";
 import ResetPwdPage from "./pages/resetPage/ResetPwdPage.jsx";
+import DescriptionPage from "./pages/descriptionPage/DescriptionPage.jsx";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/signUp" element={<SignUpPage />} />
         <Route path="/forgotPwd" element={<LoginHelpPage />} />
         <Route path="/resetPwd" element={<ResetPwdPage />} />
+        <Route path="/info" element={<DescriptionPage />} />
       </Routes>
     </BrowserRouter>
   );

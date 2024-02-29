@@ -21,7 +21,7 @@ const Carousel = ({ data }) => {
                             <p>{item.description}</p>
                             <div className='content-btnDiv'>
                                 {/* change button to a */}
-                                <button className='content-btn'><i className="fa fa-exclamation-circle" aria-hidden="true"></i> Info</button>
+                                <a className='content-a' href='info'><i className="fa fa-exclamation-circle" aria-hidden="true"></i> Info</a>
                                 <button className='content-btn'><i className="fa fa-play" aria-hidden="true"></i> Trailer</button>
                             </div>
                         </div>

@@ -51,6 +51,9 @@ p{
     .overlay p {
         font-size: 100%;
     }
+    .overlay .content-a{
+        padding: 1.5px 20px;
+    }
     
 }
 
@@ -81,3 +84,17 @@ p{
     color: black; 
    
 }
+
+.content-a{
+    background-color: rgba(128, 128, 128, 0.771);
+    color: white;
+    padding: 2px 30px;
+    border-radius: 4px;
+    text-decoration: none;
+}
+.content-a:hover{
+    background-color: rgba(255, 255, 255, 0.915);
+    color: black; 
+    text-decoration: none;
+}
+

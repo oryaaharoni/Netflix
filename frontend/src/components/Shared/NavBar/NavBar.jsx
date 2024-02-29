@@ -19,7 +19,7 @@ const NavBar = () => {
 
         <div className='icons-navBar'>
           {/* add here search (maybe change to button) , add onchange to input*/}
-          <li><a className="fa fa-search" aria-hidden="true" href='/'></a></li>
+          <li><a className="fa fa-search" aria-hidden="true" href='/info'></a></li>
           <input className="searchInput" type='text' placeholder='search'></input>
 
           {/* <li>notification</li> */}
