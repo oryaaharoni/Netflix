@@ -1,6 +1,7 @@
 import axios from "axios"
 import { useRef } from "react"
 import { useLocation } from "react-router-dom";
+import "./resetPwd.css";
 
 const ResetPwdPage = () => {
 
@@ -24,15 +25,19 @@ const ResetPwdPage = () => {
   };
 
   return (
-    <div>
-      <form>
-        <label>new password:</label>
-        <input name="password" placeholder="enter password" ref={passwordRef} type="text"></input>
-        {/* <label>confirm password:</label> */}
-        {/* <input name="confirmpassword" placeholder="enter confirm password"></input> */}
-        <button onClick={passwordHandler}>send</button>
-      </form>
-    </div>
+    <div className="resetPwdContainer">
+    <form className="resetPwdForm">
+      <div className="formGroup">
+        <label className="formLabel">New Password: </label>
+        <input className="formInput" name="password" placeholder="Enter new password" ref={passwordRef} type="password"></input>
+      </div>
+      <div className="formGroup">
+        <label className="formLabel">Confirm Password: </label>
+        <input className="formInput" name="confirmpassword" placeholder="Confirm new password" type="password"></input>
+      </div>
+      <button className="btnReset" onClick={passwordHandler}>Submit</button>
+    </form>
+  </div>
   )
 }
 
