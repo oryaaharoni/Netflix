@@ -2,7 +2,7 @@ import User from "../models/User.js";
 import bcrypt from "bcryptjs";
 import { generatePWDToken } from "../utils.js";
 import jwt from 'jsonwebtoken';
-
+import nodemailer from 'nodemailer';
 
 //reset password by email
 export const getResetLink = async (req, res) => {
@@ -15,9 +15,36 @@ export const getResetLink = async (req, res) => {
         const token = generatePWDToken(user._id, user.email, user.password);
         const link = `localhost:8080/api/v1/reset/${user._id}/${token}`;
 
+
+        // add nodemailer
+        var transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+              user: 'aaa@gmail.com',
+              pass: 'yourpassword'
+            }
+          });
+          
+          var mailOptions = {
+            from: 'youremail@gmail.com',
+            to: 'bbbb@gmail.com',
+            subject: 'Password Reset',
+            text: link
+          };
+          
+          transporter.sendMail(mailOptions, function(error, info){
+            if (error) {
+              console.log(error);
+            } else {
+              console.log('Email sent: ' + info.response);
+            }
+          });
+
+
+
         console.log("link: ", link)
         res.status(200).send(link);
-
+            //add here alert
         //sent to to email
     }
     else {
@@ -135,7 +162,8 @@ export const getNewPassword = async (req, res) => {
             );
             console.log('password saveeeeeeeeeeeed')
 
-        res.status(200).send({ message: 'Reset password successfully' });
+        // res.status(200).send({ message: 'Reset password successfully' });
+        res.redirect(200, `http://localhost:5173/signIn`);
     } catch (error) {
         console.error('Error in getNewPassword:', error);
         res.status(500).send({ message: 'Internal server error' });
