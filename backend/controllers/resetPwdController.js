@@ -15,18 +15,18 @@ export const getResetLink = async (req, res) => {
         const token = generatePWDToken(user._id, user.email, user.password);
         const link = `localhost:8080/api/v1/reset/${user._id}/${token}`;
 
-        // add nodemailer
+        // add current email and check if we recive the mail link
         var transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
-              user: 'aaa@gmail.com',
-              pass: 'yourpassword'
+              user: 'adarsh438tcsckandivali@gmail.com',
+              pass: 'rmdklolcsmswvyfw'
             }
           });
           
           var mailOptions = {
-            from: 'youremail@gmail.com',
-            to: 'bbbb@gmail.com',
+            from: 'adarsh438tcsckandivali@gmail.com',
+            to: user.email,
             subject: 'Password Reset',
             text: link
           };
@@ -103,9 +103,8 @@ export const getNewPassword = async (req, res) => {
             }
         );
         console.log('password saveeeeeeeeeeeed')
-           
-        // res.status(200).send({ message: 'Reset password successfully' });
-        res.redirect(302, `http://localhost:5173/signIn`);
+
+        res.status(200).send({ redirectUrl: 'http://localhost:5173/signIn' });
     } catch (error) {
         console.error('Error in getNewPassword:', error);
         res.status(500).send({ message: 'Internal server error' });

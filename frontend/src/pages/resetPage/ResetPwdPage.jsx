@@ -1,6 +1,6 @@
 import axios from "axios"
 import { useRef } from "react"
-import { redirect, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import "./resetPwd.css";
 
 const ResetPwdPage = () => {
@@ -11,8 +11,8 @@ const ResetPwdPage = () => {
   const userId = searchParams.get("id");
   const token = searchParams.get("token");
 
-  const passwordHandler = async () => {
-      // e.preventDefault();
+  const passwordHandler = async (e) => {
+      e.preventDefault();
       console.log('userId:', userId);
       console.log('password:', passwordRef.current.value);
 
@@ -21,13 +21,12 @@ const ResetPwdPage = () => {
           password: passwordRef.current.value,
           token: token
       });
+      console.log(data);
 
-      // console.log(data);
-
-      // if (data !== null){
-      //   console.log("aaaa")
-      //   redirect("/")
-      // }
+      if (data.redirectUrl) {
+        window.location.href = data.redirectUrl;
+      }
+      
   };
 
   return (
