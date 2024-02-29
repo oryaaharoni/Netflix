@@ -1,7 +1,5 @@
-import { useContext, useState } from "react";
+import { useContext, useState, axios, useNavigate } from '../../imports.js';
 import Header from "../../components/Shared/Header";
-import axios from 'axios';
-import { useNavigate } from "react-router-dom";
 import { Store } from "../../Store.jsx";
 import "./signup.css";
 import Input from "../../components/Shared/Input/Input.jsx";

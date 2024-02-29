@@ -1,7 +1,5 @@
-import axios from "axios"
-import { useRef } from "react"
-import { useLocation } from "react-router-dom";
 import "./resetPwd.css";
+import { useRef, axios, useLocation } from '../../imports.js';
 
 const ResetPwdPage = () => {
 

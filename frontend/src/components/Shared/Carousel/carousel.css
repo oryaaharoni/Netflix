@@ -3,6 +3,7 @@
 .carousel slide{
     font-family: 'Segoe UI';
 }
+
 p{
     font-size: medium;
 }
@@ -16,28 +17,20 @@ p{
 .overlay {
     position: absolute;
     width: 80%;
-    /* top: 40%; */
-    /* right: 60%; */
-    /* transform: translate(-50%, -50%); */
     padding: 10px 20px;
     cursor: pointer;
-    
-    /* color: white; */
-    /* overflow: auto; */
-
 }
 
 @media screen and (max-width: 1000px) {
-    .overlay{
-        height: auto;
-    }
     .overlay .content-title {
-        /* width: 30%; */
         font-size: 60px;
     }
-    .overlay .content-btn{
-        font-size:15px;
-        width: 20%;
+    .overlay .content-btnDiv{
+        width: 65%;
+    }
+    .overlay .content-btnDiv .content-btn{
+        font-size:10px;
+        width: 30%;
     }
     
 }
@@ -48,15 +41,15 @@ p{
         height: auto;
     }
     .overlay .content-title {
-        /* width: 30%; */
-        font-size: 20px;
+      
+        font-size: 50px;
     }
     .overlay .content-btn{
         font-size:10px;
-        width: 60%;
+        width: 50%;
     }
     .overlay p {
-        font-size: 70%;
+        font-size: 100%;
     }
     
 }
@@ -70,7 +63,6 @@ p{
     color: rgb(229, 9, 20);
     font-family: "Protest Guerrilla", sans-serif;
     font-weight: 400;
-    font-style: normal;
 }
 
 
@@ -78,7 +70,7 @@ p{
    
     background-color: rgba(128, 128, 128, 0.771);
     color: white;
-    width: 10%;
+    width: 12%;
     margin-left: 4px;
     border-radius: 4px;
     border-style: none;
