@@ -7,7 +7,7 @@ import jwt from 'jsonwebtoken';
 //reset password by email
 export const getResetLink = async (req, res) => {
     const { email } = req.body;
-    const user = await User.findOne({email: email});
+    const user = await User.findOne({ email: email });
     console.log("user ", user)
 
     if (user) {
@@ -15,7 +15,7 @@ export const getResetLink = async (req, res) => {
         const token = generatePWDToken(user._id, user.email, user.password);
         const link = `localhost:8080/api/v1/reset/${user._id}/${token}`;
 
-        console.log("link: ",link)
+        console.log("link: ", link)
         res.status(200).send(link);
 
         //sent to to email
@@ -23,38 +23,121 @@ export const getResetLink = async (req, res) => {
     else {
         res.status(404).send("email not found");
     }
-   
+
 };
 
 // if we click on right link we get a redirect here
-export const resetPassword= async (req, res) => {
+// export const resetPassword = async (req, res) => {
+//     const { id, token } = req.params;
+//     try {
+//         const user = await User.findOne({ _id: id });
+//         console.log("user ", user)
+
+//         const secret = process.env.JWT_PW + user.password;
+//         try {
+//             const verify = jwt.verify(token, secret);
+//             res.writeHead(302, {
+//                 'Location': 'http://localhost:5173/resetPwd/' + id
+//             });
+//             res.end();
+//             console.log("lllllllllllll")
+//         }
+//         catch (error) {
+//             // res.status(401).send({message:"not Verify"});
+//             // res.send("not Verify");
+//         }
+//     } catch (error) {
+//         res.send({ message: "user not found" });
+//     }
+// };
+
+
+export const resetPassword = async (req, res) => {
     const { id, token } = req.params;
+
     try {
-        const user = await User.findOne({_id: id});
-        console.log("user ", user)
+        const user = await User.findOne({ _id: id });
+        const secret = process.env.JWT_PW + user.password;
 
-            const secret = process.env.JWT_PW + user.password;
-            try{
-                const verify = jwt.verify(token, secret);
-                // res.status(200).send({message:"Verify"});
-                // res.send("Verify");
-                console.log("vvvvvvvvvvvvvvvvvvvvv")
-                res.writeHead(302, {
-                    'Location': 'http://localhost:5173/resetPwd'
-                  });
-                  res.end();
-                console.log("lllllllllllll")
-                // res.status(200).send({message:"Verify"});
-            }
-            catch(error){
-                // res.status(401).send({message:"not Verify"});
-                // res.send("not Verify");
-            }
+        try {
+            const verify = jwt.verify(token, secret);
+
+            // Redirect to the frontend ResetPwdPage with the user ID in the URL need to be changed
+            res.redirect(302, `http://localhost:5173/resetPwd?id=${id}&token=${token}`);
+        } catch (error) {
+            res.status(401).send("Invalid token");
+        }
     } catch (error) {
-        res.send({message: "user not found"});
+        res.status(404).send("User not found");
     }
-    
+};
 
-    
 
+// export const getNewPassword = async (req, res) => {
+//     console.log('in the get flsjf')
+//     // not working at all
+//     const { password, id, token } = req.body;
+//     // const user = await User.findOne({_id: id});
+//     // try{
+//     console.log('req.body:', req.body);
+//     const user = await User.findOne({ _id: id });
+//     const secret = process.env.JWT_PW + user.password;
+//     console.log('adsfafasdfasdfasd')
+//     const encryptedPassword = await bcrypt.hash(password, 10);
+//     await User.updateOne(
+//         {
+//             _id: id
+//         },
+//         {
+//             $set:
+//             {
+//                 password: encryptedPassword
+//             }
+//         }
+//     )
+
+//     res.status(200).send({ message: "Reset password succefully" })
+//     // }
+
+// }
+
+
+export const getNewPassword = async (req, res) => {
+    const { password, id, token } = req.body;
+    console.log('in new password')
+    console.log('password ', password)
+    console.log('id: ',id)
+    console.log('token: ', token)
+    try {
+        const user = await User.findOne({ _id: id });
+        console.log('in try')
+        if (!user) {
+            return res.status(404).send({ message: 'User not found' });
+        }
+        
+        const secret = process.env.JWT_PW + user.password;
+        try {
+            console.log('in second try')
+            jwt.verify(token, secret);
+        } catch (error) {
+            console.log('in catch invalid token')
+            return res.status(401).send({ message: 'Invalid token' });
+        }
+
+        const encryptedPassword = await bcrypt.hash(password, 10);
+        await User.updateOne(
+            { _id: id },
+            {
+                $set: {
+                    password: encryptedPassword,
+                },
+            }
+            );
+            console.log('password saveeeeeeeeeeeed')
+
+        res.status(200).send({ message: 'Reset password successfully' });
+    } catch (error) {
+        console.error('Error in getNewPassword:', error);
+        res.status(500).send({ message: 'Internal server error' });
+    }
 };
