@@ -1,9 +1,9 @@
 
 const Header = () => {
   return (
-    <div>
+    <div >
         <a href='/'>
-          <img src="/Netflix-logo.png" width={200} style={{textAlign: "left", marginLeft: "15%"}} alt="netflix logo"/>
+          <img src="/Netflix-logo.png" width={200} style={{textAlign: "left", marginLeft: "0%", marginTop:"0%"}} alt="netflix logo"/>
         </a>
     </div>
   )
