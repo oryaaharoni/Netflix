@@ -112,7 +112,7 @@ const SignInPage = () => {
         <h1>Sign In</h1>
         <br />
         {invalidPassword && <div className="invalidDiv"> <strong>Incorrect password for <br />{originalEmail}</strong> <br />
-          You can <a href="/signIn">use a sign-in code</a>, <a>reset your password</a> or try again.</div>}
+          You can <a href="/signIn">use a sign-in code</a>, <a href='/forgotPwd'>reset your password</a> or try again.</div>}
 
         {invalidUser && <div className="invalidDiv"><strong>Something went wrong </strong><br />We couldnt send a sign-in code to {originalEmail}. Please <br /> <a onClick={buttonSigninOrCode}>use your password</a> or try again.</div>}
 

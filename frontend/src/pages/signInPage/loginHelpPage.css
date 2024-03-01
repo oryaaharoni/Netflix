@@ -22,7 +22,8 @@
 }
 
 .centerDiv{
-    background-color: rgba(235, 235, 235, 0.8);
+    /* background-color: rgba(235, 235, 235, 0.8); */
+    background-color: #f3f3f3;
     color: black;
     text-align: center;
     font-family: 'Segoe UI';
@@ -31,6 +32,15 @@
     width: 50%;
     margin:auto;
     min-width: 500px;
+}
+
+@media screen and (max-width: 2000px) {
+    .centerDiv {
+        font-size: large;
+        width: 20%;
+        padding: 30px;
+        /* text-align: left; */
+    }
 }
 
 .loginHelpPageBtn{

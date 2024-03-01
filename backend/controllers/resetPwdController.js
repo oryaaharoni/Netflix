@@ -8,59 +8,36 @@ import nodemailer from 'nodemailer';
 export const getResetLink = async (req, res) => {
     const { email } = req.body;
     const user = await User.findOne({ email: email });
-    console.log("user ", user)
 
     if (user) {
-        console.log(user.password)
         const token = generatePWDToken(user._id, user.email, user.password);
         const link = `localhost:8080/api/v1/reset/${user._id}/${token}`;
-        console.log('dosfjasdlfkjasdl;kfj;lkdsfja;sldkjf;alskdjflksdf')
-        console.log('link::::::::::::::::: ', link)
-        // add current email and check if we recive the mail link
+
         var transporter = nodemailer.createTransport({
             service: 'gmail',
-            // port: 8080,
-            // secure: true,
-            // logger: true,
-            // secureConnection: false,
             auth: {
                 user: process.env.EMAIL,
                 pass: process.env.PWD_EMAIL
             },
-            // tls:
-            // {
-            //     rejectUnauthorized: true
-            // }
         });
-        // console.log('my email: ', process.env.EMAIL)
-        // console.log('my password: ', process.env.PWD_EMAIL)
 
         var mailOptions = {
             from: process.env.EMAIL,
             to: user.email,
             subject: 'Password Reset',
-            text: link
+            text: 'Copy this link to youre URL and reset your password: ' + link
         };
 
-        try{
-            await transporter.sendMail(mailOptions);
-        }
-        catch(err){
-            console.log(err)
-        }
-        // transporter.sendMail(mailOptions, function (error, info) {
-        //     if (error) {
-        //         console.log(error);
-        //     }
-        //     else {
-        //         console.log('Email sent: ' + info.response);
-        //     }
-        // });
+        transporter.sendMail(mailOptions, function (error, info) {
+            if (error) {
+                console.log(error);
+            }
+            else {
+                console.log('Email sent: ' + info.response);
+            }
+        });
 
-        console.log("link: ", link)
         res.status(200).send(link);
-        //add here alert
-        //sent to to email
     }
     else {
         res.status(404).send("email not found");
@@ -90,23 +67,17 @@ export const resetPassword = async (req, res) => {
 
 export const getNewPassword = async (req, res) => {
     const { password, id, token } = req.body;
-    console.log('in new password')
-    console.log('password ', password)
-    console.log('id: ', id)
-    console.log('token: ', token)
+    
     try {
         const user = await User.findOne({ _id: id });
-        console.log('in try')
         if (!user) {
             return res.status(404).send({ message: 'User not found' });
         }
 
         const secret = process.env.JWT_PW + user.password;
         try {
-            console.log('in second try')
             jwt.verify(token, secret);
         } catch (error) {
-            console.log('in catch invalid token')
             return res.status(401).send({ message: 'Invalid token' });
         }
 
@@ -119,7 +90,7 @@ export const getNewPassword = async (req, res) => {
                 },
             }
         );
-        console.log('password saveeeeeeeeeeeed')
+        console.log('Password Saved Successfully')
 
         res.status(200).send({ redirectUrl: 'http://localhost:5173/signIn' });
     } catch (error) {

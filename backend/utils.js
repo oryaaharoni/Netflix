@@ -5,9 +5,7 @@ export const generateToken = ({ _id, username, email }) => {
 }
 
 export const generatePWDToken = ( _id, email ,oldPassword) => {
-    console.log("pwd :", oldPassword);
     const secret= process.env.JWT_PW + oldPassword;
-    console.log("utils secret: ",secret)
     return jwt.sign({ _id: _id, email: email }, secret, { expiresIn: '5m' })
 }
 
