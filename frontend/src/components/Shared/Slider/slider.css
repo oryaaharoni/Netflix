@@ -1,33 +1,32 @@
-body{
+body {
   background-color: black;
-   
-    font-family: 'Segoe UI', sans-serif;
-    
-  
+  font-family: 'Segoe UI', sans-serif;
 }
-  .slick-slide img{
-    width:90%;
-    height: 150px;
-    border: 0px solid #fff;
-  }
-  #titleSlider{
-    color: white;
-    padding-top: 10px;
-    padding-left: 10px;
-  }
 
-  div .sliderImg{
-    width: 90%;
-    height: 100px;
-  }
+#titleSlider {
+  color: white;
+  padding-top: 10px;
+  padding-left: 10px;
+}
 
-  
+div .slider{
+  width: 95%;
+  margin: auto;
+}
+
+div .sliderImg {
+  width: 90%;
+  height: 200px;
+}
+
+
 @media screen and (max-width: 700px) {
-  div .sliderImg{
+  div .sliderImg {
     height: 80px;
   }
-  p{
+
+  p {
     font-size: small;
   }
-  
+
 }
