@@ -21,8 +21,8 @@ const Carousel = ({ data }) => {
                             <p>{item.description}</p>
                             <div className='content-btnDiv'>
                                 {/* change button to a */}
-                                <a className='content-a' href='info'><i className="fa fa-exclamation-circle" aria-hidden="true"></i> Info</a>
-                                <button className='content-btn'><i className="fa fa-play" aria-hidden="true"></i> Trailer</button>
+                                <button className='content-btn'><i className="fa fa-play" aria-hidden="true"></i> Play</button>
+                                <a className='content-a' href='/info'><i className="fa fa-exclamation-circle" aria-hidden="true"></i> Info</a>
                             </div>
                         </div>
                         <img src={item.img} alt={`Slide ${index}`} style={{ width: '100%', height: '100%' }} />
