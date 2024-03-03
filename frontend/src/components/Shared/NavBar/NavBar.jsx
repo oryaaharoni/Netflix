@@ -1,13 +1,12 @@
 import { useNavigate } from 'react-router-dom'
 import './navBar.css'
 
-const NavBar = () => {
+const NavBar = ({className}) => {
 
   const navigate = useNavigate();
 
-
   return (
-    <div>
+    <div id="mainDivNavBar" className={className}>
       <ul className='ul-navBar'>
         <li>
           <a href="/">

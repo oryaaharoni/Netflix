@@ -10,7 +10,9 @@ import { useState } from "react";
 const HomePage = () => {
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const { userInfo } = state;
-console.log('asdlfkjasdlfkjasd;lfkjasd;lkfjas;dlkfjas;lkjfal;rfkjeifjeofijsaed')
+
+  const [isScrolled, setIsScrolled] = useState(false);
+
   // maybe remove loading and data
   const { loading, error, data } = state;
 
@@ -55,12 +57,23 @@ console.log('asdlfkjasdlfkjasd;lfkjasd;lkfjas;dlkfjas;lkjfal;rfkjeifjeofijsaed')
         ctxDispatch({type: MY_LIST, payload: myListData})
       });
     }
+
+    const handleScroll = () => {
+      if (window.scrollY > 0) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
   }, []);
 
 
   return (
     <div>
-      <NavBar />
+      <NavBar className={isScrolled ? 'navBarInHomePage scrolled' : 'navBarInHomePage'}/>
       <Carousel data={allContent} />
 
       {/* change data to privat list user */}
