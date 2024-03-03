@@ -2,7 +2,8 @@ import './carousel.css'
 import { PropTypes } from '../../../imports'
 
 const Carousel = ({ data }) => {
-
+    
+    console.log('data in carousel: ', data)
     if (!data || data.length === 0) {
         return null;
     }

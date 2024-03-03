@@ -88,7 +88,6 @@ const SignInPage = () => {
         ctxDispatch({ type: USER_SIGNIN, payload: data });
 
         navigate('/');
-
       }
       catch (error) {
         if (error.response && error.response.status === 404) {

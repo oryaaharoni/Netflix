@@ -23,6 +23,13 @@ header {
     margin-left: 10%;
 }
 
+@media screen and (max-width: 2000px) {
+    form.signInForm {
+        width: 25%;
+        font-size: medium;
+    }
+}
+
 @media screen and (max-width: 1500px) {
     form.signInForm {
         width: 30%;
