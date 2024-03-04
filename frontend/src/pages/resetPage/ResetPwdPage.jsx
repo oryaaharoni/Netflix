@@ -35,12 +35,12 @@ const ResetPwdPage = () => {
         <form className="resetPwdForm">
           <div className="formGroup">
             <label className="formLabel">New Password: </label>
-            <Input className="formInput" name="password" placeholder="Enter new password" ref={passwordRef} type="password"/>
+            <input className="formInput" name="password" placeholder="Enter new password" ref={passwordRef} type="password"/>
           </div>
-          <div className="formGroup">
+          {/* <div className="formGroup">
             <label className="formLabel">Confirm Password: </label>
             <Input className="formInput" name="confirmpassword" placeholder="Confirm new password" type="password"/>
-          </div>
+          </div> */}
           <button className="btnReset" type="button" onClick={passwordHandler}>Submit</button>
         </form>
       </div>
