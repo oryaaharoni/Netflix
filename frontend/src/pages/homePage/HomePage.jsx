@@ -106,11 +106,13 @@ const HomePage = () => {
       <NavBar className={isScrolled ? 'navBarInHomePage scrolled' : 'navBarInHomePage'}/>
       <Carousel data={allContent} />
 
-      {/* change data to privat list user */}
+      
       <Slider1 data={allContent} title={"All Movies And Series"}/>
       <Slider1 data={movies} title={"Movies"}/>
       <Slider1 data={series} title={"Series"}/>
       <Slider1 data={myList} title={"My List"}/>
+
+
     </div>
   );
 };

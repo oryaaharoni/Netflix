@@ -1,22 +1,23 @@
 import Slider from "react-slick";
 import './slider.css';
 import { PropTypes, axios, useState } from '../../../imports';
-import React, { useContext } from 'react'
+import { useContext } from 'react'
 import ReactPlayer from 'react-player'
 import { Store } from "../../../Store";
 import { ADD_ITEM, REMOVE_ITEM } from "../../../reducers/actions";
 
 const Slider1 = ({ data, title }) => {
+  console.log("data in slider : ",data)
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const { userInfo } = state;
   const [hoveredIndex, setHoveredIndex] = useState(null);
-
+  
   const settings = {
     lazyLoad: "ondemand",
-    slidesToShow:  5,
+    slidesToShow: data && data.length>=5 ? 5 : 2,
     slidesToScroll: 2,
     dots: false,
-    infinite: true,
+    infinite: false,
     speed: 200,
     autoplay: false,
     autoplaySpeed: 3000,
@@ -55,6 +56,10 @@ const Slider1 = ({ data, title }) => {
   if (!data || data.length === 0) {
     return null;
   }
+  else{
+    console.log("data.length = " , data.length)
+  }
+
 
   return (
     <div>
@@ -65,24 +70,14 @@ const Slider1 = ({ data, title }) => {
           <div key={index} onMouseEnter={() => setHoveredIndex(index)} onMouseLeave={() => setHoveredIndex(null)}>
             {hoveredIndex === index ? (
               <>
-                <ReactPlayer className="sliderImg" url={convertToEmbedLink(item.trailer)} muted={true} playing={true} loop={true} width="90%" height="200px" />
-                <button className="fa-solid fa-plus" onClick={() => addToMyListHandler(item._id)}></button>
-                <button className="fa-solid fa-minus" onClick={() => removeItemFromMyListHandler(item._id)}></button>
+                <ReactPlayer url={convertToEmbedLink(item.trailer)} muted={true} playing={true} loop={true} width={data.length >= 5 ? "90%" : "200px"} height="200px" />
+                <button className="fa-solid fa-plus btnMylist" onClick={() => addToMyListHandler(item._id)}></button>
+                <button className="fa-solid fa-minus btnMylist" onClick={() => removeItemFromMyListHandler(item._id)}></button>
               </>
-              // works without auto play
-              //<iframe
-              //  width="90%"
-              //  height="100px"
-              //  src={convertToEmbedLink(item.trailer)}
-              //  title={`YouTube Video - ${item.title}`}
-              //  frameBorder="0"
-              //  allowFullScreen
-              //  autoplay
-              //></iframe>
             )
               :
               // add buttons: link to description page
-              <img className="sliderImg" src={item.imgVertical} alt={`content ${index}`} />
+              <img className={data.length >= 5 ? "sliderImg" : "smallImg"} src={item.imgVertical} alt={`content ${index}`} />
             }
           </div>
         ))}

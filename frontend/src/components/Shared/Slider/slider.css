@@ -14,11 +14,22 @@ div .slider{
   margin: auto;
 }
 
+
 div .sliderImg {
   width: 90%;
   height: 200px;
 }
 
+/* change size */
+div .slider .smallImg{
+  width: 200px;
+  height: 200px;
+}
+
+.btnMylist{
+  border-radius: 6px;
+  width: 20%;
+}
 
 @media screen and (max-width: 700px) {
   div .sliderImg {
@@ -28,5 +39,11 @@ div .sliderImg {
   p {
     font-size: small;
   }
+  /* .btnMylist{
+    width: 20%;
+  } */
+  /* .smallImg{
+    width: 70%;
+  } */
 
 }

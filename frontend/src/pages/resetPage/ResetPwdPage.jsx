@@ -1,7 +1,7 @@
 import "./resetPwdPage.css";
 import { useRef, axios, useLocation } from '../../imports.js';
 import Header from "../../components/Shared/Header.jsx";
-import Input from "../../components/Shared/Input/Input.jsx";
+// import Input from "../../components/Shared/Input/Input.jsx";
 
 const ResetPwdPage = () => {
 
@@ -34,12 +34,14 @@ const ResetPwdPage = () => {
       <div className="resetPwdContainer">
         <form className="resetPwdForm">
           <div className="formGroup">
+            {/* TODO: change to input cmponent- maybe use  */}
             <label className="formLabel">New Password: </label>
             <input className="formInput" name="password" placeholder="Enter new password" ref={passwordRef} type="password"/>
           </div>
+          {/* TODO: add confirm password */}
           {/* <div className="formGroup">
             <label className="formLabel">Confirm Password: </label>
-            <Input className="formInput" name="confirmpassword" placeholder="Confirm new password" type="password"/>
+            <input className="formInput" name="confirmpassword" placeholder="Confirm new password" type="password"/>
           </div> */}
           <button className="btnReset" type="button" onClick={passwordHandler}>Submit</button>
         </form>

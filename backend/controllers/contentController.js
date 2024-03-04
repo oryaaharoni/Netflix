@@ -6,6 +6,7 @@ export const getAll = async (req, res) => {
     res.send(content);
 }
 
+//info
 export const getContentById = async (req, res) => {
     const { id } = req.params;
 
