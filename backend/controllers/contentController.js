@@ -71,3 +71,7 @@ export const removeFromMyList = async (req, res) => {
         res.status(404).send('The given content was not found in your list')
     }
 }
+
+export const getMoviesWithGenre = async (req, res) => {
+    
+}
