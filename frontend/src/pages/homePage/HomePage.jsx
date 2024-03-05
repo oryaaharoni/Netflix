@@ -38,8 +38,8 @@ const HomePage = () => {
       // data.push(myListData);
       setMyList(myListData)
       setAllContent(data);
-
-      ctxDispatch({ type: MY_LIST, payload: myListData })
+      // console.log('my list from db: ,', myListFromDB.data)
+      ctxDispatch({ type: MY_LIST, payload: myListFromDB.data })
       ctxDispatch({ type: GET_SUCCESS, payload: data });
     } catch (err) {
       console.error(err);

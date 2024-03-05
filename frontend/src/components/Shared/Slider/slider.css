@@ -9,11 +9,20 @@ body {
   padding-left: 10px;
 }
 
-div .slider{
+div.slider{
   width: 95%;
   margin: auto;
 }
 
+.slider{
+  position: relative;
+  z-index: 20;
+}
+
+.divBehindCard{
+  position: relative;
+  z-index: 100;
+}
 
 div .sliderImg {
   width: 90%;
