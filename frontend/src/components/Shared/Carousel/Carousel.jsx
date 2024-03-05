@@ -1,22 +1,50 @@
 import './carousel.css'
-import { PropTypes } from '../../../imports'
+import { PropTypes, axios, useEffect, useState } from '../../../imports'
 import ReactPlayer from 'react-player'
+import { useContext } from 'react';
+import { Store } from '../../../Store';
 
-const Carousel = ({ data }) => {
-    
-    console.log('data in carousel: ', data)
-    if (!data || data.length === 0) {
+// const Carousel = ({ data }) => {
+const Carousel = () => {
+
+    const { state, dispatch: ctxDispatch } = useContext(Store);
+    const { userInfo } = state;
+    const [allContent, setAllContent] = useState(null);
+
+    useEffect(() => {
+        const getContent = async () => {
+
+            try {
+                const { data } = await axios.get("/api/v1/content/getContents", {
+                    headers: { Authorization: `Bearer ${userInfo.token}` },
+                });
+
+                setAllContent(data);
+
+            } catch (err) {
+                console.error(err);
+            }
+        }
+        getContent();
+    }, [])
+
+
+    // console.log('data in carousel: ', data)
+    // if (!data || data.length === 0) {
+    //     return null;
+    // }
+    if (!allContent || allContent.length === 0) {
         return null;
     }
 
     return (
-        
+
         // maybe remove id and class name
         <div id="myCarousel" className="carousel slide" data-ride="carousel">
-        
+
             {/* <!-- Wrapper for slides --> */}
             <div className="carousel-inner">
-                { data.map((item, index) => (
+                {allContent.map((item, index) => (
                     <div key={index} className={`item ${index === 0 ? 'active' : ''}`}>
                         <div className="overlay">
                             <h3 className='content-title'>{item.title}</h3>
@@ -30,7 +58,7 @@ const Carousel = ({ data }) => {
                         {/* <ReactPlayer url={item.trailer} muted={true} playing={true} loop={true} width="100%" height="100%" /> */}
                         <img src={item.img} alt={`Slide ${index}`} style={{ width: '100%', height: '100%' }} />
                     </div>
-                )) }
+                ))}
             </div>
 
             {/* <!-- Left and right controls --> */}
@@ -46,5 +74,5 @@ const Carousel = ({ data }) => {
         // </div>
     )
 }
-Carousel.propTypes ={data: PropTypes.array}
+Carousel.propTypes = { data: PropTypes.array }
 export default Carousel

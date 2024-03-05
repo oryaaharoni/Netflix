@@ -8,7 +8,7 @@ import { ADD_ITEM, REMOVE_ITEM } from "../../../reducers/actions";
 // import Card from "../Card/Card";
 
 const Slider1 = ({ data, title }) => {
-  console.log("data in slider : ",data)
+  // console.log("data in slider : ", data)
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const { userInfo } = state;
   const [hoveredIndex, setHoveredIndex] = useState(null);

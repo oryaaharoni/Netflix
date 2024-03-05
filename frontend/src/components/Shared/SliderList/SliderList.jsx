@@ -1,13 +1,19 @@
-import Slider from 'react-slick'
+import Slider1 from "../Slider/Slider"
 
-const SliderList = ({contentList}) => {
-  return (
-    <div>
-        {contentList.map((item, index) => (
-            <Slider title={item.title} data={item.data} key={index} />
-        ))}
-    </div>
-  )
-} 
+const SliderList = ({ contentList }) => {
+
+    // console.log('content list: ', contentList)
+    if (contentList == null) {
+        return null
+    }
+
+    return (
+        <div>
+            {contentList.map((item, index) => (
+                <Slider1 title={item.name} data={item.contentList} key={index} />
+            ))}
+        </div>
+    )
+}
 
 export default SliderList

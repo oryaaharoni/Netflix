@@ -2,10 +2,10 @@ import Content from '../models/Content.js'
 import User from '../models/User.js';
 import FeaturedContents from '../models/FeaturedContents.js';
 
-// export const getAll = async (req, res) => {
-//     const content = await Content.find({});
-//     res.send(content);
-// }
+export const getContents = async (req, res) => {
+    const content = await Content.find({});
+    res.send(content);
+}
 
 //info
 export const getContentById = async (req, res) => {
@@ -25,17 +25,16 @@ export const getContentById = async (req, res) => {
 //     res.send(series);
 // }
 export const getAll = async (req, res) => {
-    const content = await FeaturedContents.find({});
-    console.log("content: ",content)
+    const content = await FeaturedContents.find({}).populate('contentList');
     res.send(content);
 }
 
 export const getMovies = async (req, res) => {
-        const movies = await FeaturedContents.find({ isSeries: false });
+        const movies = await FeaturedContents.find({ isSeries: false }).populate('contentList');
         res.send(movies);
 }
 export const getSeries = async (req, res) => {
-    const series = await FeaturedContents.find({ isSeries: true });
+    const series = await FeaturedContents.find({ isSeries: true }).populate('contentList');
     res.send(series);
 }
 
@@ -52,9 +51,10 @@ export const getCategories = async (req, res) => {
 
 export const getMyList = async (req, res) => {
     const { id } = req.params;
-
+    console.log('id: ', id)
     try {
         const user = await User.findById(id).populate('contentList');
+        console.log('contentList: ', user.contentList)
         res.send(user.contentList);
     } catch (error) {
         res.status(500).send('Internal Server Error');

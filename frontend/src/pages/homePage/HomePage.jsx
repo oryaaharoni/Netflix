@@ -6,6 +6,7 @@ import Carousel from "../../components/Shared/Carousel/Carousel";
 import Slider1 from "../../components/Shared/Slider/Slider";
 import { useNavigate, useContext, useEffect, axios, useLocation } from '../../imports.js';
 import { useState } from "react";
+import SliderList from "../../components/Shared/SliderList/SliderList.jsx";
 
 const HomePage = () => {
   const { state, dispatch: ctxDispatch } = useContext(Store);
@@ -17,46 +18,41 @@ const HomePage = () => {
   const { loading, error, data } = state;
 
   const [allContent, setAllContent] = useState(null);
-  const [movies, setMovies] = useState(null);
-  const [series, setSeries] = useState(null);
   const [myList, setMyList] = useState(null);
 
   const navigate = useNavigate();
-  const location = useLocation();
-  
-  const getContent = async (url, requiresUserId) => {
+
+  const getContent = async () => {
     ctxDispatch({ type: GET_REQUEST });
+    console.log('userId: ', userInfo['_id'])
     try {
-      const fullUrl = requiresUserId ? `${url}/${userInfo['_id']}` : url;
-      const { data } = await axios.get(fullUrl, {
+      const { data } = await axios.get("/api/v1/content", {
         headers: { Authorization: `Bearer ${userInfo.token}` },
       });
+
+      const myListFromDB = await axios.get(`/api/v1/content/myList/${userInfo['_id']}`, {
+        headers: { Authorization: `Bearer ${userInfo.token}` },
+      });
+
+      const myListData = [{ name: "My List", contentList: myListFromDB.data }]
+      // data.push(myListData);
+      setMyList(myListData)
+      setAllContent(data);
+
+      ctxDispatch({ type: MY_LIST, payload: myListData })
       ctxDispatch({ type: GET_SUCCESS, payload: data });
-      return data;
     } catch (err) {
       console.error(err);
       navigate("/signIn");
     }
   }
 
-    
+
   useEffect(() => {
     if (!userInfo) {
       navigate("/signIn");
     } else {
-      Promise.all([
-        getContent("/api/v1/content"),
-        getContent("/api/v1/content/movies"),
-        getContent("/api/v1/content/series"),
-        getContent("/api/v1/content/myList", true),
-
-      ]).then(([allContentData, moviesData, seriesData, myListData]) => {
-        setAllContent(allContentData);
-        setMovies(moviesData);
-        setSeries(seriesData);
-        setMyList(myListData);
-        ctxDispatch({type: MY_LIST, payload: myListData})
-      });
+      getContent();
     }
 
     const handleScroll = () => {
@@ -71,19 +67,12 @@ const HomePage = () => {
 
   }, []);
 
-
   return (
     <div>
-      <NavBar className={isScrolled ? 'navBarInHomePage scrolled' : 'navBarInHomePage'}/>
+      <NavBar className={isScrolled ? 'navBarInHomePage scrolled' : 'navBarInHomePage'} />
       <Carousel data={allContent} />
-
-      
-      <Slider1 data={allContent} title={"All Movies And Series"}/>
-      <Slider1 data={movies} title={"Movies"}/>
-      <Slider1 data={series} title={"Series"}/>
-      <Slider1 data={myList} title={"My List"}/>
-
-
+      <SliderList contentList={myList}/>
+      <SliderList contentList={allContent} />
     </div>
   );
 };
