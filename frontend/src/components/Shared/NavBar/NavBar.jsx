@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom'
 import './navBar.css'
 
 const NavBar = ({className}) => {
-  console.log(className)
+  
   const navigate = useNavigate();
 
   return (

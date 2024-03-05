@@ -1,10 +1,11 @@
 import Content from '../models/Content.js'
 import User from '../models/User.js';
+import FeaturedContents from '../models/FeaturedContents.js';
 
-export const getAll = async (req, res) => {
-    const content = await Content.find({});
-    res.send(content);
-}
+// export const getAll = async (req, res) => {
+//     const content = await Content.find({});
+//     res.send(content);
+// }
 
 //info
 export const getContentById = async (req, res) => {
@@ -14,15 +15,35 @@ export const getContentById = async (req, res) => {
     res.send(content);
 }
 
-export const getMovies = async (req, res) => {
-    const movies = await Content.find({ isSeries: false });
-    res.send(movies);
+// export const getMovies = async (req, res) => {
+//     const movies = await Content.find({ isSeries: false });
+//     res.send(movies);
+// }
+
+// export const getSeries = async (req, res) => {
+//     const series = await Content.find({ isSeries: true });
+//     res.send(series);
+// }
+export const getAll = async (req, res) => {
+    const content = await FeaturedContents.find({});
+    console.log("content: ",content)
+    res.send(content);
 }
 
+export const getMovies = async (req, res) => {
+        const movies = await FeaturedContents.find({ isSeries: false });
+        res.send(movies);
+}
 export const getSeries = async (req, res) => {
-    const series = await Content.find({ isSeries: true });
+    const series = await FeaturedContents.find({ isSeries: true });
     res.send(series);
 }
+
+
+
+
+
+
 
 export const getCategories = async (req, res) => {
     const categories = await Content.find().distinct("genre");
@@ -58,9 +79,13 @@ export const addToMyList = async (req, res) => {
 
 export const removeFromMyList = async (req, res) => {
     const { userId, contentId } = req.body;
+    console.log("userid: " + userId + " contentId: " + contentId);
     const user = await User.findById(userId);
+    console.log("user" , user);
     const content = await Content.findById(contentId);
+    console.log("content" , content);
     const index = user.contentList.indexOf(content._id);
+    console.log("index", index)
     if (index > -1) {
         user.contentList.splice(index, 1);
         await user.save();

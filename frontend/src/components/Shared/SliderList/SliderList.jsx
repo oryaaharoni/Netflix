@@ -1,4 +1,3 @@
-import React from 'react'
 import Slider from 'react-slick'
 
 const SliderList = ({contentList}) => {
@@ -9,6 +8,6 @@ const SliderList = ({contentList}) => {
         ))}
     </div>
   )
-} [[genre 'shrek, harry', [movies]],[]]
+} 
 
 export default SliderList
