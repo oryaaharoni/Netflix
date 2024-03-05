@@ -13,9 +13,31 @@
     z-index: 10;
     top: -50px;
     left: -50px;
+    background-color: rgba(20, 20, 20, 0.923);
+    color: white;
+    display: inline-block;
 }
 
 .card-image {
     width: 200px;
     height: 200px;
+}
+
+.itemBtn{
+    color: white;
+    background-color: gray;
+    width: 13%;
+    border-radius: 50%;
+    margin-left: 20px;
+    margin-top: 5px;
+    height: 10%;
+    
+}
+
+.itemBtn:hover{
+    background-color: rgba(94, 94, 94, 0.404);
+}
+.pItem{
+    margin-left: 20px;
+    margin-top: 5px;
 }

@@ -5,6 +5,7 @@ import { useContext } from 'react'
 import ReactPlayer from 'react-player'
 import { Store } from "../../../Store";
 import { ADD_ITEM, REMOVE_ITEM } from "../../../reducers/actions";
+import Card from "../Card/Card";
 
 const Slider1 = ({ data, title }) => {
   console.log("data in slider : ",data)
@@ -71,8 +72,9 @@ const Slider1 = ({ data, title }) => {
             {hoveredIndex === index ? (
               <>
                 <ReactPlayer url={convertToEmbedLink(item.trailer)} muted={true} playing={true} loop={true} width={data.length >= 5 ? "90%" : "200px"} height="200px" />
-                <button className="fa-solid fa-plus btnMylist" onClick={() => addToMyListHandler(item._id)}></button>
-                <button className="fa-solid fa-minus btnMylist" onClick={() => removeItemFromMyListHandler(item._id)}></button>
+                {/* <Card item={item}></Card> */}
+                <button className="fa-solid fa-plus btnMylist" onClick={() => addToMyListHandler(item._id)}></button> 
+                <button className="fa-solid fa-minus btnMylist" onClick={() => removeItemFromMyListHandler(item._id)}></button> 
               </>
             )
               :

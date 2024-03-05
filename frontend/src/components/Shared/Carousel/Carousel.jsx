@@ -1,5 +1,6 @@
 import './carousel.css'
 import { PropTypes } from '../../../imports'
+import ReactPlayer from 'react-player'
 
 const Carousel = ({ data }) => {
     
@@ -26,6 +27,7 @@ const Carousel = ({ data }) => {
                                 <a className='content-a' href='/info'><i className="fa fa-exclamation-circle" aria-hidden="true"></i> Info</a>
                             </div>
                         </div>
+                        {/* <ReactPlayer url={item.trailer} muted={true} playing={true} loop={true} width="100%" height="100%" /> */}
                         <img src={item.img} alt={`Slide ${index}`} style={{ width: '100%', height: '100%' }} />
                     </div>
                 )) }

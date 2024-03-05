@@ -24,8 +24,10 @@ const MyListPage = () => {
     <div id='mylistDivFirst'>
       <NavBar />
       <div>
+      <h1 id='titleMyList'>My List:</h1>
         <div className='divRootMyList'>
-        <h3>My List:</h3>
+        
+        <br />
           {data.map((item, index) => (
             <Card item={item} key={index}></Card>
           ))}

@@ -81,13 +81,12 @@ return (
           width="300px"
           height="200px"
         />
-        <button
-          className="fa-solid fa-minus"
-          onClick={removeItemFromMyListHandler(item._id)}
-        ></button>
-        <button className="fa fa-play"></button>
-        <p>hbfdvlods{" "}{item.duration}</p>
-        <p>{item.genre}</p>
+        
+        <button className="itemBtn" onClick={removeItemFromMyListHandler(item._id)}><i className="fa-solid fa-minus"></i></button>
+        <button className="itemBtn"><i className="fa fa-play"></i></button>
+        <br/>
+        <p className='pItem'><strong style={{color:"green"}}>92% match</strong> {" "}{item.duration}</p>
+        <p className='pItem'>{item.genre}</p>
       </div>
       :
       null}
