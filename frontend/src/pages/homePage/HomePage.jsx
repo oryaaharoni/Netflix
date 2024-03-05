@@ -39,35 +39,6 @@ const HomePage = () => {
     }
   }
 
-
-  // let contentEndpoint;
-  // if (location.pathname === '/movies') {
-  //   contentEndpoint = '/api/v1/content/movies';
-  // } else if (location.pathname === '/series') {
-  //   contentEndpoint = '/api/v1/content/series';
-  // } else {
-  //   contentEndpoint = '/api/v1/content'; // Default: All Movies and Series
-  // }
-
-
-  // useEffect(() => {
-  //   console.log('contentEndPoint ', contentEndpoint)
-  //   if (!userInfo) {
-  //     navigate("/signIn");
-  //   } else {
-  //     console.log('contentEndPoint ', contentEndpoint)
-  //     Promise.all([
-  //       getContent(contentEndpoint),
-  //       getContent("/api/v1/content/myList", true),
-  //     ]).then(([contentData, myListData]) => {
-  //       setAllContent(contentData);
-  //       setMovies(contentData.movies);  // Adjust this based on your API response structure
-  //       setSeries(contentData.series);  // Adjust this based on your API response structure
-  //       setMyList(myListData);
-  //       ctxDispatch({ type: MY_LIST, payload: myListData });
-  //     });
-  //   }
-
     
   useEffect(() => {
     if (!userInfo) {
