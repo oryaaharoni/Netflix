@@ -1,0 +1,12 @@
+div.divRootMyList {
+    display: flex;
+    justify-content: center;
+    height: 300px;
+    gap: 20px;
+    background-color: black;
+    margin-top: 70px;
+}
+
+#mylistDivFirst{
+    background-color: black;
+}

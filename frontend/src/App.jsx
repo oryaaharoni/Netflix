@@ -6,6 +6,7 @@ import HomePage from "./pages/homePage/HomePage.jsx";
 import LoginHelpPage from "./pages/signInPage/LoginHelpPage.jsx";
 import ResetPwdPage from "./pages/resetPage/ResetPwdPage.jsx";
 import DescriptionPage from "./pages/descriptionPage/DescriptionPage.jsx";
+import MyListPage from "./pages/myListPage/MyListPage.jsx";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/forgotPwd" element={<LoginHelpPage />} />
         <Route path="/resetPwd" element={<ResetPwdPage />} />
         <Route path="/info" element={<DescriptionPage />} />
+        <Route path="/myList" element={<MyListPage/>} />
       </Routes>
     </BrowserRouter>
   );
