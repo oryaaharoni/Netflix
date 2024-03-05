@@ -34,12 +34,13 @@ const HomePage = () => {
         headers: { Authorization: `Bearer ${userInfo.token}` },
       });
 
-      const myListData = [{ name: "My List", contentList: myListFromDB.data }]
+      // const myListData = { name: "My List", contentList: myListFromDB.data }
       // data.push(myListData);
-      setMyList(myListData)
+      setMyList([myListFromDB.data])
+      console.log('my list from sb', myListFromDB.data)
       setAllContent(data);
-      // console.log('my list from db: ,', myListFromDB.data)
-      ctxDispatch({ type: MY_LIST, payload: myListFromDB.data })
+      console.log('my list from db: ,', myListFromDB.data)
+      ctxDispatch({ type: MY_LIST, payload: myListFromDB.data.contentList })
       ctxDispatch({ type: GET_SUCCESS, payload: data });
     } catch (err) {
       console.error(err);

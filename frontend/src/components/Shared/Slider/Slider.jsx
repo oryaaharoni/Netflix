@@ -64,7 +64,7 @@ const Slider1 = ({ data, title }) => {
 
   return (
     <div>
-      <p id="titleSlider">{title}</p>
+      <p id="titleSlider"><strong>{title}</strong></p>
       <Slider className="slider" {...settings}>
         {data.map((item, index) => (
           // enter should navigate us to description page

@@ -54,8 +54,12 @@ export const getMyList = async (req, res) => {
     console.log('id: ', id)
     try {
         const user = await User.findById(id).populate('contentList');
-        console.log('contentList: ', user.contentList)
-        res.send(user.contentList);
+        console.log('contentListfirstone: ', user.contentList);
+        const contentList = { name: "My List", contentList: user.contentList };
+        console.log('zobi balobi: ', contentList)
+        console.log(contentList.contentList)
+        res.send(contentList);
+        // res.send(user.contentList);
     } catch (error) {
         res.status(500).send('Internal Server Error');
     }

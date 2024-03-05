@@ -18,7 +18,7 @@ const userScema = new mongoose.Schema({
         type: String,
     },
     contentList: [{ type: Schema.Types.ObjectId, ref: 'Content' }]
-}, 
+},
 {timestamps: true, versionKey: false});// מוסיף תאריכים מתי היוזר נוצר במונגו
 
 const User = mongoose.model('User', userScema);
