@@ -22,7 +22,7 @@ const MyListPage = () => {
 
   return (
     <div id='mylistDivFirst'>
-      <NavBar />
+      {/* <NavBar /> */}
       <div>
       <h1 id='titleMyList'>My List:</h1>
         <div className='divRootMyList'>

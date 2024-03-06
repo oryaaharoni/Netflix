@@ -5,6 +5,7 @@ import { useContext, useEffect, useState } from 'react';
 import { Store } from '../../Store';
 import Card from '../../components/Shared/Card/Card';
 import NavBar from '../../components/Shared/NavBar/NavBar';
+import './search.css'
 
 const SearchPage = () => {
   const { search } = useLocation();
@@ -44,9 +45,9 @@ const SearchPage = () => {
  }
 
   return (
-    <div style={{color:'white'}}>
+    <div className='containerInSearch'>
        <Title title={"Search Page"}/>
-       <NavBar></NavBar> 
+       {/* <NavBar></NavBar>  */}
        <div style={{color:'white', margin:'50px 50px 50px 50px'}}>
        { currentData && currentData.length>1 ? currentData.map((item, index)=>(
         <Card item={item} key={index}></Card> 

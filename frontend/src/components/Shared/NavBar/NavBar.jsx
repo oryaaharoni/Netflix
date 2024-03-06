@@ -1,10 +1,15 @@
-// import { useNavigate } from 'react-router-dom'
 import './navBar.css'
 import SearchBox from '../../SearchBox';
+import { useLocation } from 'react-router-dom';
 
-const NavBar = ({className}) => {
+const NavBar = ({ className }) => {
+
+  const location = useLocation();
+  const isSignInOrSignUpPage = location.pathname === "/signIn" || location.pathname === "/signUp" || location.pathname === "/resetPwd" || location.pathname === "/forgotPwd";
   
-  // const navigate = useNavigate();
+  if (isSignInOrSignUpPage) {
+    return null
+  }
 
   return (
     <div id="mainDivNavBar" className={className}>
@@ -21,7 +26,7 @@ const NavBar = ({className}) => {
           <li><a href='/movies'>Movies</a></li>
           <li><a href='/myList'>My List</a></li>
         </div>
-        
+
         <div className='icons-navBar'>
           <SearchBox></SearchBox>
           {/* add here search (maybe change to button) , add onchange to input*/}

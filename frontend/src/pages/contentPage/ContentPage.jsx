@@ -11,7 +11,7 @@ const ContentPage = () => {
     let includeMyList, apiEndpoint;
     const { state, dispatch: ctxDispatch } = useContext(Store);
     const { userInfo } = state;
-    const [isScrolled, setIsScrolled] = useState(false);
+    // const [isScrolled, setIsScrolled] = useState(false);
     const [myList, setMyList] = useState(null);
     const navigate = useNavigate();
     const location = useLocation();
@@ -60,24 +60,24 @@ const ContentPage = () => {
             getContent();
         }
 
-        const handleScroll = () => {
-            if (window.scrollY > 0) {
-                setIsScrolled(true);
-            } else {
-                setIsScrolled(false);
-            }
-        };
+        // const handleScroll = () => {
+        //     if (window.scrollY > 0) {
+        //         setIsScrolled(true);
+        //     } else {
+        //         setIsScrolled(false);
+        //     }
+        // };
 
-        window.addEventListener("scroll", handleScroll);
+        // window.addEventListener("scroll", handleScroll);
 
-        return () => {
-            window.removeEventListener("scroll", handleScroll);
-        };
+        // return () => {
+        //     window.removeEventListener("scroll", handleScroll);
+        // };
     }, []);
 
     return (
         <div>
-            <NavBar className={isScrolled ? 'navBarInHomePage scrolled' : 'navBarInHomePage'} />
+            {/* <NavBar className={isScrolled ? 'navBarInHomePage scrolled' : 'navBarInHomePage'} /> */}
             <Carousel />
             {myList &&
                 <SliderList contentList={myList} />
