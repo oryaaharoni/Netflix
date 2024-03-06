@@ -4,7 +4,6 @@ import { PropTypes, axios, useState } from '../../../imports';
 import { useContext } from 'react'
 import ReactPlayer from 'react-player'
 import { Store } from "../../../Store";
-import { ADD_ITEM, REMOVE_ITEM } from "../../../reducers/actions";
 import Card from "../Card/Card";
 
 const Slider1 = ({ data, title }) => {

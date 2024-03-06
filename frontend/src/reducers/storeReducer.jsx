@@ -38,7 +38,7 @@ const storeReducer = (state, action) => {
         case REMOVE_ITEM: {
             const updatedUserInfo = {
                 ...state.userInfo,
-                myList: [...state.userInfo.myList.filter(item => item._id !== action.payload._id), action.payload]
+                myList: [...state.userInfo.myList.filter(item => item._id !== action.payload._id)]
             }
             localStorage.setItem('userInfo', JSON.stringify(updatedUserInfo));
             return { ...state, loading: false, userInfo: updatedUserInfo };

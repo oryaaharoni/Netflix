@@ -2,7 +2,7 @@ import { PropTypes, useState, axios, useContext } from '../../../imports'
 import ReactPlayer from 'react-player'
 import './card.css'
 import { Store } from '../../../Store';
-import { REMOVE_ITEM } from "../../../reducers/actions";
+import { ADD_ITEM, REMOVE_ITEM } from "../../../reducers/actions";
 import { useEffect } from 'react';
 
 const Card = ({ item }) => {
@@ -26,7 +26,6 @@ const Card = ({ item }) => {
         headers: { authorization: `Bearer ${userInfo.token}` },
       });
       await ctxDispatch({ type: ADD_ITEM, payload: data })
-      console.log(data)
     } catch (err) {
       console.log('Error in adding to list', err)
     }
@@ -38,7 +37,6 @@ const Card = ({ item }) => {
         headers: { authorization: `Bearer ${userInfo.token}` },
       });
       await ctxDispatch({ type: REMOVE_ITEM, payload: data })
-      console.log(data)
     } catch (err) {
       console.log('Error in removing from list', err)
     }
@@ -73,7 +71,6 @@ const Card = ({ item }) => {
             :
             <button className='itemBtn' onClick={() => addToMyListHandler(item._id)}><i className="fa-solid fa-plus btnMylist"></i></button>
           }
-          {/* <button className="fa-solid fa-minus btnMylist" onClick={() => removeItemFromMyListHandler(item._id)}></button> */}
           <button className="itemBtn"><i className="fa fa-play"></i></button>
           <br />
           <p className='pItem'><strong style={{ color: "green" }}>92% match</strong> {" "}{item.duration}</p>
