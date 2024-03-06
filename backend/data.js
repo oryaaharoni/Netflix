@@ -77,7 +77,6 @@ export const data = {
       genre: 'Action',
       isSeries: false,
     },
-
     {
       title: 'The Revenant',
       description:
