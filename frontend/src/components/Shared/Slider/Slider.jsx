@@ -30,29 +30,6 @@ const Slider1 = ({ data, title }) => {
     return `https://www.youtube.com/embed/${videoId}`;
   }
 
-  const addToMyListHandler = async (contentId) => {
-    try {
-      const {data} = await axios.post(`/api/v1/content/add/`, { userId: userInfo['_id'], contentId: contentId }, {
-        headers: { authorization: `Bearer ${userInfo.token}` },
-      });
-      await ctxDispatch({type: ADD_ITEM, payload: data})
-      console.log(data)
-    } catch (err) {
-      console.log('Error in adding to list', err)
-    }
-  }
-
-  const removeItemFromMyListHandler = async (contentId) => {
-    try {
-      const {data} = await axios.post(`/api/v1/content/remove/`, { userId: userInfo['_id'], contentId: contentId }, {
-        headers: { authorization: `Bearer ${userInfo.token}` },
-      });
-      await ctxDispatch({type: REMOVE_ITEM, payload: data})
-      console.log(data)
-    } catch (err) {
-      console.log('Error in removing from list', err)
-    }
-  }
 
   if (!data || data.length === 0) {
     return null;

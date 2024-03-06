@@ -56,7 +56,6 @@ const SearchPage = () => {
       {/* <Title title={"Search Page"} /> */}
       {/* <NavBar></NavBar>  */}
       {/* <div className='containerInSearch'> */}
-        <br />
         <div>
         <h1>Showing results found for "{inputData}"</h1>
           {currentData && currentData.length > 1 && currentData.map((item, index) => (

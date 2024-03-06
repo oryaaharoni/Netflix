@@ -13,7 +13,6 @@ const MyListPage = () => {
 
   useEffect(() => {
     setData(userInfo.myList)
-    console.log('list::   ', userInfo.myList);
   }, [])
 
   if (data == null) {
