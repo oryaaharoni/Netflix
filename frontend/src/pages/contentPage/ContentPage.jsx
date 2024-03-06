@@ -6,6 +6,7 @@ import SliderList from '../../components/Shared/SliderList/SliderList';
 import { GET_REQUEST, GET_SUCCESS, MY_LIST } from '../../reducers/actions';
 import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import Billboard from '../../components/Shared/Billboard/Billboard';
 
 const ContentPage = () => {
     let includeMyList, apiEndpoint;
@@ -16,6 +17,26 @@ const ContentPage = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const [content, setContent] = useState(null);
+
+    // try something for billboard
+    const w = {
+        title: 'The Revenant',
+        description:
+          'The Revenant is a 2015 American semi-biographical epic western film directed by Alejandro G. Iñárritu. The screenplay by Mark L. Smith and Iñárritu is based in part on Michael Punke`s 2002 novel of the same name, describing frontiersman Hugh Glass`s experiences in 1823.',
+        img: 'https://www.indiewire.com/wp-content/uploads/2016/06/the-revenant.jpg',
+        imgTitle:
+          'https://images.squarespace-cdn.com/content/v1/5bfdc74875f9ee194f3e0add/1596652890102-76FXS415ATRW83ANRXXK/the-revenant-563b02dac00e3.png',
+        imgThumb:
+          'https://variety.com/wp-content/uploads/2013/07/the-revenant-movie-reivew-2.jpg',
+        imgVertical: 'https://m.media-amazon.com/images/I/A1BjliXNDPL.jpg',
+        trailer: 'https://youtu.be/LoebZZ8K5N0',
+        movie: 'https://youtu.be/LoebZZ8K5N0',
+        duration: '1 hour 15 min',
+        year: '2015',
+        limit: '15',
+        genre: 'Action',
+        isSeries: false,
+      }
 
     const getContent = async () => {
         ctxDispatch({ type: GET_REQUEST });
@@ -78,7 +99,10 @@ const ContentPage = () => {
     return (
         <div>
             {/* <NavBar className={isScrolled ? 'navBarInHomePage scrolled' : 'navBarInHomePage'} /> */}
-            <Carousel />
+
+            {/* try billboard */}
+            <Billboard item={w}/>
+            {/* <Carousel /> */}
             {myList &&
                 <SliderList contentList={myList} />
             }
