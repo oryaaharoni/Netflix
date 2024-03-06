@@ -3,10 +3,10 @@ import SearchBox from '../../SearchBox';
 import { useLocation } from 'react-router-dom';
 
 const NavBar = ({ className }) => {
-
+  console.log(className)
   const location = useLocation();
   const isSignInOrSignUpPage = location.pathname === "/signIn" || location.pathname === "/signUp" || location.pathname === "/resetPwd" || location.pathname === "/forgotPwd";
-  
+
   if (isSignInOrSignUpPage) {
     return null
   }
@@ -35,6 +35,34 @@ const NavBar = ({ className }) => {
 
           {/* <li>notification</li> */}
           {/* <li>drop list</li> */}
+
+
+          {/* <div className='dropdown'>
+            <button className='btnDropdown'>
+              <img className='imgDropdown' src='https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png' />
+            </button>
+            <div className='dropdown-content'></div>
+            <a href=""></a>
+            <a href=""></a>
+            <a href=""></a>
+          </div> */}
+
+
+          <div className='dropdown'>
+            <button className='btnDropdown'>
+              <img className='imgDropdown' src='https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png' alt='Avatar' />
+            </button>
+            <div className='dropdown-content'>
+              <a href="#">Option 1</a>
+              <br />
+              <a href="#">Option 2</a>
+              <br />
+              <a href="#">Option 3</a>
+            </div>
+          </div>
+
+
+
         </div>
       </ul>
     </div>

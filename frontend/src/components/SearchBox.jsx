@@ -37,7 +37,7 @@ const SearchBox = () => {
         <div className='icons-navBar'>
             <button className="fa fa-search" aria-hidden="true" onClick={()=> setShowSearch(!showSearch)}></button>
             { showSearch && 
-            <input onChange={(e)=>setQuery(e.target.value)} style={{color:'black'}} id="q" name='q' type='text' placeholder='search'></input> }
+            <input onInput={(e)=>setQuery(e.target.value)} value={query} style={{color:'black'}} id="q" name='q' type='text' placeholder='search'></input> }
         </div>
   </div>
   )

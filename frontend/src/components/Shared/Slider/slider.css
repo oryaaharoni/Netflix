@@ -1,5 +1,7 @@
 body {
-  background-color: black;
+  /* background-color: black; */
+  background-color: rgb(24 24 27);
+  /* padding-top: 100px; */
   font-family: 'Segoe UI', sans-serif;
 }
 
