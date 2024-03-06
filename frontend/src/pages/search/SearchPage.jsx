@@ -1,6 +1,6 @@
 import Title from '../../components/Shared/Title'
 
-const Search = () => {
+const SearchPage = () => {
   return (
     <div>
        <Title title={"Search Page"}/> 
@@ -8,4 +8,4 @@ const Search = () => {
   )
 }
 
-export default Search
+export default SearchPage

@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 import './navBar.css'
+import SearchBox from '../../SearchBox';
 
 const NavBar = ({className}) => {
   
@@ -20,11 +21,12 @@ const NavBar = ({className}) => {
           <li><a href='/movies'>Movies</a></li>
           <li><a href='/myList'>My List</a></li>
         </div>
-
+        
         <div className='icons-navBar'>
+          <SearchBox></SearchBox>
           {/* add here search (maybe change to button) , add onchange to input*/}
-          <li><a className="fa fa-search" aria-hidden="true" href='/info'></a></li>
-          <input onChange={() => navigate('/search')} className="searchInput" type='text' placeholder='search'></input>
+          {/* <li><a className="fa fa-search" aria-hidden="true" href='/info'></a></li> */}
+          {/* <input onChange={() => navigate('/search')} className="searchInput" type='text' placeholder='search'></input> */}
 
           {/* <li>notification</li> */}
           {/* <li>drop list</li> */}
