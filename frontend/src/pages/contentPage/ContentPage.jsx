@@ -4,15 +4,17 @@ import NavBar from '../../components/Shared/NavBar/NavBar';
 import Carousel from '../../components/Shared/Carousel/Carousel';
 import SliderList from '../../components/Shared/SliderList/SliderList';
 import { GET_REQUEST, GET_SUCCESS, MY_LIST } from '../../reducers/actions';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-const ContentPage = ({ includeMyList, apiEndpoint }) => {
+const ContentPage = () => {
+    let includeMyList, apiEndpoint;
     const { state, dispatch: ctxDispatch } = useContext(Store);
     const { userInfo } = state;
     const [isScrolled, setIsScrolled] = useState(false);
     const [myList, setMyList] = useState(null);
     const navigate = useNavigate();
+    const location = useLocation();
     const [content, setContent] = useState(null);
 
     const getContent = async () => {
@@ -25,14 +27,11 @@ const ContentPage = ({ includeMyList, apiEndpoint }) => {
             setContent(data);
 
             ctxDispatch({ type: GET_SUCCESS, payload: data });
-
             if (includeMyList) {
                 const myListFromDB = await axios.get(`/api/v1/content/myList/${userInfo['_id']}`, {
                     headers: { Authorization: `Bearer ${userInfo.token}` },
                 });
-
                 setMyList([myListFromDB.data])
-                console.log('my list from sb', myListFromDB.data)
                 ctxDispatch({ type: MY_LIST, payload: myListFromDB.data.contentList })
             }
         } catch (err) {
@@ -45,6 +44,19 @@ const ContentPage = ({ includeMyList, apiEndpoint }) => {
         if (!userInfo) {
             navigate("/signIn");
         } else {
+            // change content by url
+            if(location.pathname === "/"){
+                includeMyList = true;
+                apiEndpoint = "/api/v1/content"
+            }
+            else if(location.pathname === '/movies'){
+                includeMyList = false;
+                apiEndpoint = "/api/v1/content/movies"
+            }
+            else if(location.pathname === '/series'){
+                includeMyList = false;
+                apiEndpoint = "/api/v1/content/series"
+            }
             getContent();
         }
 
@@ -68,7 +80,10 @@ const ContentPage = ({ includeMyList, apiEndpoint }) => {
             <NavBar className={isScrolled ? 'navBarInHomePage scrolled' : 'navBarInHomePage'} />
             <Carousel />
             {myList &&
+            <>
+            {console.log('includeMyList: ', includeMyList)}
                 <SliderList contentList={myList} />
+            </>
             }
             <SliderList contentList={content} />
         </div>
@@ -76,6 +91,87 @@ const ContentPage = ({ includeMyList, apiEndpoint }) => {
 };
 
 export default ContentPage;
+
+
+
+// import React, { useContext, useEffect, useState } from 'react';
+// import { Store } from '../../Store';
+// import NavBar from '../../components/Shared/NavBar/NavBar';
+// import Carousel from '../../components/Shared/Carousel/Carousel';
+// import SliderList from '../../components/Shared/SliderList/SliderList';
+// import { GET_REQUEST, GET_SUCCESS, MY_LIST } from '../../reducers/actions';
+// import { useNavigate } from 'react-router-dom';
+// import axios from 'axios';
+
+// const ContentPage = ({ includeMyList, apiEndpoint }) => {
+//     const { state, dispatch: ctxDispatch } = useContext(Store);
+//     const { userInfo } = state;
+//     const [isScrolled, setIsScrolled] = useState(false);
+//     const [myList, setMyList] = useState(null);
+//     const navigate = useNavigate();
+//     const [content, setContent] = useState(null);
+
+//     const getContent = async () => {
+//         ctxDispatch({ type: GET_REQUEST });
+//         try {
+//             const { data } = await axios.get(apiEndpoint, {
+//                 headers: { Authorization: `Bearer ${userInfo.token}` },
+//             });
+
+//             setContent(data);
+
+//             ctxDispatch({ type: GET_SUCCESS, payload: data });
+
+//             if (includeMyList) {
+//                 const myListFromDB = await axios.get(`/api/v1/content/myList/${userInfo['_id']}`, {
+//                     headers: { Authorization: `Bearer ${userInfo.token}` },
+//                 });
+
+//                 setMyList([myListFromDB.data])
+//                 console.log('my list from sb', myListFromDB.data)
+//                 ctxDispatch({ type: MY_LIST, payload: myListFromDB.data.contentList })
+//             }
+//         } catch (err) {
+//             console.error(err);
+//               navigate("/signIn");
+//         }
+//     };
+
+//     useEffect(() => {
+//         if (!userInfo) {
+//             navigate("/signIn");
+//         } else {
+//             getContent();
+//         }
+
+//         const handleScroll = () => {
+//             if (window.scrollY > 0) {
+//                 setIsScrolled(true);
+//             } else {
+//                 setIsScrolled(false);
+//             }
+//         };
+
+//         window.addEventListener("scroll", handleScroll);
+
+//         return () => {
+//             window.removeEventListener("scroll", handleScroll);
+//         };
+//     }, []);
+
+//     return (
+//         <div>
+//             <NavBar className={isScrolled ? 'navBarInHomePage scrolled' : 'navBarInHomePage'} />
+//             <Carousel />
+//             {includeMyList &&
+//                 <SliderList contentList={myList} />
+//             }
+//             <SliderList contentList={content} />
+//         </div>
+//     );
+// };
+
+// export default ContentPage;
 
 
 
