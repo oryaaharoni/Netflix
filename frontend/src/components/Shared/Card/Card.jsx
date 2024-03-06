@@ -66,12 +66,13 @@ const Card = ({ item }) => {
             height="200px"
           />
 
+          <button className="itemBtn"><i className="fa fa-play"></i></button>
+          
           {isInMyList ?
             <button className="itemBtn" onClick={() => removeItemFromMyListHandler(item._id)}><i className="fa-solid fa-minus"></i></button>
             :
             <button className='itemBtn' onClick={() => addToMyListHandler(item._id)}><i className="fa-solid fa-plus btnMylist"></i></button>
           }
-          <button className="itemBtn"><i className="fa fa-play"></i></button>
           <br />
           <p className='pItem'><strong style={{ color: "green" }}>92% match</strong> {" "}{item.duration}</p>
           <p className='pItem'>{item.genre}</p>
