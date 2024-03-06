@@ -57,9 +57,9 @@ const Slider1 = ({ data, title }) => {
   if (!data || data.length === 0) {
     return null;
   }
-  else{
-    console.log("data.length = " , data.length)
-  }
+  // else{
+  //   console.log("data.length = " , data.length)
+  // }
 
 
   return (

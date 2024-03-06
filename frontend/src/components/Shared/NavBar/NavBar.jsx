@@ -1,10 +1,10 @@
-import { useNavigate } from 'react-router-dom'
+// import { useNavigate } from 'react-router-dom'
 import './navBar.css'
 import SearchBox from '../../SearchBox';
 
 const NavBar = ({className}) => {
   
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   return (
     <div id="mainDivNavBar" className={className}>

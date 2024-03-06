@@ -80,10 +80,7 @@ const ContentPage = () => {
             <NavBar className={isScrolled ? 'navBarInHomePage scrolled' : 'navBarInHomePage'} />
             <Carousel />
             {myList &&
-            <>
-            {console.log('includeMyList: ', includeMyList)}
                 <SliderList contentList={myList} />
-            </>
             }
             <SliderList contentList={content} />
         </div>

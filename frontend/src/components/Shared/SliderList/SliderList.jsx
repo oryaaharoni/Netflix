@@ -1,7 +1,7 @@
 import Slider1 from "../Slider/Slider"
 
 const SliderList = ({ contentList }) => {
-    console.log('content list: ', contentList)
+    // console.log('content list: ', contentList)
     
     if (contentList == null) {
         return null
