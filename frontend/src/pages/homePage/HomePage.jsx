@@ -83,12 +83,12 @@
 
 
 
-import React from 'react';
-import ContentPage from '../contentPage/Content';
+// import React from 'react';
+// import ContentPage from '../contentPage/ContentPage';
 
-const HomePage = () => {
-  return <ContentPage includeMyList={true} apiEndpoint="/api/v1/content" />;
-  // return <ContentPage name={'allContent'} includeMyList={true} apiEndpoint="/api/v1/content" />;
-};
+// const HomePage = () => {
+//   return <ContentPage includeMyList={true} apiEndpoint="/api/v1/content" />;
+//   // return <ContentPage name={'allContent'} includeMyList={true} apiEndpoint="/api/v1/content" />;
+// };
 
-export default HomePage;
+// export default HomePage;

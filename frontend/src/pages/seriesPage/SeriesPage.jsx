@@ -72,11 +72,11 @@
 
 
 
-import React from 'react';
-import ContentPage from '../contentPage/Content';
+// import React from 'react';
+// import ContentPage from '../contentPage/ContentPage';
 
-const SeriesPage = () => {
-  return <ContentPage includeMyList={false} apiEndpoint="/api/v1/content/series" />;
-};
+// const SeriesPage = () => {
+//   return <ContentPage includeMyList={false} apiEndpoint="/api/v1/content/series" />;
+// };
 
-export default SeriesPage;
+// export default SeriesPage;
