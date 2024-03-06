@@ -51,13 +51,9 @@ export const getCategories = async (req, res) => {
 
 export const getMyList = async (req, res) => {
     const { id } = req.params;
-    console.log('id: ', id)
     try {
         const user = await User.findById(id).populate('contentList');
-        console.log('contentListfirstone: ', user.contentList);
         const contentList = { name: "My List", contentList: user.contentList };
-        console.log('zobi balobi: ', contentList)
-        console.log(contentList.contentList)
         res.send(contentList);
         // res.send(user.contentList);
     } catch (error) {

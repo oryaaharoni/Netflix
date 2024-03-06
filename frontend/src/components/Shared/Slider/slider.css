@@ -16,7 +16,7 @@ div.slider{
 
 .slider{
   position: relative;
-  z-index: 20;
+  z-index: 1000;
 }
 
 .divBehindCard{
