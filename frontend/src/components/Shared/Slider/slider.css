@@ -16,45 +16,24 @@ div.slider{
   margin: auto;
 }
 
-.slider{
+.asdf{
   position: relative;
-  z-index: 15;
+  z-index: 1;
+  overflow: visible;
+  
+}
+
+.slider{
+  /* not working gap */
+  /* display: grid;
+  gap: 70px; */
+  /* background-color: blue; */
+  /* overflow: visible; */
+  position: relative;
+  z-index: 2;
 }
 
 .divBehindCard{
   position: relative;
-  z-index: 100;
-}
-
-div .sliderImg {
-  width: 90%;
-  height: 200px;
-}
-
-/* change size */
-div .slider .smallImg{
-  width: 200px;
-  height: 200px;
-}
-
-.btnMylist{
-  border-radius: 6px;
-  width: 20%;
-}
-
-@media screen and (max-width: 700px) {
-  div .sliderImg {
-    height: 80px;
-  }
-
-  p {
-    font-size: small;
-  }
-  /* .btnMylist{
-    width: 20%;
-  } */
-  /* .smallImg{
-    width: 70%;
-  } */
-
+  /* z-index: 10000000000; */
 }

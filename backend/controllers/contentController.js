@@ -51,13 +51,9 @@ export const addToMyList = async (req, res) => {
 
 export const removeFromMyList = async (req, res) => {
     const { userId, contentId } = req.body;
-    console.log("userid: " + userId + " contentId: " + contentId);
     const user = await User.findById(userId);
-    console.log("user", user);
     const content = await Content.findById(contentId);
-    console.log("content", content);
     const index = user.contentList.indexOf(content._id);
-    console.log("index", index)
     if (index > -1) {
         user.contentList.splice(index, 1);
         await user.save();

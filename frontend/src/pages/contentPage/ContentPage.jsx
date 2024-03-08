@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Store } from '../../Store';
-import NavBar from '../../components/Shared/NavBar/NavBar';
 import Carousel from '../../components/Shared/Carousel/Carousel';
 import SliderList from '../../components/Shared/SliderList/SliderList';
 import { GET_REQUEST, GET_SUCCESS, MY_LIST } from '../../reducers/actions';
@@ -80,27 +79,10 @@ const ContentPage = () => {
             }
             getContent();
         }
-
-        // const handleScroll = () => {
-        //     if (window.scrollY > 0) {
-        //         setIsScrolled(true);
-        //     } else {
-        //         setIsScrolled(false);
-        //     }
-        // };
-
-        // window.addEventListener("scroll", handleScroll);
-
-        // return () => {
-        //     window.removeEventListener("scroll", handleScroll);
-        // };
     }, []);
 
     return (
         <div>
-            {/* <NavBar className={isScrolled ? 'navBarInHomePage scrolled' : 'navBarInHomePage'} /> */}
-
-            {/* try billboard */}
             <Billboard item={w}/>
             {/* <Carousel /> */}
             {myList &&

@@ -1,8 +1,6 @@
-// import { PropTypes } from '../../imports.js';
 import { Store } from '../../Store.jsx';
 import Card from '../../components/Shared/Card/Card.jsx';
 import { useContext, useEffect, useState } from '../../imports.js';
-import NavBar from '../../components/Shared/NavBar/NavBar.jsx';
 import './myList.css'
 
 const MyListPage = () => {
@@ -21,12 +19,9 @@ const MyListPage = () => {
 
   return (
     <div id='mylistDivFirst'>
-      {/* <NavBar /> */}
       <div>
-      <h1 id='titleMyList'>My List:</h1>
+        <h1 id='titleMyList'>My List:</h1>
         <div className='divRootMyList'>
-        
-        <br />
           {data.map((item, index) => (
             <Card item={item} key={index}></Card>
           ))}
@@ -36,5 +31,4 @@ const MyListPage = () => {
   )
 }
 
-// MyListPage.propTypes = {data: PropTypes.array}
 export default MyListPage

@@ -13,13 +13,13 @@ const ResetPwdPage = () => {
 
   const passwordHandler = async (e) => {
     e.preventDefault();
-    console.log('userId:', userId);
-    console.log('password:', passwordRef.current.value);
 
     const { data } = await axios.post(`/api/v1/reset/getNewPwd`, {
       id: userId,
       password: passwordRef.current.value,
-      token: token
+      token: token,
+      frontendHost: window.location.origin,
+      frontendNavigate: 'signin',
     }).then(alert('Password changed succesfully')).catch('Failed to change the password');
     console.log(data);
 
@@ -29,7 +29,7 @@ const ResetPwdPage = () => {
   };
 
   return (
-    <>
+    <div className="divResetPwdContainer">
       <Header />
       <div className="resetPwdContainer">
         <form className="resetPwdForm">
@@ -46,7 +46,7 @@ const ResetPwdPage = () => {
           <button className="btnReset" type="button" onClick={passwordHandler}>Submit</button>
         </form>
       </div>
-    </>
+    </div>
   )
 }
 

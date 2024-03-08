@@ -44,38 +44,38 @@ const Card = ({ item }) => {
 
   return (
     <div className='card-container'>
-      {/* {hoveredIndex == false && */}
       <img
-        src={item.img}
+        className='card-image'
+        src={item.imgThumb}
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
-        className='card-image'
       />
-      {/* } */}
       {hoveredIndex ?
         <div
           onMouseEnter={() => setHovered(true)}
           onMouseLeave={() => setHovered(false)}
-          className='card'>
+          className='cardOverlay'>
+          {/* <div style={{ position: 'relative', zIndex: 1000 }}> */}
           <ReactPlayer
             url={item.trailer}
             muted={true}
             playing={true}
             loop={true}
             width="300px"
-            height="200px"
-          />
+            height="200px" />
+          {/* </div> */}
+          <button className="cardBtn"><i className="fa fa-play"></i></button>
 
-          <button className="itemBtn"><i className="fa fa-play"></i></button>
-          
           {isInMyList ?
-            <button className="itemBtn" onClick={() => removeItemFromMyListHandler(item._id)}><i className="fa-solid fa-minus"></i></button>
+            <button className="cardBtn" onClick={() => removeItemFromMyListHandler(item._id)}><i className="fa-solid fa-minus"></i></button>
             :
-            <button className='itemBtn' onClick={() => addToMyListHandler(item._id)}><i className="fa-solid fa-plus btnMylist"></i></button>
+            <button className='cardBtn' onClick={() => addToMyListHandler(item._id)}><i className="fa-solid fa-plus btnMylist"></i></button>
           }
-          <br />
-          <p className='pItem'><strong style={{ color: "green" }}>92% match</strong> {" "}{item.duration}</p>
-          <p className='pItem'>{item.genre}</p>
+
+          <div className='cardContent'>
+            <p><strong style={{ color: "green" }}>92% match</strong> {" "}{item.duration}</p>
+            <p>{item.genre}</p>
+          </div>
         </div>
         :
         null}

@@ -2,7 +2,7 @@ import "./App.css";
 import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import SignInPage from "./pages/signInPage/SigninPage.jsx";
 import SignUpPage from "./pages/signUpPage/SignUpPage.jsx";
-import LoginHelpPage from "./pages/signInPage/LoginHelpPage.jsx";
+import LoginHelpPage from "./pages/loginHelpPage/LoginHelpPage.jsx";
 import ResetPwdPage from "./pages/resetPage/ResetPwdPage.jsx";
 import MyListPage from "./pages/myListPage/MyListPage.jsx";
 // import HomePage from "./pages/homePage/HomePage.jsx";

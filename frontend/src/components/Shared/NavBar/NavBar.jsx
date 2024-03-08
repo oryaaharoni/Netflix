@@ -5,7 +5,15 @@ import { useLocation } from 'react-router-dom';
 const NavBar = ({ className }) => {
   console.log(className)
   const location = useLocation();
-  const isSignInOrSignUpPage = location.pathname === "/signIn" || location.pathname === "/signUp" || location.pathname === "/resetPwd" || location.pathname === "/forgotPwd";
+  const isSignInOrSignUpPage = location.pathname === "/signin" || location.pathname === "/signup" || location.pathname === "/resetPwd" || location.pathname === "/forgotPwd";
+
+
+  function toggleDropdown() {
+    const dropdownContent = document.getElementById("myDropdown");
+    dropdownContent.style.display = dropdownContent.style.display === "inline-block" ? "none" : "inline-block";
+  }
+
+
 
   if (isSignInOrSignUpPage) {
     return null
@@ -49,15 +57,13 @@ const NavBar = ({ className }) => {
 
 
           <div className='dropdown'>
-            <button className='btnDropdown'>
+            <button className='btnDropdown' onClick={() => toggleDropdown()}>
               <img className='imgDropdown' src='https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png' alt='Avatar' />
             </button>
-            <div className='dropdown-content'>
+            <div id="myDropdown" className='dropdown-content'>
               <a href="#">Option 1</a>
               <br />
-              <a href="#">Option 2</a>
-              <br />
-              <a href="#">Option 3</a>
+              <a href="#">Sign out of Netlix</a>
             </div>
           </div>
 

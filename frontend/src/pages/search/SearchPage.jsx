@@ -30,8 +30,8 @@ const SearchPage = () => {
         // console.log("data", data);
         setCurrentData(data);
         console.log("currentData ", currentData)
-        
-        
+
+
         setInputData(search.split('=')[1]);
         // console.log(search.split('='))
 
@@ -46,18 +46,15 @@ const SearchPage = () => {
   }, [search])
 
 
-
   if (currentData == null) {
     return null;
   }
 
   return (
-    <div className='containerInSearch'>
-      {/* <Title title={"Search Page"} /> */}
-      {/* <NavBar></NavBar>  */}
-      {/* <div className='containerInSearch'> */}
-        <div>
+    <div id='searchPageDivFirst'>
+      <div>
         <h1>Showing results found for "{inputData}"</h1>
+        <div className='containerInSearch'>
           {currentData && currentData.length > 1 && currentData.map((item, index) => (
             <Card item={item} key={index}></Card>
           ))
@@ -66,9 +63,7 @@ const SearchPage = () => {
             <Card item={currentData}></Card>
           }
         </div>
-      {/* </div> */}
-
-
+      </div>
     </div>
   )
 }

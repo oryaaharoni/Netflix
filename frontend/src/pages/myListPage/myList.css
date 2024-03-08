@@ -1,8 +1,12 @@
 #mylistDivFirst {
-    /* background-color: black; */
-
     display: flex;
     flex-direction: row;
     background-color: rgb(24 24 27);
     padding: 100px 0px 0px 200px;
+}
+
+.divRootMyList {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
 }

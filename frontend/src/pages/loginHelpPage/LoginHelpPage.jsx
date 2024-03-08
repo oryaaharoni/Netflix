@@ -1,4 +1,4 @@
-import Header from '../../components/Shared/Header';
+import Header from '../../components/Shared/Header.jsx';
 import "./loginHelpPage.css";
 import { useState, axios } from '../../imports.js';
 
@@ -10,18 +10,13 @@ const LoginHelpPage = () => {
   const sendEmailHandler = async (e) => {
     e.preventDefault();
     // add here- verfiy code to email
-
     // add validation email
-    // const { data } = await axios.post("/api/v1/reset/", {
-    //   email: email
-    // }.then(alert('Email Sent Successfully')))
-    // console.log(data)
-
-
 
     try {
       const { data } = await axios.post("/api/v1/reset/", {
-        email: email
+        email: email,
+        frontendHost: window.location.origin,
+        frontendNavigate: 'resetPwd'
       });
       alert('Email Sent Successfully');
       console.log(data);

@@ -6,12 +6,17 @@ import nodemailer from 'nodemailer';
 
 //reset password by email
 export const getResetLink = async (req, res) => {
-    const { email } = req.body;
+    const { email, frontendHost, frontendNavigate } = req.body;
     const user = await User.findOne({ email: email });
 
     if (user) {
         const token = generatePWDToken(user._id, user.email, user.password);
-        const link = `localhost:8080/api/v1/reset/${user._id}/${token}`;
+
+        // const host = req.get('host'); //host is localhost:8080
+        //frontendHost //the frontend host, here is http://localhost:5173
+        // const protocol = req.protocol; //protocol is http/https
+
+        const link = `${frontendHost}/${frontendNavigate}?id=${user._id}&token=${token}`;
 
         var transporter = nodemailer.createTransport({
             service: 'gmail',
@@ -45,28 +50,8 @@ export const getResetLink = async (req, res) => {
 
 };
 
-export const resetPassword = async (req, res) => {
-    const { id, token } = req.params;
-
-    try {
-        const user = await User.findOne({ _id: id });
-        const secret = process.env.JWT_PW + user.password;
-
-        try {
-            const verify = jwt.verify(token, secret);
-
-            // Redirect to the frontend ResetPwdPage with the user ID in the URL need to be changed
-            res.redirect(302, `http://localhost:5173/resetPwd?id=${id}&token=${token}`);
-        } catch (error) {
-            res.status(401).send("Invalid token");
-        }
-    } catch (error) {
-        res.status(404).send("User not found");
-    }
-};
-
 export const getNewPassword = async (req, res) => {
-    const { password, id, token } = req.body;
+    const { id, password, token, frontendHost, frontendNavigate } = req.body;
     
     try {
         const user = await User.findOne({ _id: id });
@@ -92,7 +77,8 @@ export const getNewPassword = async (req, res) => {
         );
         console.log('Password Saved Successfully')
 
-        res.status(200).send({ redirectUrl: 'http://localhost:5173/signIn' });
+        res.status(200).send({ redirectUrl: `${frontendHost}/${frontendNavigate}` });
+
     } catch (error) {
         console.error('Error in getNewPassword:', error);
         res.status(500).send({ message: 'Internal server error' });

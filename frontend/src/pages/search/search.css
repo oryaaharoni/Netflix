@@ -1,6 +1,13 @@
-.containerInSearch{
+#searchPageDivFirst {
     display: flex;
     flex-direction: row;
     background-color: rgb(24 24 27);
     padding: 100px 0px 0px 200px;
+}
+
+.containerInSearch {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    background-color: rgb(24 24 27);
 }

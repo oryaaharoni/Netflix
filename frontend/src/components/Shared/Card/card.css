@@ -1,50 +1,51 @@
 .card-container {
     position: relative;
-    z-index: 20;
+    /* dont know how it affect the img z-index */
+    /* z-index: 0; */
     width: 300px;
-    display: inline-block;
     margin: 40px 30px;
 }
 
-.card {
+.cardOverlay {
+    /* transform: rotate(75deg); */
     position: absolute;
-    width: 300px;
+    width: 100%;
+    /* width: calc(100% - 60px); */
     height: 400px;
     border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
-    z-index: 30;
+    /* overflow: hidden; */
+    /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); */
+    z-index: 1300000;
     top: -50px;
-    left: -50px;
+    left: 0px;
     background-color: rgba(20, 20, 20, 0.923);
     color: white;
-    display: inline-block;
 }
 
 .card-image {
-    width: 200px;
+    /* position: relative; */
+    /* z-index: 100; */
+    width: 100%;
     height: 200px;
-    z-index: 1;
     border-radius: 5px;
 }
 
-.itemBtn {
-    color: white;
+.cardBtn {
     background-color: gray;
+    color: white;
+    border: none;
     width: 13%;
     border-radius: 50%;
     margin-left: 20px;
     margin-top: 5px;
     height: 10%;
-
 }
 
-.itemBtn:hover {
+.cardBtn:hover {
     background-color: rgba(94, 94, 94, 0.404);
 }
 
-.pItem {
+.cardContent {
     margin-left: 20px;
     margin-top: 5px;
 }
