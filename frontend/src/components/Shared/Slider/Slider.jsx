@@ -27,14 +27,12 @@ const Slider1 = ({ data, title }) => {
   }
 
   return (
-    <div className="asdf">
+    <div className="divHeadSlider">
       <p id="titleSlider"><strong>{title}</strong></p>
       <Slider className="slider" {...settings}>
         {data.map((item, index) => (
           // enter should navigate us to description page
-          <div className="divBehindCard" key={index} onMouseEnter={() => setHoveredIndex(index)} onMouseLeave={() => setHoveredIndex(null)}>
-            <Card item={item}></Card>
-          </div>
+          <Card item={item} key={index}></Card>
         ))}
       </Slider>
     </div>

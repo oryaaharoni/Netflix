@@ -9,6 +9,8 @@ body {
   color: white;
   padding-top: 10px;
   padding-left: 10px;
+  position: relative;
+  z-index: 3;
 }
 
 div.slider{
@@ -16,10 +18,10 @@ div.slider{
   margin: auto;
 }
 
-.asdf{
+.divHeadSlider{
   position: relative;
-  z-index: 1;
-  overflow: visible;
+  /* z-index: 1; */
+  /* overflow: visible; */
   
 }
 
@@ -28,12 +30,7 @@ div.slider{
   /* display: grid;
   gap: 70px; */
   /* background-color: blue; */
-  /* overflow: visible; */
-  position: relative;
-  z-index: 2;
-}
-
-.divBehindCard{
-  position: relative;
-  /* z-index: 10000000000; */
+  /* overflow: hidden; */
+  /* position: relative; */
+  /* z-index: 4; */
 }
