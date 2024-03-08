@@ -1,6 +1,6 @@
-import React, { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Store } from '../../Store';
-import Carousel from '../../components/Shared/Carousel/Carousel';
+// import Carousel from '../../components/Shared/Carousel/Carousel';
 import SliderList from '../../components/Shared/SliderList/SliderList';
 import { GET_REQUEST, GET_SUCCESS, MY_LIST } from '../../reducers/actions';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -19,6 +19,7 @@ const ContentPage = () => {
 
     // try something for billboard
     const w = {
+        _id:"123",
         title: 'The Revenant',
         description:
           'The Revenant is a 2015 American semi-biographical epic western film directed by Alejandro G. Iñárritu. The screenplay by Mark L. Smith and Iñárritu is based in part on Michael Punke`s 2002 novel of the same name, describing frontiersman Hugh Glass`s experiences in 1823.',
