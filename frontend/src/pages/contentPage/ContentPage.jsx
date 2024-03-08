@@ -16,7 +16,7 @@ const ContentPage = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const [content, setContent] = useState(null);
-
+    // let random;
     // try something for billboard
     const w = {
         _id:"123",
@@ -44,9 +44,8 @@ const ContentPage = () => {
             const { data } = await axios.get(apiEndpoint, {
                 headers: { Authorization: `Bearer ${userInfo.token}` },
             });
-
+           
             setContent(data);
-
             ctxDispatch({ type: GET_SUCCESS, payload: data });
             if (includeMyList) {
                 const myListFromDB = await axios.get(`/api/v1/content/myList/${userInfo['_id']}`, {
@@ -55,6 +54,9 @@ const ContentPage = () => {
                 setMyList([myListFromDB.data])
                 ctxDispatch({ type: MY_LIST, payload: myListFromDB.data.contentList })
             }
+            
+            
+
         } catch (err) {
             console.error(err);
               navigate("/signIn");
@@ -79,11 +81,28 @@ const ContentPage = () => {
                 apiEndpoint = "/api/v1/content/series"
             }
             getContent();
+
+            
         }
     }, []);
 
+
+    // const generateRandomNumber = () => {
+    //     const min = 1;
+    //     const max = 15;
+    //     const newRandomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
+    //     console.log("random: ",newRandomNumber);
+    //     random= newRandomNumber;
+    //   };
+
+    // generateRandomNumber();
     return (
         <div>
+            {/* {content && content.map((number, index) => {
+                {number[index] === random &&  <Billboard item={number}/>}
+            }
+                
+            )} */}
             <Billboard item={w}/>
             {/* <Carousel /> */}
             {myList &&
