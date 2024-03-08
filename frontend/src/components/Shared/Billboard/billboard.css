@@ -5,17 +5,21 @@
     left: 0;
     right: 0;
     color: white;
-    margin: 0 -40px;
+    /* margin: 0 -10px; */
     /* height: 50%; */
     width:100%;
     height: 30.25vw;
+    /* height: auto; */
+    z-index: 6;
 }
 
 .innerBillboard{
-    position: absolute;
+    /* changed from absolute */
+    position: relative;
     /* z-index: -1; */
     /* width: 100px; */
-    /* width: 500px; */
+    /* width: 100%;
+    height: auto; */
 }
 
 .info{
@@ -41,19 +45,14 @@
     padding: 0.7rem 1.1rem;
     display: flex;
     align-items: center;
-    /* font-size: 0.8rem; */
     font-weight: bold;
     color: black;
     margin-right: 0.5rem;
 }
 .links a{
     text-decoration: none;
-    /* color: black; */
-}
-/* .links button{
    
-    
-} */
+}
 
 .links a span, .links button span{
     margin-left: 0.5rem;
