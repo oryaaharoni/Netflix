@@ -1,6 +1,6 @@
 import { Store } from '../../Store.jsx';
 import Card from '../../components/Shared/Card/Card.jsx';
-import { useContext, useEffect, useState } from '../../imports.js';
+import { useContext, useEffect, useNavigate, useState } from '../../imports.js';
 import './myList.css'
 
 const MyListPage = () => {
@@ -8,10 +8,15 @@ const MyListPage = () => {
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const { userInfo } = state;
   const [data, setData] = useState();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    setData(userInfo.myList)
-  }, [])
+    if(userInfo){
+      setData(userInfo.myList)
+    } else{
+      navigate('/signin')
+    }
+  }, [userInfo])
 
   if (data == null) {
     return null

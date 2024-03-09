@@ -1,12 +1,14 @@
 .divResetPwdContainer{
   background-image: url("https://assets.nflxext.com/ffe/siteui/acquisition/login/login-the-crown_2-1500x1000.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
 }
 
 .resetPwdContainer {
   display: flex;
   justify-content: center;
-  align-items: center;
-  height: 100vh;
+  height: 200px;
   /* background-color: rgba(137, 137, 137, 0.311); */
 }
 

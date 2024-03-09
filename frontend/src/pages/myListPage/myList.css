@@ -1,12 +1,17 @@
 #mylistDivFirst {
-    display: flex;
-    flex-direction: row;
     background-color: rgb(24 24 27);
-    padding: 100px 0px 0px 200px;
+    padding-top: 100px;
+}
+
+#titleMyList {
+    padding-left: 100px;
 }
 
 .divRootMyList {
     display: flex;
+    padding-left: 200px;
     flex-direction: row;
     flex-wrap: wrap;
+    /* justify-content: center; */
+    /* margin: 0 auto; */
 }

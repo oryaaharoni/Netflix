@@ -38,8 +38,8 @@ function App() {
         <Route path="/" element={<ContentPage />} />
         <Route path="/series" element={<ContentPage />} />
         <Route path="/movies" element={<ContentPage />} />
-        <Route path="/signIn" element={<SignInPage />} />
-        <Route path="/signUp" element={<SignUpPage />} />
+        <Route path="/signin" element={<SignInPage />} />
+        <Route path="/signup" element={<SignUpPage />} />
         <Route path="/forgotPwd" element={<LoginHelpPage />} />
         <Route path="/resetPwd" element={<ResetPwdPage />} />
         <Route path="/myList" element={<MyListPage />} />

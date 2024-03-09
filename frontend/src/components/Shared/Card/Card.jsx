@@ -1,4 +1,4 @@
-import { PropTypes, useState, axios, useContext } from '../../../imports'
+import { PropTypes, useState, axios, useContext } from '../../../imports.js'
 import ReactPlayer from 'react-player'
 import './card.css'
 import { Store } from '../../../Store';
@@ -13,11 +13,14 @@ const Card = ({ item }) => {
   const [isInMyList, setIsInMyList] = useState(false);
 
   useEffect(() => {
+    if(!userInfo.myList){
+      return
+    }
     const isItemInMyList = userInfo.myList.some((i) => (
       i._id === item._id
     ))
     setIsInMyList(isItemInMyList)
-  }, [userInfo.myList, item._id])
+  }, [userInfo, item._id])
 
 
   const addToMyListHandler = async (contentId) => {
@@ -55,15 +58,14 @@ const Card = ({ item }) => {
           onMouseEnter={() => setHovered(true)}
           onMouseLeave={() => setHovered(false)}
           className='cardOverlay'>
-          {/* <div style={{ position: 'relative', zIndex: 1000 }}> */}
           <ReactPlayer
             url={item.trailer}
             muted={true}
+            volume={0}
             playing={true}
             loop={true}
             width="300px"
             height="200px" />
-          {/* </div> */}
           <button className="cardBtn"><i className="fa fa-play"></i></button>
 
           {isInMyList ?

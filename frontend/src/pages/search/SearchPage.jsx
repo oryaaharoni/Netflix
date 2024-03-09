@@ -1,10 +1,9 @@
 import axios from 'axios';
 import Title from '../../components/Shared/Title'
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
 import { Store } from '../../Store';
 import Card from '../../components/Shared/Card/Card';
-import NavBar from '../../components/Shared/NavBar/NavBar';
 import './search.css'
 
 const SearchPage = () => {
@@ -13,14 +12,20 @@ const SearchPage = () => {
   // const q = searchParams.get("q");
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const { userInfo } = state;
+  const navigate = useNavigate();
   const [currentData, setCurrentData] = useState();
   const [inputData, setInputData] = useState();
 
-  console.log(search)
+
+  console.log(search);
   console.log(currentData)
   useEffect(() => {
 
     const getContent = async () => {
+      console.log(userInfo);
+      if (!userInfo)
+        navigate('/signin')
+
       try {
         // console.log("search (Page)", search)
 
@@ -38,6 +43,7 @@ const SearchPage = () => {
       }
       catch (error) {
         console.log(error)
+        navigate('/signin')
       }
     }
 
@@ -53,7 +59,7 @@ const SearchPage = () => {
   return (
     <div id='searchPageDivFirst'>
       <div>
-        <h1>Showing results found for "{inputData}"</h1>
+        <h1 id='titleSearch'>Showing results found for "{inputData}"</h1>
         <div className='containerInSearch'>
           {currentData && currentData.length > 1 && currentData.map((item, index) => (
             <Card item={item} key={index}></Card>

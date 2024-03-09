@@ -1,21 +1,15 @@
 .card-container {
     position: relative;
-    /* dont know how it affect the img z-index */
-    /* z-index: 0; */
     width: 300px;
     margin: 40px 30px;
 }
 
 .cardOverlay {
-    /* transform: rotate(75deg); */
     position: absolute;
     width: 100%;
-    /* width: calc(100% - 60px); */
-    height: 400px;
+    height: 340px;
     border-radius: 8px;
-    /* overflow: hidden; */
-    /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); */
-    z-index: 1300000;
+    z-index: 10;
     top: -50px;
     left: 0px;
     background-color: rgba(20, 20, 20, 0.923);
@@ -23,8 +17,6 @@
 }
 
 .card-image {
-    /* position: relative; */
-    /* z-index: 100; */
     width: 100%;
     height: 200px;
     border-radius: 5px;
@@ -48,4 +40,5 @@
 .cardContent {
     margin-left: 20px;
     margin-top: 5px;
+    font-size: medium;
 }

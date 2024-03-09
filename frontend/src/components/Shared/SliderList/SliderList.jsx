@@ -1,4 +1,4 @@
-import Slider1 from "../Slider/Slider"
+import ContentSlider from "../ContentSlider/Slider"
 
 const SliderList = ({ contentList }) => {
 
@@ -7,9 +7,9 @@ const SliderList = ({ contentList }) => {
     }
 
     return (
-        <div style={{ marginBottom: '60px' }}>
+        <div style={{ position: 'relative', zIndex: '20' }}>
             {contentList.map((item, index) => (
-                <Slider1 title={item.name} data={item.contentList} key={index} />
+                <ContentSlider title={item.name} data={item.contentList} key={index} />
             ))}
         </div>
     )

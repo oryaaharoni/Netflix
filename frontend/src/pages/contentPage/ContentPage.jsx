@@ -19,15 +19,15 @@ const ContentPage = () => {
 
     // try something for billboard
     const w = {
-        _id:"123",
+        _id: "123",
         title: 'The Revenant',
         description:
-          'The Revenant is a 2015 American semi-biographical epic western film directed by Alejandro G. Iñárritu. The screenplay by Mark L. Smith and Iñárritu is based in part on Michael Punke`s 2002 novel of the same name, describing frontiersman Hugh Glass`s experiences in 1823.',
+            'The Revenant is a 2015 American semi-biographical epic western film directed by Alejandro G. Iñárritu. The screenplay by Mark L. Smith and Iñárritu is based in part on Michael Punke`s 2002 novel of the same name, describing frontiersman Hugh Glass`s experiences in 1823.',
         img: 'https://www.indiewire.com/wp-content/uploads/2016/06/the-revenant.jpg',
         imgTitle:
-          'https://images.squarespace-cdn.com/content/v1/5bfdc74875f9ee194f3e0add/1596652890102-76FXS415ATRW83ANRXXK/the-revenant-563b02dac00e3.png',
+            'https://images.squarespace-cdn.com/content/v1/5bfdc74875f9ee194f3e0add/1596652890102-76FXS415ATRW83ANRXXK/the-revenant-563b02dac00e3.png',
         imgThumb:
-          'https://variety.com/wp-content/uploads/2013/07/the-revenant-movie-reivew-2.jpg',
+            'https://variety.com/wp-content/uploads/2013/07/the-revenant-movie-reivew-2.jpg',
         imgVertical: 'https://m.media-amazon.com/images/I/A1BjliXNDPL.jpg',
         trailer: 'https://youtu.be/LoebZZ8K5N0',
         movie: 'https://youtu.be/LoebZZ8K5N0',
@@ -36,7 +36,7 @@ const ContentPage = () => {
         limit: '15',
         genre: 'Action',
         isSeries: false,
-      }
+    }
 
     const getContent = async () => {
         ctxDispatch({ type: GET_REQUEST });
@@ -57,34 +57,34 @@ const ContentPage = () => {
             }
         } catch (err) {
             console.error(err);
-              navigate("/signIn");
+            navigate("/signin");
         }
     };
 
     useEffect(() => {
         if (!userInfo) {
-            navigate("/signIn");
+            navigate("/signin");
         } else {
             // change content by url
-            if(location.pathname === "/"){
+            if (location.pathname === "/") {
                 includeMyList = true;
                 apiEndpoint = "/api/v1/content"
             }
-            else if(location.pathname === '/movies'){
+            else if (location.pathname === '/movies') {
                 includeMyList = false;
                 apiEndpoint = "/api/v1/content/movies"
             }
-            else if(location.pathname === '/series'){
+            else if (location.pathname === '/series') {
                 includeMyList = false;
                 apiEndpoint = "/api/v1/content/series"
             }
             getContent();
         }
     }, []);
-
+    
     return (
         <div>
-            <Billboard item={w}/>
+            <Billboard item={w} />
             {/* <Carousel /> */}
             {myList &&
                 <SliderList contentList={myList} />

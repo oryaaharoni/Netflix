@@ -1,0 +1,26 @@
+body {
+  background-color: rgb(24 24 27);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+#titleSlider {
+  color: white;
+  padding-top: 10px;
+  padding-left: 10px;
+  font-size: medium;
+}
+
+.slider{
+  margin: auto;
+  width: 95%;
+  position: relative;
+}
+
+.slick-list{
+  overflow: visible;
+}
+
+.slick-arrow {
+  position: absolute;
+  z-index: 15;
+}

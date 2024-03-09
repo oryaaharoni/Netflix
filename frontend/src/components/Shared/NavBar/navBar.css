@@ -7,6 +7,10 @@
     display: flex;
 }
 
+.pagesNavigateNavBar{
+    align-self: center;
+}
+
 .icons-navBar {
     display: flex;
     margin-left: auto;
@@ -57,12 +61,11 @@ li a:hover {
     position: fixed;
     top: 0;
     width: 100%;
-    z-index: 10;
+    z-index: 50;
 }
 
 .navBarInHomePage.scrolled {
     background-color: black;
-    color: black;
 }
 
 .navBarInHomePage {
@@ -86,7 +89,6 @@ li a:hover {
     width: 50px;
     height: 50px;
 }
-
 
 .dropdown-content {
     display: none;

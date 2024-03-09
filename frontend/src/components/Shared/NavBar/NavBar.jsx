@@ -1,11 +1,13 @@
 import './navBar.css'
 import SearchBox from '../../SearchBox';
 import { useLocation } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 
 const NavBar = ({ className }) => {
   console.log(className)
   const location = useLocation();
-  const isSignInOrSignUpPage = location.pathname === "/signin" || location.pathname === "/signup" || location.pathname === "/resetPwd" || location.pathname === "/forgotPwd";
+  // const isSignInOrSignUpPage = location.pathname === "/signin" || location.pathname === "/signup" || location.pathname === "/resetPwd" || location.pathname === "/forgotPwd";
+  const [showNavBar, setShowNavBar] = useState();
 
 
   function toggleDropdown() {
@@ -13,9 +15,13 @@ const NavBar = ({ className }) => {
     dropdownContent.style.display = dropdownContent.style.display === "inline-block" ? "none" : "inline-block";
   }
 
+  useEffect(() => {
+    const isSignInOrSignUpPage = location.pathname === "/signin" || location.pathname === "/signup" || location.pathname === "/resetPwd" || location.pathname === "/forgotPwd";
+    setShowNavBar(isSignInOrSignUpPage)
+  }, [location])
+  
 
-
-  if (isSignInOrSignUpPage) {
+  if (showNavBar) {
     return null
   }
 
@@ -23,12 +29,12 @@ const NavBar = ({ className }) => {
     <div id="mainDivNavBar" className={className}>
       <ul className='ul-navBar'>
         <li>
-          <a href="/">
-            <img src="../../../public/Netflix-logo.png" width={100} height={40} alt="netflix logo" />
+          <a className='logoNavBar' href="/">
+            <img src="../../../public/Netflix-logo.png" width={100} height={50} alt="netflix logo" />
           </a>
         </li>
 
-        <div>
+        <div className='pagesNavigateNavBar'>
           <li><a href='/'>Home Page</a></li>
           <li><a href='/series'>Series</a></li>
           <li><a href='/movies'>Movies</a></li>
