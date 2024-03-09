@@ -1,7 +1,16 @@
-.btnBack{
-    color: rgb(78, 77, 77);
-
+.playBackBtn {
+    position: absolute;
+    top: 80px;
+    margin-left: 30px;
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
 }
-.btnBack:hover{
+
+.playBackBtn:hover {
+    background-color: black;
     color: white;
+}
+
+.fa-arrow-left {
+    font-size: large;
 }

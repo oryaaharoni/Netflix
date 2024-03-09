@@ -1,4 +1,4 @@
-import { PropTypes, useState, axios, useContext } from '../../../imports.js'
+import { PropTypes, useState, axios, useContext, useNavigate } from '../../../imports.js'
 import ReactPlayer from 'react-player'
 import './card.css'
 import { Store } from '../../../Store';
@@ -7,13 +7,14 @@ import { useEffect } from 'react';
 
 const Card = ({ item }) => {
 
+  const navigate = useNavigate();
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const { userInfo } = state;
   const [hoveredIndex, setHovered] = useState(false);
   const [isInMyList, setIsInMyList] = useState(false);
 
   useEffect(() => {
-    if(!userInfo.myList){
+    if (!userInfo.myList) {
       return
     }
     const isItemInMyList = userInfo.myList.some((i) => (
@@ -65,8 +66,10 @@ const Card = ({ item }) => {
             playing={true}
             loop={true}
             width="300px"
-            height="200px" />
-          <button className="cardBtn"><i className="fa fa-play"></i></button>
+            height="200px"
+          />
+
+          <button className="cardBtn" onClick={() => navigate(`/play/${item._id}`)}><i className="fa fa-play"></i></button>
 
           {isInMyList ?
             <button className="cardBtn" onClick={() => removeItemFromMyListHandler(item._id)}><i className="fa-solid fa-minus"></i></button>

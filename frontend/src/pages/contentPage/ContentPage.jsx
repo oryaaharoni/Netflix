@@ -11,32 +11,12 @@ const ContentPage = () => {
     let includeMyList, apiEndpoint;
     const { state, dispatch: ctxDispatch } = useContext(Store);
     const { userInfo } = state;
-    // const [isScrolled, setIsScrolled] = useState(false);
     const [myList, setMyList] = useState(null);
     const navigate = useNavigate();
     const location = useLocation();
     const [content, setContent] = useState(null);
-    // let random;
-    // try something for billboard
-    const w = {
-        _id: "123",
-        title: 'The Revenant',
-        description:
-            'The Revenant is a 2015 American semi-biographical epic western film directed by Alejandro G. Iñárritu. The screenplay by Mark L. Smith and Iñárritu is based in part on Michael Punke`s 2002 novel of the same name, describing frontiersman Hugh Glass`s experiences in 1823.',
-        img: 'https://www.indiewire.com/wp-content/uploads/2016/06/the-revenant.jpg',
-        imgTitle:
-            'https://images.squarespace-cdn.com/content/v1/5bfdc74875f9ee194f3e0add/1596652890102-76FXS415ATRW83ANRXXK/the-revenant-563b02dac00e3.png',
-        imgThumb:
-            'https://variety.com/wp-content/uploads/2013/07/the-revenant-movie-reivew-2.jpg',
-        imgVertical: 'https://m.media-amazon.com/images/I/A1BjliXNDPL.jpg',
-        trailer: 'https://youtu.be/LoebZZ8K5N0',
-        movie: 'https://youtu.be/LoebZZ8K5N0',
-        duration: '1 hour 15 min',
-        year: '2015',
-        limit: '15',
-        genre: 'Action',
-        isSeries: false,
-    }
+    const [billboardData, setBillboardData] = useState();
+
 
     const getContent = async () => {
         ctxDispatch({ type: GET_REQUEST });
@@ -44,9 +24,10 @@ const ContentPage = () => {
             const { data } = await axios.get(apiEndpoint, {
                 headers: { Authorization: `Bearer ${userInfo.token}` },
             });
-           
+
             setContent(data);
             ctxDispatch({ type: GET_SUCCESS, payload: data });
+
             if (includeMyList) {
                 const myListFromDB = await axios.get(`/api/v1/content/myList/${userInfo['_id']}`, {
                     headers: { Authorization: `Bearer ${userInfo.token}` },
@@ -54,9 +35,6 @@ const ContentPage = () => {
                 setMyList([myListFromDB.data])
                 ctxDispatch({ type: MY_LIST, payload: myListFromDB.data.contentList })
             }
-            
-            
-
         } catch (err) {
             console.error(err);
             navigate("/signin");
@@ -80,30 +58,27 @@ const ContentPage = () => {
                 includeMyList = false;
                 apiEndpoint = "/api/v1/content/series"
             }
-            getContent();
 
-            
+            getContent();
         }
     }, []);
 
+    useEffect(() => {
+        generateRandomNumber();
+    }, [content])
 
-    // const generateRandomNumber = () => {
-    //     const min = 1;
-    //     const max = 15;
-    //     const newRandomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
-    //     console.log("random: ",newRandomNumber);
-    //     random= newRandomNumber;
-    //   };
 
-    // generateRandomNumber();
+    const generateRandomNumber = () => {
+        if (!content || content.length == 0) {
+            return;
+        }
+        const newRandomNumber = Math.floor(Math.random() * (content.length));
+        setBillboardData(content[newRandomNumber].contentList[0]);
+    };
+
     return (
         <div>
-            {/* {content && content.map((number, index) => {
-                {number[index] === random &&  <Billboard item={number}/>}
-            }
-                
-            )} */}
-            <Billboard item={w}/>
+            <Billboard item={billboardData} />
             {/* <Carousel /> */}
             {myList &&
                 <SliderList contentList={myList} />

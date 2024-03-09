@@ -1,29 +1,40 @@
 import ReactPlayer from "react-player"
 import { Store } from "../../Store";
-import { axios, useEffect, useState, useContext, useLocation } from '../../imports.js';
+import { axios, useEffect, useState, useContext } from '../../imports.js';
+import { useNavigate, useParams } from "react-router-dom";
+import './playPage.css'
 
 const PlayPage = () => {
-    const { state, dispatch: ctxDispatch } = useContext(Store);
-    const { userInfo } = state;
-    const [item ,setItem ]=useState();
-    const location = useLocation();
-    
-    useEffect(() => {
-      const searchParams = new URLSearchParams(location.search);
-      const id = searchParams.get('id');
+  const { state, dispatch: ctxDispatch } = useContext(Store);
+  const { userInfo } = state;
+  const [item, setItem] = useState();
+  const navigate = useNavigate();
+  const { id } = useParams();
 
-      const { data }= axios.get("/getById/"+id,{
+  useEffect(() => {
+
+    if (!userInfo) {
+      navigate('/signin')
+    }
+    const getContent = async () => {
+      const { data } = await axios.get("api/v1/content/getById/" + id, {
         headers: { Authorization: `Bearer ${userInfo.token}` }
       });
 
-      console.log("data", data)
       setItem(data);
-    }, [id])
-    
+    }
+
+    getContent();
+  }, [])
+
+  if (!item) {
+    return null
+  }
+
   return (
     <div>
-        <button className="btnBack" onClick={()=>""}><i className="fa fa-arrow-left" aria-hidden="true"></i></button>
-        <ReactPlayer url={item.movie} muted={false} playing={true} loop={false} width="100%" height="600px" ></ReactPlayer>
+      <button className="playBackBtn" onClick={() => navigate(-1)}><i className="fa fa-arrow-left" aria-hidden="true"></i></button>
+      <ReactPlayer url={item.movie} muted={false} playing={true} loop={false} width="100%" height="600px" ></ReactPlayer>
     </div>
   )
 }
