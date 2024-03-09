@@ -33,7 +33,9 @@ const SearchBox = () => {
   const getFilterUrl = (searchFromUrl, filter) => {
     const searchParams = new URLSearchParams(searchFromUrl);
     const q = searchParams.get("q");
-    const link = `/search?q=${query}`;
+    console.log('filter: ', filter)
+    console.log('filter query: ', filter.query)
+    const link = `/search?q=${filter.query}`;
     return link;
   }
 
@@ -56,7 +58,7 @@ const SearchBox = () => {
       <div className='icons-navBar'>
         <button className="fa fa-search" ref={searchInputRef} style={{ backgroundColor: 'rgba(0, 0, 0, 0.4)', border: 'none', fontSize: 'medium' }} aria-hidden="true" onClick={() => setShowSearch(!showSearch)}></button>
         {showSearch &&
-          <input onInput={(e) => setQuery(e.target.value)} value={query} style={{ color: 'black' }} id="q" name='q' type='text' placeholder='search'></input>}
+          <input onChange={(e) => setQuery(e.target.value)} value={query} style={{ color: 'black' }} id="q" name='q' type='text' placeholder='search'></input>}
       </div>
     </div>
   )

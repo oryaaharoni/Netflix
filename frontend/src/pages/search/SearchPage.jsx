@@ -66,7 +66,7 @@ const SearchPage = () => {
           ))
           }
           {currentData && currentData.length === 1 &&
-            <Card item={currentData}></Card>
+            <Card item={currentData[0]}></Card>
           }
         </div>
       </div>
