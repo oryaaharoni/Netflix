@@ -5,6 +5,7 @@ import { Store } from "../../Store.jsx";
 import Header from "../../components/Shared/Header.jsx";
 import Input from '../../components/Shared/Input/Input.jsx'
 import { USER_SIGNIN } from "../../reducers/actions.jsx";
+import { useRef } from 'react';
 
 
 const SignInPage = () => {
@@ -21,6 +22,9 @@ const SignInPage = () => {
   const navigate = useNavigate();
 
   const [changeContent, setChangeContent] = useState(true);
+  const emailRef = useRef();
+  const passwordRef = useRef();
+
 
   const handleChange = (e) => {
     const fieldName = e.target.name;
@@ -103,12 +107,31 @@ const SignInPage = () => {
     }
   }
 
+  const autoFillInputsHandler = () => {
+    const autofillValues = {
+      emailOrPhone: 'admin@example.com',
+      password: '12345',
+    };
+
+    emailRef.current.value = autofillValues.emailOrPhone;
+    passwordRef.current.value = autofillValues.password;
+    formData.emailOrPhone = autofillValues.emailOrPhone;
+    formData.password = autofillValues.password;
+
+    handleChange({
+      target: { name: 'emailOrPhone', value: autofillValues.emailOrPhone },
+    });
+    handleChange({
+      target: { name: 'password', value: autofillValues.password },
+    });
+  }
+
   return (
     <div className="headDiv">
       <Header />
       <Title title="signin"></Title>
       <form className="signInForm">
-        <h1>Sign In</h1>
+        <h1 id='titleSignin'>Sign In</h1>
         <br />
         {invalidPassword && <div className="invalidDiv"> <strong>Incorrect password for <br />{originalEmail}</strong> <br />
           You can <a href="/signIn">use a sign-in code</a>, <a href='/forgotPwd'>reset your password</a> or try again.</div>}
@@ -119,6 +142,7 @@ const SignInPage = () => {
           className="signInInput"
           error={validationErrors.emailOrPhone}
           onChange={handleChange}
+          ref={emailRef}
           name="emailOrPhone"
           placeholder="Email or phone number"
           isRequired={true}
@@ -130,6 +154,7 @@ const SignInPage = () => {
             name="password"
             placeholder="Password"
             onChange={handleChange}
+            ref={passwordRef}
             type={'password'}
           />
         )}
@@ -163,6 +188,16 @@ const SignInPage = () => {
           </a>
           .
         </p>
+
+
+
+        <div id='autofillSignin'>
+          Username: admin@example.com
+          <br />
+          Password: 12345
+          <br />
+          <button type='button' onClick={autoFillInputsHandler} className='autofillBtn'>AutoFill</button>
+        </div>
         <br />
         <br />
         <br />

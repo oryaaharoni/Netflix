@@ -1,14 +1,16 @@
 import './navBar.css'
 import SearchBox from '../../SearchBox';
-import { useLocation } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useContext, useEffect, useState } from 'react';
+import { Store } from '../../../Store';
+import { USER_SIGNOUT } from '../../../reducers/actions';
 
 const NavBar = ({ className }) => {
-  console.log(className)
+  console.log(className);
+  const { state, dispatch: ctxDispatch } = useContext(Store);
+  const navigate = useNavigate();
   const location = useLocation();
-  // const isSignInOrSignUpPage = location.pathname === "/signin" || location.pathname === "/signup" || location.pathname === "/resetPwd" || location.pathname === "/forgotPwd";
   const [showNavBar, setShowNavBar] = useState();
-
 
   function toggleDropdown() {
     const dropdownContent = document.getElementById("myDropdown");
@@ -19,7 +21,12 @@ const NavBar = ({ className }) => {
     const isSignInOrSignUpPage = location.pathname === "/signin" || location.pathname === "/signup" || location.pathname === "/resetPwd" || location.pathname === "/forgotPwd";
     setShowNavBar(isSignInOrSignUpPage)
   }, [location])
-  
+
+  const signOutNetflix = () => {
+    ctxDispatch({ type: USER_SIGNOUT });
+    navigate('/signin');
+  }
+
 
   if (showNavBar) {
     return null
@@ -46,35 +53,17 @@ const NavBar = ({ className }) => {
           {/* add here search (maybe change to button) , add onchange to input*/}
           {/* <li><a className="fa fa-search" aria-hidden="true" href='/info'></a></li> */}
           {/* <input onChange={() => navigate('/search')} className="searchInput" type='text' placeholder='search'></input> */}
-
           {/* <li>notification</li> */}
-          {/* <li>drop list</li> */}
-
-
-          {/* <div className='dropdown'>
-            <button className='btnDropdown'>
-              <img className='imgDropdown' src='https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png' />
-            </button>
-            <div className='dropdown-content'></div>
-            <a href=""></a>
-            <a href=""></a>
-            <a href=""></a>
-          </div> */}
-
 
           <div className='dropdown'>
             <button className='btnDropdown' onClick={() => toggleDropdown()}>
               <img className='imgDropdown' src='https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png' alt='Avatar' />
             </button>
             <div id="myDropdown" className='dropdown-content'>
-              <a href="#">Option 1</a>
-              <br />
-              <a href="#">Sign out of Netlix</a>
+              {/* <hr className='lineInDropDown'/> */}
+              <button className='dropDownBtn' onClick={signOutNetflix}>Sign out of Netlix</button>
             </div>
           </div>
-
-
-
         </div>
       </ul>
     </div>

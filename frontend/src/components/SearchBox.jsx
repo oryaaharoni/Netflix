@@ -1,10 +1,11 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Store } from '../Store';
 
 const SearchBox = () => {
   const navigate = useNavigate();
   const { search } = useLocation();
+  const searchInputRef = useRef(null);
   const [showSearch, setShowSearch] = useState(false);
   const [query, setQuery] = useState("");
 
@@ -12,13 +13,11 @@ const SearchBox = () => {
   const { userInfo } = state;
 
   useEffect(() => {
-
-    console.log('dsfjsdlkfsdjlfk')
     if (!query) {
       return;
     }
 
-    if(!userInfo){
+    if (!userInfo) {
       navigate('/signin');
     }
 
@@ -32,20 +31,30 @@ const SearchBox = () => {
 
 
   const getFilterUrl = (searchFromUrl, filter) => {
-
     const searchParams = new URLSearchParams(searchFromUrl);
     const q = searchParams.get("q");
     const link = `/search?q=${query}`;
-    // navigate(link);
     return link;
-
-
   }
+
+  // useEffect(() => {
+  //   if (searchInputRef.current) {
+  //     searchInputRef.current.focus();
+  //   }
+  // }, [searchInputRef]);
+
+
+  useEffect(() => {
+    if (showSearch) {
+      searchInputRef.current.focus();
+    }
+  }, [showSearch]);
+
 
   return (
     <div>
       <div className='icons-navBar'>
-        <button className="fa fa-search" style={{ backgroundColor: 'rgba(0, 0, 0, 0.4)', border: 'none', fontSize: 'medium' }} aria-hidden="true" onClick={() => setShowSearch(!showSearch)}></button>
+        <button className="fa fa-search" ref={searchInputRef} style={{ backgroundColor: 'rgba(0, 0, 0, 0.4)', border: 'none', fontSize: 'medium' }} aria-hidden="true" onClick={() => setShowSearch(!showSearch)}></button>
         {showSearch &&
           <input onInput={(e) => setQuery(e.target.value)} value={query} style={{ color: 'black' }} id="q" name='q' type='text' placeholder='search'></input>}
       </div>

@@ -1,7 +1,8 @@
 import './input.css'
 import {PropTypes, useState} from '../../../imports'
+import { forwardRef } from 'react';
 
-const Input = ({ onChange, type, value, name, placeholder, isRequired, error }) => {
+const Input = forwardRef(({ onChange, type, value, name, placeholder, isRequired, error }, ref) => {
 
     const [isInputFocused, setIsInputFocused] = useState(false);
 
@@ -26,6 +27,7 @@ const Input = ({ onChange, type, value, name, placeholder, isRequired, error }) 
                 onFocus={handleFocus}
                 onBlur={handleBlur}
                 onChange={handleChange}
+                ref={ref}
                 placeholder={placeholder}
                 name={name}
                 required={isRequired}
@@ -37,7 +39,7 @@ const Input = ({ onChange, type, value, name, placeholder, isRequired, error }) 
             )}
         </>
     )
-}
+});
 
 Input.propTypes ={onChange: PropTypes.func,
     type: PropTypes.string,
