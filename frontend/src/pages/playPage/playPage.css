@@ -4,11 +4,12 @@
     margin-left: 30px;
     background-color: rgba(0, 0, 0, 0);
     border: none;
+    color: white;
 }
 
 .playBackBtn:hover {
-    background-color: black;
-    color: white;
+    background-color: rgba(0, 0, 0, 0);
+    color: black;
 }
 
 .fa-arrow-left {

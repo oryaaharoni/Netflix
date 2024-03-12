@@ -44,9 +44,7 @@ function App() {
         <Route path="/resetPwd" element={<ResetPwdPage />} />
         <Route path="/myList" element={<MyListPage />} />
         <Route path="/search" element={<SearchPage />} />
-
         <Route path="/play/:id" element={<PlayPage />} />
-
       </Routes>
     </BrowserRouter>
   );

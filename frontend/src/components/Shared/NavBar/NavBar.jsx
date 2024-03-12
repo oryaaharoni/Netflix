@@ -18,7 +18,7 @@ const NavBar = ({ className }) => {
   }
 
   useEffect(() => {
-    const isSignInOrSignUpPage = location.pathname === "/signin" || location.pathname === "/signup" || location.pathname === "/resetPwd" || location.pathname === "/forgotPwd";
+    const isSignInOrSignUpPage = location.pathname === "/signin" || location.pathname === "/signup" || location.pathname === "/resetPwd" || location.pathname === "/forgotPwd" || location.pathname.startsWith("/play");
     setShowNavBar(isSignInOrSignUpPage)
   }, [location])
 
@@ -52,7 +52,6 @@ const NavBar = ({ className }) => {
           <SearchBox></SearchBox>
           {/* add here search (maybe change to button) , add onchange to input*/}
           {/* <li><a className="fa fa-search" aria-hidden="true" href='/info'></a></li> */}
-          {/* <input onChange={() => navigate('/search')} className="searchInput" type='text' placeholder='search'></input> */}
           {/* <li>notification</li> */}
 
           <div className='dropdown'>

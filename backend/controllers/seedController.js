@@ -8,37 +8,83 @@ const seedData = async (req, res) => {
     await Content.deleteMany();
     await FeaturedContents.deleteMany();
 
-    const users = User.insertMany(data.users);
-    const content = Content.insertMany(data.content);
+    const users = await User.insertMany(data.users);
+    const content = await Content.insertMany(data.content);
 
-    const getFeaturedContents1 = await featuredContentsCreateData(listMovieNames, "Movies");
-    const getFeaturedContents2 = await featuredContentsCreateData(listSeriesNames, "Series");
-    const getFeaturedContents3 = await featuredContentsCreateData(genres, "Movies");
-    const getFeaturedContents4 = await featuredContentsCreateData(genres, "Series");
-    const featuredContents = await FeaturedContents.insertMany([...getFeaturedContents1, ...getFeaturedContents2, ...getFeaturedContents3, ...getFeaturedContents4]);
-    res.send({ users, content, featuredContents });
+    const moviesFeaturedContents = await featuredContentsCreateData(listMovieNames, "false");
+    const seriesFeaturedContents = await featuredContentsCreateData(listSeriesNames, "true");
+    
+    // To add genres lists
+    // const genresFeaturedContents = await featuredContentsCreateData(genres, "both", true);
+    // const featuredContents = await FeaturedContents.insertMany([...moviesFeaturedContents, ...seriesFeaturedContents, ...genresFeaturedContents]);
+
+    // Not include genres lists
+    const featuredContents = await FeaturedContents.insertMany([...moviesFeaturedContents, ...seriesFeaturedContents]);
+    res.send({ featuredContents });
 }
 
-const featuredContentsCreateData = async(nameArray, contentType) => {
-    // maybe change this without isSeries
-    const isSeries = contentType === "Series" ? true : false;
+const parseIsSeries = (isSeries) => {
+    if (isSeries === "true") {
+        return true;
+    } else if (isSeries === "false") {
+        return false;
+    } else {
+        return null;
+    }
+};
+
+const featuredContentsCreateData = async (nameArray, isSeries, genre = null) => {
     const res = [];
 
-    for(let i = 0; i < nameArray.length; i++){
-        const selectedContent = await Content.aggregate([
-            {$match: {isSeries: isSeries}},
-            {$sample: {size: 12}},
-        ]);
+    for (let i = 0; i < nameArray.length; i++) {
+        // console.log('name array: ', nameArray[i])
+        let pipeline = [
+            { $match: { isSeries: parseIsSeries(isSeries) } },
+            // { $sample: { size: 6 } },
+        ];
 
+        if (isSeries !== "both") {
+            pipeline.unshift({ $match: { isSeries: parseIsSeries(isSeries) } });
+            if(nameArray[i] === "Top picks for Movie" || nameArray[i] === "Movies for your friend Steve"){
+                console.log('genre: ', genre)
+            }
+            if (genre) {
+                pipeline.$match.genre = nameArray[i];
+            }
+            // console.log('pipeline: ', pipeline)
+        } else if (genre) {
+            pipeline.unshift({ $match: { genre: nameArray[i] } });
+        }
+        
+        // if(nameArray[i] === "Top picks for Movie" || nameArray[i] === "Movies for your friend Steve"){
+            console.log('pipelineforrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr: ',  nameArray[i])
+            console.log('pipeline: ', pipeline)
+        // }
+
+        const selectedContent = await Content.aggregate(pipeline);
+
+        console.log('selected Content: ', selectedContent[0])
+
+        // if(nameArray[i] === "Top picks for Movie" || nameArray[i] === "Movies for your friend Steve"){
+        //     console.log('selected Content Forrrrrr: ', nameArray[i])
+        //     console.log('selected Content: ', selectedContent)
+
+        // }
         const contentToInsert = new FeaturedContents({
             name: nameArray[i],
-            isSeries: isSeries, 
-            genre: genres[i],
-            contentList: selectedContent
+            contentList: selectedContent,
         });
-        res.push(contentToInsert);
+
+        // if (contentToInsert.contentList.length !== 0) {
+            res.push(contentToInsert);
+        // }
+        // else{
+        //     console.log('in the else for ::: ', nameArray[i])
+        // }
+        console.log('///////////////////////////////////////////////////////////////////////')
     }
+    // console.log('res: ', res);
     return res;
-}
+};
 
 export default seedData;

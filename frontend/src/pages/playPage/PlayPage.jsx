@@ -32,9 +32,9 @@ const PlayPage = () => {
   }
 
   return (
-    <div>
+    <div style={{overflow: "hidden"}}>
       <button className="playBackBtn" onClick={() => navigate(-1)}><i className="fa fa-arrow-left" aria-hidden="true"></i></button>
-      <ReactPlayer url={item.movie} muted={false} playing={true} loop={false} width="100%" height="600px" ></ReactPlayer>
+      <ReactPlayer url={item.movie} muted={false} controls={true} playing={true} loop={false} width="100%" height="100vh" ></ReactPlayer>
     </div>
   )
 }
