@@ -5,13 +5,15 @@ import { useContext, useEffect, useState } from 'react';
 import { Store } from '../../Store';
 import Card from '../../components/Shared/Card/Card';
 import './search.css'
+import Loading from '../../components/Shared/Loading/Loading';
+import { GET_FAIL, GET_REQUEST, GET_SUCCESS } from '../../reducers/actions';
 
 const SearchPage = () => {
   const { search } = useLocation();
   const searchParams = new URLSearchParams(search);
   // const q = searchParams.get("q");
   const { state, dispatch: ctxDispatch } = useContext(Store);
-  const { userInfo } = state;
+  const { userInfo, loading } = state;
   const navigate = useNavigate();
   const [currentData, setCurrentData] = useState();
   const [inputData, setInputData] = useState();
@@ -23,8 +25,11 @@ const SearchPage = () => {
 
     const getContent = async () => {
       console.log(userInfo);
-      if (!userInfo)
+      if (!userInfo) {
         navigate('/signin')
+      }
+
+      ctxDispatch({ type: GET_REQUEST });
 
       try {
         // console.log("search (Page)", search)
@@ -34,15 +39,19 @@ const SearchPage = () => {
         });
         // console.log("data", data);
         setCurrentData(data);
+
+        
         console.log("currentData ", currentData)
-
-
+        
+        
         setInputData(search.split('=')[1]);
+        ctxDispatch({ type: GET_SUCCESS, payload: data });
+        
         // console.log(search.split('='))
-
       }
-      catch (error) {
-        console.log(error)
+      catch (err) {
+        ctxDispatch({ type: GET_FAIL, payload: err });
+        console.log(err)
         navigate('/signin')
       }
     }
@@ -60,15 +69,18 @@ const SearchPage = () => {
     <div id='searchPageDivFirst'>
       <div>
         <h1 id='titleSearch'>Showing results found for "{inputData}"</h1>
-        <div className='containerInSearch'>
-          {currentData && currentData.length > 1 && currentData.map((item, index) => (
-            <Card item={item} key={index}></Card>
-          ))
-          }
-          {currentData && currentData.length === 1 &&
-            <Card item={currentData[0]}></Card>
-          }
-        </div>
+        {loading ? <Loading /> :
+          (
+            <div className='containerInSearch'>
+              {currentData && currentData.length > 1 && currentData.map((item, index) => (
+                <Card item={item} key={index}></Card>
+              ))
+              }
+              {currentData && currentData.length === 1 &&
+                <Card item={currentData[0]}></Card>
+              }
+            </div>
+          )}
       </div>
     </div>
   )

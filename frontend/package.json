@@ -18,7 +18,8 @@
     "react-player-controls": "^1.1.0",
     "react-router-dom": "^6.22.0",
     "react-slick": "^0.30.2",
-    "slick-carousel": "^1.8.1"
+    "slick-carousel": "^1.8.1",
+    "spinners-react": "^1.0.7"
   },
   "devDependencies": {
     "@types/react": "^18.2.55",

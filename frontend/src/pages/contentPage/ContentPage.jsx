@@ -1,15 +1,16 @@
 import { useContext, useEffect, useState } from 'react';
 import { Store } from '../../Store';
 import SliderList from '../../components/Shared/SliderList/SliderList';
-import { GET_REQUEST, GET_SUCCESS, MY_LIST } from '../../reducers/actions';
+import { GET_FAIL, GET_REQUEST, GET_SUCCESS, MY_LIST } from '../../reducers/actions';
 import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Billboard from '../../components/Shared/Billboard/Billboard';
+import Loading from '../../components/Shared/Loading/Loading';
 
 const ContentPage = () => {
     let includeMyList, apiEndpoint;
     const { state, dispatch: ctxDispatch } = useContext(Store);
-    const { userInfo } = state;
+    const { userInfo, loading } = state;
     const [myList, setMyList] = useState(null);
     const navigate = useNavigate();
     const location = useLocation();
@@ -24,8 +25,6 @@ const ContentPage = () => {
                 headers: { Authorization: `Bearer ${userInfo.token}` },
             });
 
-            ctxDispatch({ type: GET_SUCCESS, payload: data });
-
             if (includeMyList) {
                 const myListFromDB = await axios.get(`/api/v1/content/myList/${userInfo['_id']}`, {
                     headers: { Authorization: `Bearer ${userInfo.token}` },
@@ -33,8 +32,11 @@ const ContentPage = () => {
                 setMyList([myListFromDB.data])
                 ctxDispatch({ type: MY_LIST, payload: myListFromDB.data })
             }
+            
             setContent(data)
+            ctxDispatch({ type: GET_SUCCESS, payload: data });
         } catch (err) {
+            ctxDispatch({ type: GET_FAIL, payload: err });
             console.error(err);
             navigate("/signin");
         }
@@ -62,13 +64,13 @@ const ContentPage = () => {
     }, []);
 
     useEffect(() => {
-        if(!billboardData){
+        if (!billboardData) {
             putRandomContentInBillboard();
         }
     }, [content])
 
     useEffect(() => {
-        if(userInfo && userInfo.myList){
+        if (userInfo && userInfo.myList) {
             setMyList([userInfo.myList])
         }
     }, [userInfo.myList])
@@ -79,20 +81,22 @@ const ContentPage = () => {
             return;
         }
         const newRandomNumber = Math.floor(Math.random() * (content.length));
-        if(content[newRandomNumber].contentList){
+        if (content[newRandomNumber].contentList) {
             const randomInList = Math.floor(Math.random() * (content[newRandomNumber].contentList.length));
             setBillboardData(content[newRandomNumber].contentList[randomInList]);
         }
     };
 
     return (
-        <div style={{overflow: "hidden"}}>
-            <Billboard item={billboardData} />
-            {myList &&
-                <SliderList contentList={myList} />
-            }
-            <SliderList contentList={content} />
-        </div>
+        loading ? <Loading /> : (
+            <div style={{ overflow: "hidden" }}>
+                <Billboard item={billboardData} />
+                {myList &&
+                    <SliderList contentList={myList} />
+                }
+                <SliderList contentList={content} />
+            </div>
+        )
     );
 };
 
