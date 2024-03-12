@@ -1,6 +1,7 @@
 import { useContext, useEffect, useRef, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { Store } from '../Store';
+import { Store } from '../../Store';
+import "./searchBox.css";
 
 const SearchBox = () => {
   const navigate = useNavigate();
@@ -31,8 +32,6 @@ const SearchBox = () => {
 
 
   const getFilterUrl = (searchFromUrl, filter) => {
-    const searchParams = new URLSearchParams(searchFromUrl);
-    const q = searchParams.get("q");
     console.log('filter: ', filter)
     console.log('filter query: ', filter.query)
     const link = `/search?q=${filter.query}`;
@@ -54,12 +53,10 @@ const SearchBox = () => {
 
 
   return (
-    <div>
-      <div className='icons-navBar'>
-        <button className="fa fa-search" ref={searchInputRef} style={{ backgroundColor: 'rgba(0, 0, 0, 0.4)', border: 'none', fontSize: 'medium' }} aria-hidden="true" onClick={() => setShowSearch(!showSearch)}></button>
-        {showSearch &&
-          <input onChange={(e) => setQuery(e.target.value)} value={query} style={{ color: 'black' }} id="q" name='q' type='text' placeholder='search'></input>}
-      </div>
+    <div className='icons'>
+      <button className="fa fa-search" ref={searchInputRef} style={{ backgroundColor: 'rgba(0, 0, 0, 0)', border: 'none', fontSize: 'medium' }} aria-hidden="true" onClick={() => setShowSearch(!showSearch)}></button>
+      {showSearch &&
+        <input onChange={(e) => setQuery(e.target.value)} value={query} style={{ color: 'black' }} id="q" name='q' type='text' placeholder='search'></input>}
     </div>
   )
 }

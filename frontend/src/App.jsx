@@ -6,7 +6,7 @@ import LoginHelpPage from "./pages/loginHelpPage/LoginHelpPage.jsx";
 import ResetPwdPage from "./pages/resetPage/ResetPwdPage.jsx";
 import MyListPage from "./pages/myListPage/MyListPage.jsx";
 import ContentPage from "./pages/contentPage/ContentPage.jsx";
-import SearchPage from "./pages/search/SearchPage.jsx";
+import SearchPage from "./pages/searchPage/SearchPage.jsx";
 import NavBar from "./components/Shared/NavBar/NavBar.jsx";
 import { useEffect, useState } from "./imports.js";
 import PlayPage from "./pages/playPage/PlayPage.jsx";

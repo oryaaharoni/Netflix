@@ -1,12 +1,11 @@
 import './navBar.css'
-import SearchBox from '../../SearchBox';
+import SearchBox from '../../SearchBox/SearchBox';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
 import { Store } from '../../../Store';
 import { USER_SIGNOUT } from '../../../reducers/actions';
 
 const NavBar = ({ className }) => {
-  console.log(className);
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const navigate = useNavigate();
   const location = useLocation();
@@ -50,16 +49,15 @@ const NavBar = ({ className }) => {
 
         <div className='icons-navBar'>
           <SearchBox></SearchBox>
-          
-          <li><a href='zz'><i className="fa fa-bell" aria-hidden="true"></i></a></li>
-          
+
+          <li><a href='#'><i className="fa fa-bell" aria-hidden="true"></i></a></li>
+
           <div className='dropdown'>
             <button className='btnDropdown' onClick={() => toggleDropdown()}>
               <img className='imgDropdown' src='https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png' alt='Avatar' />
             </button>
-            
+
             <div id="myDropdown" className='dropdown-content'>
-              {/* <hr className='lineInDropDown'/> */}
               <button className='dropDownBtn' onClick={signOutNetflix}>Sign out of Netlix</button>
             </div>
           </div>
