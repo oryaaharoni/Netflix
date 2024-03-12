@@ -50,14 +50,14 @@ const NavBar = ({ className }) => {
 
         <div className='icons-navBar'>
           <SearchBox></SearchBox>
-          {/* add here search (maybe change to button) , add onchange to input*/}
-          {/* <li><a className="fa fa-search" aria-hidden="true" href='/info'></a></li> */}
-          {/* <li>notification</li> */}
-
+          
+          <li><a href='zz'><i className="fa fa-bell" aria-hidden="true"></i></a></li>
+          
           <div className='dropdown'>
             <button className='btnDropdown' onClick={() => toggleDropdown()}>
               <img className='imgDropdown' src='https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png' alt='Avatar' />
             </button>
+            
             <div id="myDropdown" className='dropdown-content'>
               {/* <hr className='lineInDropDown'/> */}
               <button className='dropDownBtn' onClick={signOutNetflix}>Sign out of Netlix</button>
