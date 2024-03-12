@@ -17,7 +17,7 @@ const Card = ({ item }) => {
     if (!userInfo.myList) {
       return
     }
-    const isItemInMyList = userInfo.myList.some((i) => (
+    const isItemInMyList = userInfo.myList.contentList.some((i) => (
       i._id === item._id
     ))
     setIsInMyList(isItemInMyList)

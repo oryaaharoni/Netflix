@@ -28,6 +28,9 @@ const featuredContentsScema = new mongoose.Schema({
         type: String,
         required: true
     },
+    isSeries: {
+        type: Boolean,
+    },
     contentList: [{
         type: Schema.Types.ObjectId,
         ref: "Content"

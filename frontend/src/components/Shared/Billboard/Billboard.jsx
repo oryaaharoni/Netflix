@@ -11,7 +11,7 @@ const Billboard = ({ item }) => {
     return (
         <div className='billboard'>
             <div className='innerBillboard'>
-                <ReactPlayer url={item.trailer} muted={true} playing={true} loop={true} width="100%" height="600px" style={{pointerEvents: 'none', objectFit: "cover"}}/>
+                <ReactPlayer url={item.trailer} muted={true} playing={true} loop={true} width="100vw" height="56.25vw" style={{pointerEvents: 'none', objectFit: "cover"}}/>
                 <div className='info'>
                     <img src={item.imgTitle} style={{ width: '500px', height: '120px' }} />
                     <div className='description'>

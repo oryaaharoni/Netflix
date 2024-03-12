@@ -30,7 +30,10 @@ const storeReducer = (state, action) => {
         case ADD_ITEM: {
             const updatedUserInfo = {
                 ...state.userInfo,
-                myList: [...state.userInfo.myList, action.payload]
+                myList: {
+                    ...state.userInfo.myList,
+                    contentList: [...state.userInfo.myList.contentList, action.payload]
+                }
             }
             localStorage.setItem('userInfo', JSON.stringify(updatedUserInfo));
             return { ...state, loading: false, userInfo: updatedUserInfo };
@@ -38,7 +41,10 @@ const storeReducer = (state, action) => {
         case REMOVE_ITEM: {
             const updatedUserInfo = {
                 ...state.userInfo,
-                myList: [...state.userInfo.myList.filter(item => item._id !== action.payload._id)]
+                myList: {
+                    ...state.userInfo.myList,
+                    contentList: [...state.userInfo.myList.contentList.filter(item => item._id !== action.payload._id)]
+                }
             }
             localStorage.setItem('userInfo', JSON.stringify(updatedUserInfo));
             return { ...state, loading: false, userInfo: updatedUserInfo };

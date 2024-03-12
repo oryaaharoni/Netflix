@@ -12,7 +12,7 @@ const MyListPage = () => {
 
   useEffect(() => {
     if(userInfo){
-      setData(userInfo.myList)
+      setData(userInfo.myList.contentList)
     } else{
       navigate('/signin')
     }
