@@ -6,7 +6,11 @@ import './index.css'
 import  axios  from 'axios';
 import { StoreProvider } from './Store.jsx'
 
-axios.defaults.baseURL= 'http://localhost:8080';
+// axios.defaults.baseURL= 'http://localhost:8080';
+const inDevOrProd = import.meta.env.DEV;
+axios.defaults.baseURL = inDevOrProd
+  ? "http://localhost:8080"
+  : "https://net-movies-7xol09e4b-orya-aharonis-projects.vercel.app/";
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
