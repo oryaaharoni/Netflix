@@ -16,13 +16,20 @@
 
 @media screen and (max-width: 2000px) {
     .billboard {
-        height: 23.25vw;
+        height: 43.25vw;
     }
 }
 
 @media screen and (max-width: 1600px) {
     .billboard {
-        height: 28.25vw;
+        height: 42.25vw;
+    }
+}
+
+
+@media screen and (max-width: 650px) {
+    .billboard {
+        height: 30.25vw;
     }
 }
 

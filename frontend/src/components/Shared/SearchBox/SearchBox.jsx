@@ -1,6 +1,6 @@
 import { useContext, useEffect, useRef, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { Store } from '../../Store';
+import { Store } from '../../../Store';
 import "./searchBox.css";
 
 const SearchBox = () => {

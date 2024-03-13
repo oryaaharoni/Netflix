@@ -1,5 +1,5 @@
 import './navBar.css'
-import SearchBox from '../../SearchBox/SearchBox';
+import SearchBox from '../SearchBox/SearchBox.jsx';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
 import { Store } from '../../../Store';

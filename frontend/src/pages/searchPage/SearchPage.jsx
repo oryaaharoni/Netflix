@@ -32,6 +32,8 @@ const SearchPage = () => {
       ctxDispatch({ type: GET_REQUEST });
 
       try {
+
+        console.log('in the search page : ', search);
         // console.log("search (Page)", search)
 
         const { data } = await axios.get(`api/v1/content/search${search}`, {

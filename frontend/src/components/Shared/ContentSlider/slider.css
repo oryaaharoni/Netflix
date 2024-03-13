@@ -11,9 +11,12 @@ body {
 }
 
 .slider{
+  
   margin: auto;
   width: 95%;
   position: relative;
+  /* margin-top: 100px; */
+  /* margin-top: 600px; */
 }
 
 .slick-list{
