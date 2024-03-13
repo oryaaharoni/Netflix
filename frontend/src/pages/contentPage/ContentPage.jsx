@@ -32,7 +32,7 @@ const ContentPage = () => {
                 setMyList([myListFromDB.data])
                 ctxDispatch({ type: MY_LIST, payload: myListFromDB.data })
             }
-            
+
             setContent(data)
             ctxDispatch({ type: GET_SUCCESS, payload: data });
         } catch (err) {
@@ -73,7 +73,7 @@ const ContentPage = () => {
         if (userInfo && userInfo.myList) {
             setMyList([userInfo.myList])
         }
-    }, [userInfo.myList])
+    }, [userInfo?.myList])
 
 
     const putRandomContentInBillboard = () => {
