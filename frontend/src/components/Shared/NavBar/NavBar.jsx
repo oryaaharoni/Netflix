@@ -5,11 +5,12 @@ import { useContext, useEffect, useState } from 'react';
 import { Store } from '../../../Store';
 import { USER_SIGNOUT } from '../../../reducers/actions';
 
-const NavBar = ({ className }) => {
+const NavBar = () => {
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const navigate = useNavigate();
   const location = useLocation();
   const [showNavBar, setShowNavBar] = useState();
+  const [isScrolled, setIsScrolled] = useState(false);
 
   function toggleDropdown() {
     const dropdownContent = document.getElementById("myDropdown");
@@ -26,13 +27,29 @@ const NavBar = ({ className }) => {
     navigate('/signin');
   }
 
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 0) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [])
+
 
   if (showNavBar) {
     return null
   }
 
   return (
-    <div id="mainDivNavBar" className={className}>
+    <div id="mainDivNavBar" className={isScrolled ? 'navBarInHomePage scrolled' : 'navBarInHomePage'}>
       <ul className='ul-navBar'>
         <li>
           <a className='logoNavBar' href="/">
