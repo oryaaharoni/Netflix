@@ -53,7 +53,7 @@ const NavBar = () => {
       <ul className='ul-navBar'>
         <li>
           <a className='logoNavBar' href="/">
-            <img src="../../../public/Netflix-logo.png" width={100} height={50} alt="netflix logo" />
+            <img src="../../../../public/Netflix-logo.png" width={100} height={50} alt="netflix logo" />
           </a>
         </li>
 
