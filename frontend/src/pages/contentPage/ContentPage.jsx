@@ -55,7 +55,7 @@ const ContentPage = () => {
                 apiEndpoint = "/api/v1/content/movies"
             }
             else if (location.pathname === '/series') {
-                includeMyList = false;
+                includeMyList = true;
                 apiEndpoint = "/api/v1/content/series"
             }
 
@@ -70,7 +70,7 @@ const ContentPage = () => {
     }, [content])
 
     useEffect(() => {
-        if (userInfo && userInfo.myList) {
+        if (myList && userInfo && userInfo.myList) {
             setMyList([userInfo.myList])
         }
     }, [userInfo?.myList])
