@@ -11,6 +11,10 @@
   position: relative;
 }
 
+.slider:hover{
+  z-index: 20;
+}
+
 .slick-list{
   overflow: visible;
 }

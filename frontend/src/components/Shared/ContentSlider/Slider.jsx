@@ -10,7 +10,9 @@ const ContentSlider = ({ data, title }) => {
   function getSlidesToShow () {
     const windowWidth = window.innerWidth;
     
-    if (windowWidth >= 1650) {
+    if (windowWidth >= 2000) {
+      return 6;
+    }else if (windowWidth >= 1650) {
       return 5;
     }else if (windowWidth >= 1350) {
       return 4;

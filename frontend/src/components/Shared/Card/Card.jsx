@@ -24,23 +24,23 @@ const Card = ({ item }) => {
   }, [userInfo, item._id])
 
 
-  const addToMyListHandler = async (contentId) => {
+  const addToMyListHandler = (item) => {
     try {
-      const { data } = await axios.post(`/api/v1/content/add/`, { userId: userInfo['_id'], contentId: contentId }, {
+      axios.post(`/api/v1/content/add/`, { userId: userInfo['_id'], contentId: item._id }, {
         headers: { authorization: `Bearer ${userInfo.token}` },
       });
-      await ctxDispatch({ type: ADD_ITEM, payload: data })
+      ctxDispatch({ type: ADD_ITEM, payload: item })
     } catch (err) {
       console.log('Error in adding to list', err)
     }
   }
 
-  const removeItemFromMyListHandler = async (contentId) => {
+  const removeItemFromMyListHandler = (item) => {
     try {
-      const { data } = await axios.post(`/api/v1/content/remove/`, { userId: userInfo['_id'], contentId: contentId }, {
+      axios.post(`/api/v1/content/remove/`, { userId: userInfo['_id'], contentId: item._id }, {
         headers: { authorization: `Bearer ${userInfo.token}` },
       });
-      await ctxDispatch({ type: REMOVE_ITEM, payload: data })
+      ctxDispatch({ type: REMOVE_ITEM, payload: item })
     } catch (err) {
       console.log('Error in removing from list', err)
     }
@@ -72,9 +72,9 @@ const Card = ({ item }) => {
           <button className="cardBtn" onClick={() => navigate(`/play/${item._id}`)}><i className="fa fa-play"></i></button>
 
           {isInMyList ?
-            <button className="cardBtn" onClick={() => removeItemFromMyListHandler(item._id)}><i className="fa-solid fa-minus"></i></button>
+            <button className="cardBtn" onClick={() => removeItemFromMyListHandler(item)}><i className="fa-solid fa-minus"></i></button>
             :
-            <button className='cardBtn' onClick={() => addToMyListHandler(item._id)}><i className="fa-solid fa-plus btnMylist"></i></button>
+            <button className='cardBtn' onClick={() => addToMyListHandler(item)}><i className="fa-solid fa-plus btnMylist"></i></button>
           }
 
           <div className='cardContent'>

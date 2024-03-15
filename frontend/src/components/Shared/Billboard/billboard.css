@@ -11,13 +11,13 @@
 
 @media screen and (max-width: 3000px) {
     .billboard {
-        height: 50.25vw;
+        height: 42.25vw;
     }
 }
 
 @media screen and (max-width: 2200px) {
     .billboard {
-        height: 47.25vw;
+        height: 40.25vw;
     }
 }
 
