@@ -55,7 +55,7 @@ const ContentPage = () => {
                 apiEndpoint = "/api/v1/content/movies"
             }
             else if (location.pathname === '/series') {
-                includeMyList = true;
+                includeMyList = false;
                 apiEndpoint = "/api/v1/content/series"
             }
 
