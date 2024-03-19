@@ -5,16 +5,17 @@ import "./searchBox.css";
 
 const SearchBox = () => {
   const navigate = useNavigate();
-  const { search } = useLocation();
+  // const { search } = useLocation();
   const searchInputRef = useRef(null);
   const [showSearch, setShowSearch] = useState(false);
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useState(undefined);
 
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const { userInfo } = state;
 
   useEffect(() => {
-    if (!query) {
+    console.log('in here')
+    if (!query && query !== "") {
       return;
     }
 
@@ -23,15 +24,15 @@ const SearchBox = () => {
     }
 
     console.log("query", query);
-    console.log("search", search);
-    const filterUrl = getFilterUrl(search, { query: query });
+
+    const filterUrl = getFilterUrl({ query: query });
 
     console.log("filterUrl", filterUrl);
     navigate(filterUrl);
   }, [query])
 
 
-  const getFilterUrl = (searchFromUrl, filter) => {
+  const getFilterUrl = (filter) => {
     console.log('filter: ', filter)
     console.log('filter query: ', filter.query)
     const link = `/search?q=${filter.query}`;

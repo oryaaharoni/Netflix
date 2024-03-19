@@ -39,7 +39,7 @@ const SearchPage = () => {
         const { data } = await axios.get(`api/v1/content/search${search}`, {
           headers: { Authorization: `Bearer ${userInfo.token}` },
         });
-        // console.log("data", data);
+        console.log("data", data);
         setCurrentData(data);
 
         

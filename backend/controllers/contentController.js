@@ -66,27 +66,26 @@ export const removeFromMyList = async (req, res) => {
 }
 
 export const getContentByQuery = async(req, res)=> {
-    
+
     try {
         const { q } = req.query;
-    
-        if (!q) {
-          return res.status(400).send({ error: 'Query parameter "q" is required.' });
+        if (q === "") {
+            const result = await Content.find({});
+            res.status(200).send(result);
+        } else if (!q) {
+            return res.status(400).send({ error: 'Query parameter "q" is required.' });
+        } else {
+            const result = await Content.find({ title: { $regex: new RegExp(q, 'i') } });
+            
+            if (!result) {
+                return res.status(404).send({ message: 'No content found with the specified title.' });
+            }
+            
+            res.status(200).send(result);
         }
-    
-        const result = await Content.find({ title: { $regex: new RegExp(q, 'i') } });
-    
-        if (!result) {
-          return res.status(404).send({ message: 'No content found with the specified title.' });
-        }
-        
-        res.status(200).send(result);
-    } 
-    catch (error) {
+    } catch (error) {
         res.status(500).send({ error: 'Internal Server Error' });
     }
-    
-
 }
 
 
