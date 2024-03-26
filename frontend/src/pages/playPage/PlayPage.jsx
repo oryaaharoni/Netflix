@@ -36,7 +36,7 @@ const PlayPage = () => {
   return (
     <div style={{ overflow: "hidden" }}>
       {showBackButton &&
-        <button className="playBackBtn" onClick={() => navigate(-1)}><i className="fa fa-arrow-left" aria-hidden="true"></i></button>
+        <button className="playBackBtn" onClick={() => navigate(-1)}><i className="fa fa-arrow-left" aria-hidden="true" onMouseEnter={() => setShowBackButton(true)}></i></button>
       }
       <ReactPlayer
         url={item.movie}

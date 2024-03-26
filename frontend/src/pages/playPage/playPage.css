@@ -9,7 +9,7 @@
 
 .playBackBtn:hover {
     background-color: rgba(0, 0, 0, 0);
-    color: black;
+    color: grey;
 }
 
 .fa-arrow-left {
