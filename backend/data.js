@@ -9,8 +9,9 @@ export const genres = [
 ];
 
 export const listMovieNames = [
-  'Top picks for Movie',
-  'Movies for your friend Steve',
+  'Top picks for Movies',
+  // 'Movies for your friend Steve',
+  'Recommended movies',
   'Kid-Friendly Movies',
   'Action Movies',
   'Documentariy Movies',
