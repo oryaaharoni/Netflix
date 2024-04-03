@@ -31,8 +31,8 @@ const LoginHelpPage = () => {
 
   return (
     <div className='divHelpRoot'>
-      <a className='signInLink' href='/signin'>Sign-In</a>
       <Header />
+      <a className='signInLink' href='/signin'>Sign-In</a>
       <form className='centerDiv' >
         <h1>Forgot Email/Password</h1>
         <p>How would you like to reset your password?</p>

@@ -103,6 +103,7 @@ const SignUpPage = () => {
   return (
     <div className="rootDiv">
       <Header />
+      <button className='signInButton'><a href="/signin">Sign In</a></button>
       <div className="content">
         <h1 className="title">Unlimited movies, TV shows, and more</h1>
         <h4>Watch anywhere. Cancel anytime.</h4>
