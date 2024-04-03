@@ -5,6 +5,9 @@
     top: 40px;
     right: 30px;
     border: none;
+    border-radius: 4px;
+    width: 5%;
+    font-weight: 600;
 }
 
 .signInButton a{
