@@ -4,7 +4,7 @@
 }
 
 #titleMyList {
-    padding-left: 100px;
+    padding-left: 7%;
 }
 
 .divRootMyList {
@@ -12,6 +12,17 @@
     padding-left: 200px;
     flex-direction: row;
     flex-wrap: wrap;
-    /* justify-content: center; */
-    /* margin: 0 auto; */
+}
+
+@media screen and (max-width: 1000px) {
+    .divRootMyList{
+        padding-left: 0;
+        justify-content: center;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    #mylistDivFirst {
+        padding-top: 50%;
+    }
 }
