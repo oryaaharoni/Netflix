@@ -10,21 +10,30 @@ import { GET_FAIL, GET_REQUEST, GET_SUCCESS } from '../../reducers/actions';
 
 const SearchPage = () => {
   const { search } = useLocation();
-  const searchParams = new URLSearchParams(search);
-  // const q = searchParams.get("q");
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const { userInfo, loading } = state;
   const navigate = useNavigate();
   const [currentData, setCurrentData] = useState();
   const [inputData, setInputData] = useState();
+  
+  const useDebounce = (value, delay = 500) => {
+    const [debouncedValue, setDebouncedValue] = useState();
+    useEffect(() => {
+      const timeout = setTimeout(() => {
+        setDebouncedValue(value);
+      }, delay);
+      
+      return () => clearTimeout(timeout)
+    }, [value, delay]);
+
+    return debouncedValue;
+  }
+  
+  const debouncedSearch = useDebounce(search);
 
 
-  console.log(search);
-  console.log(currentData)
   useEffect(() => {
-
     const getContent = async () => {
-      console.log(userInfo);
       if (!userInfo) {
         navigate('/signin')
       }
@@ -32,24 +41,13 @@ const SearchPage = () => {
       ctxDispatch({ type: GET_REQUEST });
 
       try {
-
-        console.log('in the search page : ', search);
-        // console.log("search (Page)", search)
-
         const { data } = await axios.get(`api/v1/content/search${search}`, {
           headers: { Authorization: `Bearer ${userInfo.token}` },
         });
-        console.log("data", data);
         setCurrentData(data);
-
-        
-        console.log("currentData ", currentData)
-        
-        
         setInputData(search.split('=')[1]);
         ctxDispatch({ type: GET_SUCCESS, payload: data });
-        
-        // console.log(search.split('='))
+
       }
       catch (err) {
         ctxDispatch({ type: GET_FAIL, payload: err });
@@ -57,10 +55,8 @@ const SearchPage = () => {
         navigate('/signin')
       }
     }
-
     getContent();
-
-  }, [search])
+  }, [debouncedSearch])
 
 
   if (currentData == null) {

@@ -75,7 +75,7 @@ const NavBar = () => {
             </button>
 
             <div id="myDropdown" className='dropdown-content'>
-              <button className='dropDownBtn' onClick={signOutNetflix}>Sign out of Netlix</button>
+              <button className='dropDownBtn' onClick={signOutNetflix}>Sign out of Netflix</button>
             </div>
           </div>
         </div>
