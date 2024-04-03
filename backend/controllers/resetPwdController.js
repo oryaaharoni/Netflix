@@ -52,7 +52,7 @@ export const getResetLink = async (req, res) => {
 
 export const getNewPassword = async (req, res) => {
     const { id, password, token, frontendHost, frontendNavigate } = req.body;
-    
+
     try {
         const user = await User.findOne({ _id: id });
         if (!user) {

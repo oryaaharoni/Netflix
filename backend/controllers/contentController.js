@@ -27,7 +27,6 @@ export const getMyList = async (req, res) => {
         const user = await User.findById(id).populate('contentList');
         const contentList = { name: "My List", contentList: user.contentList };
         res.send(contentList);
-        // res.send(user.contentList);
     } catch (error) {
         res.status(500).send('Internal Server Error');
     }
@@ -42,7 +41,6 @@ export const addToMyList = async (req, res) => {
         user.contentList.push(content);
         await user.save();
         res.status(202).send(content);
-        // res.status(202).send('Added to the list successfully');
     }
     else {
         res.status(409).send(`This movie already in your list`);
@@ -57,7 +55,6 @@ export const removeFromMyList = async (req, res) => {
     if (index > -1) {
         user.contentList.splice(index, 1);
         await user.save();
-        // res.status(202).send('Content removes from the list successfully');
         res.status(202).send(content);
     }
     else {
@@ -65,7 +62,7 @@ export const removeFromMyList = async (req, res) => {
     }
 }
 
-export const getContentByQuery = async(req, res)=> {
+export const getContentByQuery = async (req, res) => {
 
     try {
         const { q } = req.query;
@@ -76,11 +73,11 @@ export const getContentByQuery = async(req, res)=> {
             return res.status(400).send({ error: 'Query parameter "q" is required.' });
         } else {
             const result = await Content.find({ title: { $regex: new RegExp(q, 'i') } });
-            
+
             if (!result) {
                 return res.status(404).send({ message: 'No content found with the specified title.' });
             }
-            
+
             res.status(200).send(result);
         }
     } catch (error) {
@@ -88,18 +85,6 @@ export const getContentByQuery = async(req, res)=> {
     }
 }
 
-
-// export const getMovies = async (req, res) => {
-//     const movies = await Content.find({ isSeries: false });
-//     res.send(movies);
-// }
-
-// export const getSeries = async (req, res) => {
-//     const series = await Content.find({ isSeries: true });
-//     res.send(series);
-// }
-
-//info
 export const getContentById = async (req, res) => {
     const { id } = req.params;
 
@@ -110,10 +95,4 @@ export const getContentById = async (req, res) => {
 export const getCategories = async (req, res) => {
     const categories = await Content.find().distinct("genre");
     res.send(categories);
-}
-
-
-
-export const getMoviesWithGenre = async (req, res) => {
-
 }
