@@ -15,22 +15,6 @@ const SearchPage = () => {
   const navigate = useNavigate();
   const [currentData, setCurrentData] = useState();
   const [inputData, setInputData] = useState();
-  
-  const useDebounce = (value, delay = 500) => {
-    const [debouncedValue, setDebouncedValue] = useState();
-    useEffect(() => {
-      const timeout = setTimeout(() => {
-        setDebouncedValue(value);
-      }, delay);
-      
-      return () => clearTimeout(timeout)
-    }, [value, delay]);
-
-    return debouncedValue;
-  }
-  
-  const debouncedSearch = useDebounce(search);
-
 
   useEffect(() => {
     const getContent = async () => {
@@ -56,7 +40,7 @@ const SearchPage = () => {
       }
     }
     getContent();
-  }, [debouncedSearch])
+  }, [search])
 
 
   if (currentData == null) {

@@ -5,7 +5,6 @@ import "./searchBox.css";
 
 const SearchBox = () => {
   const navigate = useNavigate();
-  // const { search } = useLocation();
   const searchInputRef = useRef(null);
   const [showSearch, setShowSearch] = useState(false);
   const [query, setQuery] = useState(undefined);
@@ -13,8 +12,23 @@ const SearchBox = () => {
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const { userInfo } = state;
 
+  const useDebounce = (value, delay = 500) => {
+    const [debouncedValue, setDebouncedValue] = useState();
+    useEffect(() => {
+      const timeout = setTimeout(() => {
+        setDebouncedValue(value);
+      }, delay);
+
+      return () => clearTimeout(timeout)
+    }, [value, delay]);
+
+    return debouncedValue;
+  }
+
+  const debouncedSearch = useDebounce(query);
+
+
   useEffect(() => {
-    console.log('in here')
     if (!query && query !== "") {
       return;
     }
@@ -23,28 +37,14 @@ const SearchBox = () => {
       navigate('/signin');
     }
 
-    console.log("query", query);
-
     const filterUrl = getFilterUrl({ query: query });
-
-    console.log("filterUrl", filterUrl);
     navigate(filterUrl);
-  }, [query])
-
+  }, [debouncedSearch])
 
   const getFilterUrl = (filter) => {
-    console.log('filter: ', filter)
-    console.log('filter query: ', filter.query)
     const link = `/search?q=${filter.query}`;
     return link;
   }
-
-  // useEffect(() => {
-  //   if (searchInputRef.current) {
-  //     searchInputRef.current.focus();
-  //   }
-  // }, [searchInputRef]);
-
 
   useEffect(() => {
     if (showSearch) {
