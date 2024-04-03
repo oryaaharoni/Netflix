@@ -1,15 +1,9 @@
-.div1 {
+.divHelpRoot {
     background-image: url("https://assets.nflxext.com/ffe/siteui/acquisition/login/login-the-crown_2-1500x1000.jpg");
     background-size: cover;
     background-position: center;
     min-height: 100vh;
     border-radius: 1px;
-}
-
-@media screen and (max-width: 600px) {
-    .div1 h1 {
-        font-size: large;
-    }
 }
 
 .signInLink {
@@ -26,19 +20,28 @@
     color: black;
     text-align: center;
     font-family: 'Segoe UI';
-    font-size: 16px;
-    padding: 10px 10px 10px 10px;
-    width: 50%;
+    font-size: large;
+    padding: 30px;
+    width: 27%;
     margin: auto;
-    min-width: 500px;
 }
 
-@media screen and (max-width: 2000px) {
+@media screen and (max-width: 1500px) {
+    .centerDiv {
+        width: 40%;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .centerDiv {
+        width: 60%;
+    }
+}
+
+@media screen and (max-width: 600px) {
     .centerDiv {
         font-size: large;
-        width: 20%;
-        padding: 30px;
-        /* text-align: left; */
+        width: 100%;
     }
 }
 
@@ -74,9 +77,8 @@ div button:hover {
     box-sizing: border-box;
 }
 
-.div1 h1 {
+.divHelpRoot h1 {
     color: black;
-    /* add h1 to center */
 }
 
 .emailInput:focus {

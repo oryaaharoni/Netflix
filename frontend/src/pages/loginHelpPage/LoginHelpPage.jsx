@@ -30,8 +30,8 @@ const LoginHelpPage = () => {
   }
 
   return (
-    <div className='div1'>
-      <a className='signInLink' href='/signIn'>Sign-In</a>
+    <div className='divHelpRoot'>
+      <a className='signInLink' href='/signin'>Sign-In</a>
       <Header />
       <form className='centerDiv' >
         <h1>Forgot Email/Password</h1>
@@ -53,7 +53,7 @@ const LoginHelpPage = () => {
         {/* Placeholder depends on the selected radio button */}
         <input className='emailInput' name='email' placeholder='Enter your email or phone number' onChange={(e) => setEmail(e.target.value)} /><br />
         <button className='loginHelpPageBtn' type='submit' onClick={sendEmailHandler}>Send</button><br />
-        <a className='aforgot' href=''>I dont remember my email or phone number</a>
+        <a className='aforgot' href='#'>I don't remember my email or phone number</a>
       </form>
     </div>
 

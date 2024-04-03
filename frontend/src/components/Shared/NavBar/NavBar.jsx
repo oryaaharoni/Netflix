@@ -18,7 +18,8 @@ const NavBar = () => {
   }
 
   useEffect(() => {
-    const isSignInOrSignUpPage = location.pathname === "/signin" || location.pathname === "/signup" || location.pathname === "/resetPwd" || location.pathname === "/forgotPwd" || location.pathname.startsWith("/play");
+    const pathName = location.pathname.toLowerCase();
+    const isSignInOrSignUpPage = pathName === "/signin" || pathName === "/signup" || pathName === "/resetpwd" || pathName === "/forgotpwd" || pathName.startsWith("/play");
     setShowNavBar(isSignInOrSignUpPage)
   }, [location])
 
