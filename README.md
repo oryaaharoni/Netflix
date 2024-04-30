@@ -1,7 +1,7 @@
-# Amazon Clone: An E-Commerce Website Replica
+# Netflix Clone: A Streaming Platform Replica
 
 ## Description
-This project is a clone of Amazon, featuring product listings, user authentication, profile management, reset password system, and shopping cart functionality.
+This project is a clone of Netflix, aiming to replicate its main features, including streaming movies and TV shows, user authentication, and personalized profiles.
 
 ## Technologies Used
 - React
@@ -10,9 +10,9 @@ This project is a clone of Amazon, featuring product listings, user authenticati
 
 ## Features
 - User authentication
-- Profile management
-- Product listings
-- Shopping cart
+- Personalized profiles
+- Search functionality
+- Seamless streaming experience
 
 ## Installation
 1. Clone the repository.
@@ -22,4 +22,4 @@ This project is a clone of Amazon, featuring product listings, user authenticati
 1. Run the application using `npm start`.
 
 ## Demo
-Explore a live demo of the project [here](https://like-amazon-sc9g.vercel.app).
+Explore a live demo of the project [here](https://net-movies-front.vercel.app/signin).
